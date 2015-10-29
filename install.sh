@@ -9,13 +9,11 @@ do
 	ln -snfv $basedir/$dotfile $HOME/$dotfile
 done
 
-if [ $(uname -s) == "MSYS_NT-6.3" ]
+if [[ $(uname -s) = MSYS_NT* ]]
 then
-	if [ ! -v $KEYHAC_DIR ]
+	if [[ ! -v $KEYHAC_DIR ]]
 	then
 		echo
-		echo " [installing keyhac config.py]"
-		echo " $KEYHAC_DIR/config.py"
 		ln -nfv $basedir/windows/keyhac/config.py $KEYHAC_DIR/config.py
 	fi
 
