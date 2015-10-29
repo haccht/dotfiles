@@ -17,15 +17,16 @@ set focuscontent
 set titlestring=Vimperator
 set novisualbell
 set complete=l
-set gui=addons,nobookmarks,nomenu,nonavigation,tabs
+set gui=addons,nobookmarks,nomenu,navigation,tabs
 set hintchars=asdfglkjh
 set defsearch=google
 set status=input,bookmark,history,tabcount,position,ssl
 set runtimepath='~/vimperator'
 
-"set passkeys+='www.google.com.hk/search':jk
-ignorekeys add -except=:,/,x,X,d,D,L,H,g,t,T feedly\\.com/i
-ignorekeys add -except=:,x,X,d,D,L,H,g,t,T todoist\\.com/app
+"ignorekeys add -except=:,x,X,d,D,L,H,g,t,T   www\\.google\\.co.+/search
+ignorekeys add -except=:,x,X,d,D,L,H,g,t,T   mail\\.google\\.co.+/mail
+ignorekeys add -except=:,x,X,d,D,L,H,g,t,T   todoist\\.com/app
+ignorekeys add -except=:,x,X,d,D,L,H,g,t,T,/ feedly\\.com/i
 
 set nextpattern=\bnext\b,\bmore\b,^next$,^次(の)?ページ,\b次.*,^次へ$,→\b,^>$,^(>>|≫)$,^(>|≫),(>|≫)$
 set previouspattern=\bprev|previous\b,^prev$,^前(の)?ページ,\b前.*,^前へ$,\b←,^<$,^(<<|≪)$,^(<|≪),(<|≪)$
