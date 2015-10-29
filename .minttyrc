@@ -1,0 +1,16 @@
+BoldAsFont=yes
+CursorType=block
+Font=Migu 1M
+FontHeight=11
+Locale=ja_JP
+Charset=UTF-8
+BackspaceSendsBS=yes
+Columns=91
+Rows=27
+ScrollbackLines=100000
+BackgroundColour=0,0,0
+Transparency=high
+OpaqueWhenFocused=no
+Term=xterm-256color
+FontSmoothing=full
+CopyAsRTF=no
