@@ -1,0 +1,13 @@
+[user]
+  name = haccht
+  email = haccht00@gmail.com
+[color]
+  ui = auto
+  status = auto
+  diff = auto
+  branch = auto
+  interactive = auto
+  pager = true
+  grep = true
+[push]
+  default = simple
