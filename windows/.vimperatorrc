@@ -19,7 +19,7 @@ set novisualbell
 set complete=l
 set gui=addons,nobookmarks,nomenu,nonavigation,tabs
 set hintchars=asdfglkjh
-set defsearch=google-hk
+set defsearch=google
 set status=input,bookmark,history,tabcount,position,ssl
 set runtimepath='~/vimperator'
 
