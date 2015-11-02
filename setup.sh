@@ -28,7 +28,7 @@ then
 	read -p "Do you wish to install neobundle.vim from github.com? [yN]" yn
 	case $yn in
 		[Yy]*)
-		curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh
+		curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
 		;;
 	esac
 fi
