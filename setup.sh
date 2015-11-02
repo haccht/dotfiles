@@ -45,7 +45,7 @@ case "${OSTYPE}" in
 		case $yn in
 			[Yy]*)
 				read -p "Please specify a path to install:" dir
-				hardlink "$cwd/config.py" "$(dirname $dir)/config.py"
+				hardlink "$cwd/keyhac/config.py" "$(dirname $dir)/config.py"
 				;;
 		esac
 		;;
