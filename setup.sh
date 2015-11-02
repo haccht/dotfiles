@@ -23,15 +23,20 @@ symlink "$cwd/.gitignore"    "$HOME/.gitignore"
 symlink "$cwd/.tmux.conf"    "$HOME/.tmux.conf"
 symlink "$cwd/.vimrc"        "$HOME/.vimrc"
 
+if [ ! -e $HOME/.vim/bundle/neobundle.vim ]
+then
+	read -p "Do you wish to install neobundle.vim from github.com? [yN]" yn
+	case $yn in
+		[Yy]*)
+		curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh
+		;;
+	esac
+fi
+
 case "${OSTYPE}" in
 	linux*)
-		symlink  "$cwd/.vim/bundle/neobundle.vim" "$HOME/.vim/bundle/neobundle.vim"
-		symlink  "$cwd/.vim/bundle/badwolf"       "$HOME/.vim/bundle/badwolf"
 		;;
 	msys*)
-		hardlink "$cwd/.vim/bundle/neobundle.vim" "$HOME/.vim/bundle/neobundle.vim"
-		hardlink "$cwd/.vim/bundle/badwolf"       "$HOME/.vim/bundle/badwolf"
-
 		hardlink "$cwd/.gvimrc"       "$HOME/.gvimrc"
 		hardlink "$cwd/.minttyrc"     "$HOME/.minttyrc"
 		hardlink "$cwd/.vimperatorrc" "$HOME/.vimperatorrc"
