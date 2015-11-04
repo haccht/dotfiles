@@ -1,0 +1,45 @@
+"3.8.3 (created: 2014/11/09 13:19:01)
+
+nnoremap ! :set<Space>invum<Return>
+nnoremap L gt
+nnoremap H gT
+nnoremap x d
+nnoremap X D
+nnoremap ; :
+nnoremap U :undo<Space>
+inoremap <C-v> <S-Insert>
+cnoremap <C-v> <S-Insert>
+
+" IME-OFF
+style! -name=commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
+
+set focuscontent
+set titlestring=Vimperator
+set novisualbell
+set complete=l
+set gui=addons,nobookmarks,nomenu,navigation,tabs
+set hintchars=asdfglkjh
+set defsearch=google
+set status=input,bookmark,history,tabcount,position,ssl
+set runtimepath='~/vimperator'
+
+"ignorekeys add -except=:,x,X,d,D,L,H,g,t,T   www\\.google\\.co.+/search
+ignorekeys add -except=:,x,X,d,D,L,H,g,t,T   mail\\.google\\.co.+/mail
+ignorekeys add -except=:,x,X,d,D,L,H,g,t,T   todoist\\.com/app
+ignorekeys add -except=:,x,X,d,D,L,H,g,t,T,/ feedly\\.com/i
+
+set nextpattern=\bnext\b,\bmore\b,^next$,^次(の)?ページ,\b次.*,^次へ$,→\b,^>$,^(>>|≫)$,^(>|≫),(>|≫)$
+set previouspattern=\bprev|previous\b,^prev$,^前(の)?ページ,\b前.*,^前へ$,\b←,^<$,^(<<|≪)$,^(<|≪),(<|≪)$
+
+" ==Simple_Color_Scheme==
+highlight Bell display: none;
+highlight CmdLine font-size: 12px; font-weight: normal; font-family: monospace; padding: 2px 3px;
+highlight ErrorMsg background-color: #E00; color: #F5F5F5;
+highlight Filter font-weight: bold; color: #000;
+highlight -a StatusLine       font-size: 12px; font-weight: normal; color: #222; background-color: inherit;
+highlight Hint font-family: monospace; font-size: 12px; font-weight: normal; color: white; background-color: navy; padding: 2px 2px; border: 1px solid #FFF;
+highlight HintElem background-color: aliceblue;
+highlight HintActive background-color: lightgreen;
+highlight Title font-size: 12px; letter-spacing: 2px; color: #333; background: #CCC;
+
+" vim: set ft=vimperator:
