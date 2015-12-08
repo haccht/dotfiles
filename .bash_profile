@@ -8,7 +8,7 @@
 export PATH=$PATH:$HOME/bin
 
 # Go settings
-export GOROOT=/usr/lib/golang
+export GOROOT=/usr/local/go
 export GOPATH=$HOME/gocode
 export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
 
@@ -16,4 +16,10 @@ export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
 if [ -d $HOME/.rbenv ]; then
   export PATH=$PATH:$HOME/.rbenv/bin
   eval "$(rbenv init -)"
+fi
+
+# plenv settings
+if [ -d $HOME/.plenv ]; then
+  export PATH=$PATH:$HOME/.plenv/bin
+  eval "$(plenv init -)"
 fi
