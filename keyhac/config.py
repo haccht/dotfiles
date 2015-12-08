@@ -40,6 +40,7 @@ def configure(keymap):
                                            "Emacs",              # NTEmacs
                                            "Vim",                # Vim
                                            "PuTTY",              # PuTTY
+                                           "CtxICADisp",         # Citrix
                                            "SWT_Window0"):       # Eclipse
                 return False
             if window.getProcessName() in ("xyzzy.exe",          # xyzzy
