@@ -5,6 +5,13 @@
 [[ -f ~/.bash_local ]] && . ~/.bash_local
 
 # User specific environment and startup programs
+export PAGER=less
+export EDITOR=vim
+
+export LANG=ja_JA.UTF-8
+export LC_ALL=ja_JP.UTF-8
+export OUTPUT_CHARSET=ja_JP.UTF-8
+
 export PATH="$HOME/bin:$PATH"
 
 # Go settings
