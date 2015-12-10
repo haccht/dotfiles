@@ -20,16 +20,10 @@ set hintchars=asdfglkjh
 set defsearch=google
 set runtimepath="$HOME/vimperator"
 
-loadplugins
-
-command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
-:lazy fmaps -u='mail\.google\.com/mail' c / j k n p o u e x s r a # [ ] ? gi gs gt gd ga gc
-:lazy fmaps -u='mail\.google\.com/mail/.*/[0-9a-f]+$' c / j,n k,p n,j p,k o u e x s r a # [ ] ? gi gs gt gd ga gc
-:lazy fmaps -u='feedly\.com/i'    j k s n p o v 
-:lazy fmaps -u='todoist\.com/app' j k s n p o v
-
 set nextpattern=\bnext\b,\bmore\b,^next$,^次(の)?ページ,\b次.*,^次へ$,→\b,^>$,^(>>|≫)$,^(>|≫),(>|≫)$
 set previouspattern=\bprev|previous\b,^prev$,^前(の)?ページ,\b前.*,^前へ$,\b←,^<$,^(<<|≪)$,^(<|≪),(<|≪)$
+
+autocmd LocationChange .* js modes.passAllKeys = false
 
 " ==Simple_Color_Scheme==
 highlight Bell display: none;
