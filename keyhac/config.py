@@ -550,3 +550,8 @@ def configure(keymap):
         # mintty
         keymap_mintty = keymap.defineWindowKeymap(exe_name=u'MINTTY.EXE')
         keymap_mintty[ "C-S-M" ]     = "A-Enter"
+
+    if 1:
+        # firefox
+        keymap_mintty = keymap.defineWindowKeymap(exe_name=u'FIREFOX.EXE')
+        keymap_mintty[ "C-I" ]     = "Insert"
