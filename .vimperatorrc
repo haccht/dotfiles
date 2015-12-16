@@ -14,7 +14,7 @@ style! -name=commandline-ime chrome://* #liberator-commandline-command input {im
 set novisualbell
 set titlestring=Vimperator
 set focuscontent
-set complete=sl
+set complete=l
 set gui=none,navigation,tabs
 set hintchars=asdfglkjh
 set defsearch=google
