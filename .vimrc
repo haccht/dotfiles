@@ -32,21 +32,23 @@ endif
 call neobundle#begin(expand('~/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'tpope/vim-markdown'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'glidenote/memolist.vim'
+NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'tpope/vim-markdown'
 NeoBundle 'sjl/badwolf'
 call neobundle#end()
 
 filetype plugin indent on
-NeoBundleCheck
-
 
 " badwolf settings
-colorscheme badwolf
+if isdirectory('~/.vim/bundle/badwolf')
+  colorscheme badwolf
+else
+  colorscheme murphy
+endif
 
 " unite settings
 let g:unite_enable_start_insert=1
