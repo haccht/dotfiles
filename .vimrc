@@ -23,23 +23,21 @@ set ignorecase
 set incsearch
 set hlsearch
 
-if has('vim_starting')
-  set nocompatible
-  set runtimepath+=~/.vim/bundle/neobundle.vim
-endif
+set nocompatible
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-" NeoBundle settings
-call neobundle#begin(expand('~/.vim/bundle'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'glidenote/memolist.vim'
-NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'sjl/badwolf'
-call neobundle#end()
+" dein settings
+call dein#begin(expand('~/.vim/dein'))
+call dein#add('Shougo/dein.vim')
+call dein#add('Shougo/unite.vim')
+call dein#add('fatih/vim-go')
+call dein#add('vim-ruby/vim-ruby')
+call dein#add('thinca/vim-quickrun')
+call dein#add('glidenote/memolist.vim')
+call dein#add('Yggdroot/indentLine')
+call dein#add('tpope/vim-markdown')
+call dein#add('sjl/badwolf')
+call dein#end()
 
 filetype plugin indent on
 
