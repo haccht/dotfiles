@@ -23,16 +23,18 @@ set ignorecase
 set incsearch
 set hlsearch
 
-set nocompatible
-
 if filereadable(expand('~/.vim/local.vim'))
   source $HOME/.vim/local.vim
 endif
 
-set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
+if &compatible
+  set nocompatible
+endif
+
+set runtimepath^=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
 
 " dein settings
-call dein#begin(expand('~/.vim/dein'))
+call dein#begin(expand('~/.vim/dein/repos/github.com'))
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/unite.vim')
 call dein#add('fatih/vim-go')
@@ -40,13 +42,10 @@ call dein#add('vim-ruby/vim-ruby')
 call dein#add('thinca/vim-quickrun')
 call dein#add('glidenote/memolist.vim')
 call dein#add('tpope/vim-markdown')
-call dein#add('sjl/badwolf')
+call dein#add('altercation/vim-colors-solarized')
 call dein#end()
 
 filetype plugin indent on
-
-" badwolf settings
-colorscheme badwolf
 
 " unite settings
 let g:unite_enable_start_insert=1
@@ -64,4 +63,9 @@ nmap <leader>mn :MemoNew<CR>
 nmap <leader>ml :MemoList<CR>
 nmap <leader>mg :MemoGrep<CR>
 
-syntax on
+" colorscheme
+let g:solarized_termcolors=256
+set background=dark
+
+syntax enable
+colorscheme solarized
