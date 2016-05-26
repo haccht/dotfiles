@@ -16,3 +16,5 @@ endif
 if exists('&imdisableactivate')
   set noimdisableactivate
 endif
+
+colorscheme solarized
