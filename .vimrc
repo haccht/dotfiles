@@ -57,6 +57,7 @@ nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 
 " memolist settings
+let g:memolist_path = '~/memo'
 let g:memolist_unite = 1
 let g:memolist_memo_suffix = 'md'
 let g:memolist_template_dir_path = '~/memo/.template'
