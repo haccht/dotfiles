@@ -5,7 +5,6 @@ set fileencodings=utf-8,iso-2022-jp,shift-jis,euc-jp
 scriptencoding utf-8
 
 " dein settings
-filetype off
 if &compatible
   set nocompatible
 endif
@@ -20,10 +19,14 @@ call dein#add('vim-ruby/vim-ruby')
 call dein#add('thinca/vim-quickrun')
 call dein#add('glidenote/memolist.vim')
 call dein#add('tpope/vim-markdown')
-call dein#add('altercation/vim-colors-solarized')
+call dein#add('tomasr/molokai')
 
 call dein#end()
-filetype plugin indent on
+
+" colorscheme
+syntax on
+colorscheme molokai
+set background=dark
 
 " global settings
 set t_vb=
@@ -66,9 +69,4 @@ nmap <leader>mn :MemoNew<CR>
 nmap <leader>ml :MemoList<CR>
 nmap <leader>mg :MemoGrep<CR>
 
-" colorscheme
-let g:solarized_termcolors=256
-
-syntax enable
-set background=dark
-colorscheme solarized
+filetype plugin indent on
