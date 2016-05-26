@@ -25,7 +25,7 @@ symlink "$cwd/.vimrc"        "$HOME/.vimrc"
 
 if [ ! -e $HOME/.vim/dein ]
 then
-	read -p "Do you wish to install neobundle.vim from github.com? [yN]" yn
+	read -p "Do you wish to install dein.vim from github.com? [yN]" yn
 	case $yn in
 		[Yy]*)
 		curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
