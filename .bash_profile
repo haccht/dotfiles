@@ -23,6 +23,8 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 if [ -d "$HOME/.rbenv" ]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
+else
+  export PATH="$HOME/.gem/ruby/2.3.0/bin:$PATH"
 fi
 
 # plenv settings
