@@ -1,10 +1,31 @@
+" encodings
 set encoding=utf-8
 set termencoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,shift-jis,euc-jp
-
 scriptencoding utf-8
-filetype off
 
+" dein settings
+filetype off
+if &compatible
+  set nocompatible
+endif
+
+set runtimepath^=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
+call dein#begin(expand('~/.vim/dein'))
+
+call dein#add('Shougo/dein.vim')
+call dein#add('Shougo/unite.vim')
+call dein#add('fatih/vim-go')
+call dein#add('vim-ruby/vim-ruby')
+call dein#add('thinca/vim-quickrun')
+call dein#add('glidenote/memolist.vim')
+call dein#add('tpope/vim-markdown')
+call dein#add('altercation/vim-colors-solarized')
+
+call dein#end()
+filetype plugin indent on
+
+" global settings
 set t_vb=
 set novisualbell
 set noerrorbells
@@ -23,29 +44,10 @@ set ignorecase
 set incsearch
 set hlsearch
 
+" local settings
 if filereadable(expand('~/.vim/local.vim'))
   source $HOME/.vim/local.vim
 endif
-
-if &compatible
-  set nocompatible
-endif
-
-set runtimepath^=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
-
-" dein settings
-call dein#begin(expand('~/.vim/dein/repos/github.com'))
-call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/unite.vim')
-call dein#add('fatih/vim-go')
-call dein#add('vim-ruby/vim-ruby')
-call dein#add('thinca/vim-quickrun')
-call dein#add('glidenote/memolist.vim')
-call dein#add('tpope/vim-markdown')
-call dein#add('altercation/vim-colors-solarized')
-call dein#end()
-
-filetype plugin indent on
 
 " unite settings
 let g:unite_enable_start_insert=1
@@ -66,7 +68,7 @@ nmap <leader>mg :MemoGrep<CR>
 
 " colorscheme
 let g:solarized_termcolors=256
-set background=dark
 
 syntax enable
+set background=dark
 colorscheme solarized
