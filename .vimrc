@@ -32,6 +32,7 @@ set background=dark
 set t_vb=
 set novisualbell
 set noerrorbells
+set noundofile
 
 set nobackup
 set fileformats=unix,dos,mac
