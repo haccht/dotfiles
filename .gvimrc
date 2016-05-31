@@ -5,7 +5,8 @@ set noswapfile
 
 if has('win32')
   let $MYVIMRC='$HOME/.vimrc'
-  colorscheme desert
+  set guifont=migu\ 1m:h11
+  colorscheme molokai
 endif
 
 if has('multi_byte_ime')
@@ -16,5 +17,3 @@ endif
 if exists('&imdisableactivate')
   set noimdisableactivate
 endif
-
-colorscheme molokai
