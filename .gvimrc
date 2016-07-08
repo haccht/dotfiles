@@ -6,6 +6,7 @@ set noswapfile
 if has('win32')
   let $MYVIMRC='$HOME/.vimrc'
   set guifont=migu\ 1m:h11
+  set clipboard=unnamed,autoselect
   colorscheme molokai
 endif
 
