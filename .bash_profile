@@ -13,7 +13,7 @@ export LC_ALL=ja_JP.UTF-8
 export OUTPUT_CHARSET=ja_JP.UTF-8
 
 export HOME=${HOME%/}
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:$HOME/local/bin:$PATH"
 cd $HOME
 
 # Go settings
