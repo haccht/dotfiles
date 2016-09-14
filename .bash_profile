@@ -12,7 +12,9 @@ export LANG=ja_JA.UTF-8
 export LC_ALL=ja_JP.UTF-8
 export OUTPUT_CHARSET=ja_JP.UTF-8
 
+export HOME=${HOME%/}
 export PATH="$HOME/bin:$PATH"
+cd $HOME
 
 # Go settings
 export GOROOT=/usr/local/go
