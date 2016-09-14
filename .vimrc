@@ -52,15 +52,19 @@ endif
 set t_vb=
 set novisualbell
 set noerrorbells
-set noundofile
+if version > 702
+  set noundofile
+endif
 
 set nobackup
 set fileformats=unix,dos,mac
 setlocal autoindent
 
 set background=dark
-set colorcolumn=80
-hi ColorColumn guibg=#444444 ctermbg=233
+if version > 702
+  set colorcolumn=80
+  hi ColorColumn guibg=#444444 ctermbg=233
+endif
 
 set number
 set nowrap
