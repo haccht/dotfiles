@@ -16,6 +16,8 @@ export HOME=${HOME%/}
 export PATH="$HOME/bin:$HOME/local/bin:$PATH"
 cd $HOME
 
+export LESS='-i -M -R'
+
 # Go settings
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/gocode
