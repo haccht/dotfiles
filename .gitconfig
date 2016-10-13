@@ -11,3 +11,5 @@
   grep = true
 [push]
   default = simple
+[http]
+	sslVerify = false
