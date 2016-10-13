@@ -46,6 +46,7 @@ endif
 set t_vb=
 set novisualbell
 set noerrorbells
+set laststatus=2
 if version > 702
   set noundofile
 endif
