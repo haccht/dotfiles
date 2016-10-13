@@ -10,26 +10,22 @@ if &compatible
   set nocompatible
 endif
 
-set runtimepath^=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
-call dein#begin(expand('~/.vim/dein'))
+if isdirectory(expand('~/.vim/dein'))
+  set runtimepath^=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
 
-call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/unite.vim')
-call dein#add('tomasr/molokai')
-call dein#add('fatih/vim-go')
-call dein#add('vim-ruby/vim-ruby')
-call dein#add('tpope/vim-markdown')
-call dein#add('thinca/vim-quickrun')
-call dein#add('glidenote/memolist.vim')
-call dein#add('itchyny/lightline.vim')
-call dein#add('bronson/vim-trailing-whitespace')
+  call dein#begin(expand('~/.vim/dein'))
+  call dein#add('Shougo/dein.vim')
+  call dein#add('Shougo/unite.vim')
+  call dein#add('tomasr/molokai')
+  call dein#add('fatih/vim-go')
+  call dein#add('vim-ruby/vim-ruby')
+  call dein#add('tpope/vim-markdown')
+  call dein#add('thinca/vim-quickrun')
+  call dein#add('glidenote/memolist.vim')
+  call dein#add('itchyny/lightline.vim')
+  call dein#add('bronson/vim-trailing-whitespace')
+  call dein#end()
 
-call dein#end()
-
-syntax on
-
-" color settings
-if dein#tap('molokai')
   colorscheme molokai
 else
   colorscheme murphy
@@ -41,6 +37,8 @@ if version > 702
   set colorcolumn=80
   hi ColorColumn guibg=#444444 ctermbg=233
 endif
+
+syntax on
 
 " global settings
 set t_vb=
