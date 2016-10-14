@@ -165,8 +165,8 @@ def configure(keymap):
 
         def kill_ring_save():
             keymap.command_InputKey("C-c")()
-            #if not keymap.getWindow().getClassName().startswith("EXCEL"):  # Microsoft Excel 以外
-            #    keymap.command_InputKey("Esc")()
+            if not keymap.getWindow().getClassName().startswith("EXCEL"):  # Microsoft Excel 以外
+                keymap.command_InputKey("Esc")()
             keymap_emacs.is_mark = False
 
         def windows_copy():
@@ -384,7 +384,7 @@ def configure(keymap):
         for key in range(10):
             keymap_emacs[str(key)]      = digit(key)
 
-        keymap_emacs["C-u"]             = universal_argument
+        #keymap_emacs["C-u"]             = universal_argument
 
         keymap_emacs["C-b"]             = repeat(mark(backward_char))
         keymap_emacs["C-f"]             = repeat(mark(forward_char))
@@ -553,5 +553,5 @@ def configure(keymap):
 
     if 1:
         # firefox
-        keymap_mintty = keymap.defineWindowKeymap(exe_name=u'FIREFOX.EXE')
-        keymap_mintty[ "C-I" ]     = "Insert"
+        keymap_firefox = keymap.defineWindowKeymap(exe_name=u'FIREFOX.EXE')
+        keymap_firefox[ "C-I" ]      = "Insert"
