@@ -18,7 +18,7 @@ cd $HOME
 
 # Go settings
 export GOROOT=/usr/local/go
-export GOPATH=$HOME/gocode
+export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 # rbenv settings
