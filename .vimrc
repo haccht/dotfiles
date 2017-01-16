@@ -33,10 +33,6 @@ endif
 
 set background=dark
 set cursorline
-if version > 702
-  set colorcolumn=80
-  hi ColorColumn guibg=#444444 ctermbg=233
-endif
 
 syntax on
 
