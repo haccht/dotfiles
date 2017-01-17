@@ -16,9 +16,12 @@ export HOME=${HOME%/}
 export PATH="$HOME/bin:$HOME/local/bin:$PATH"
 cd $HOME
 
+# Ruby settings
+export RUBYLIB="$HOME/lib"
+
 # Go settings
 export GOROOT=/usr/local/go
-export GOPATH=$HOME/gocode
+export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 # rbenv settings

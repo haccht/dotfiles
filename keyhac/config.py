@@ -165,8 +165,8 @@ def configure(keymap):
 
         def kill_ring_save():
             keymap.command_InputKey("C-c")()
-            #if keymap.getWindow().getClassName().startswith("EXCEL"):  # Microsoft Excel
-            #    keymap.command_InputKey("Esc")()
+            if not keymap.getWindow().getClassName().startswith("EXCEL"):  # Microsoft Excel 以外
+                keymap.command_InputKey("Esc")()
             keymap_emacs.is_mark = False
 
         def windows_copy():
