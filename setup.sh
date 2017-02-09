@@ -37,6 +37,8 @@ fi
 
 case "${OSTYPE}" in
 	linux*)
+		symlink "$cwd/.gvimrc"       "$HOME/.gvimrc"
+		symlink "$cwd/.vimperatorrc" "$HOME/.vimperatorrc"
 		;;
 	msys*)
 		hardlink "$cwd/.gvimrc"       "$HOME/.gvimrc"
