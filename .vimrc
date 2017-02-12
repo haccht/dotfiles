@@ -57,6 +57,7 @@ set ignorecase
 set incsearch
 set smartcase
 set hlsearch
+set clipboard=unnamed,autoselect
 
 " lightline settings
 set laststatus=2
