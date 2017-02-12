@@ -26,7 +26,7 @@ export RUBYLIB="$HOME/lib"
 
 # Go settings
 export GOROOT=/usr/local/go
-export GOPATH=$HOME/go
+export GOPATH=$HOME
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 # rbenv settings
