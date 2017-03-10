@@ -1,15 +1,10 @@
 nnoremap L gt
 nnoremap H gT
-nnoremap x d
-nnoremap X D
-nnoremap ; :
 nnoremap U :undo<Space>
-inoremap <C-v> <S-Insert>
-cnoremap <C-v> <S-Insert>
+nnoremap <A-w> Y
+nnoremap <C-y> P
+cnoremap <C-y> <S-Insert>
 nnoremap ! :set<Space>invum<Return>
-
-" IME-OFF
-style! -name=commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
 
 set novisualbell
 set titlestring=Vimperator
@@ -23,7 +18,19 @@ set runtimepath="$HOME/vimperator"
 set nextpattern=\bnext\b,\bmore\b,^next$,^次(の)?ページ,\b次.*,^次へ$,→\b,^>$,^(>>|≫)$,^(>|≫),(>|≫)$
 set previouspattern=\bprev|previous\b,^prev$,^前(の)?ページ,\b前.*,^前へ$,\b←,^<$,^(<<|≪)$,^(<|≪),(<|≪)$
 
-autocmd LocationChange .* js modes.passAllKeys = false
+" ==ignorekeys==
+ignorekeys add feedly\\.com -except f,F,o,t,d,T,g,L,H,;,:
+ignorekeys add mail\\.google\\.com -except f,F,o,t,d,T,g,L,H,;,:
+ignorekeys add www\\.google\\.com/calendar -except f,F,o,t,d,T,g,L,H,;,:
+ignorekeys add twitter\\.com -except f,F,o,t,d,T,g,L,H,;,:
+ignorekeys add todoist\\.com -except f,F,o,t,d,T,g,L,H,;,:
+
+" ==about:config==
+set! browser.tabs.closeWindowWithLastTab=false
+set! browser.backspace_action=0
+
+" ==IME-OFF in commandline==
+style! -name=commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
 
 " ==Simple_Color_Scheme==
 highlight Bell display: none;

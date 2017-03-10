@@ -7,10 +7,15 @@
 # User specific environment and startup programs
 export PAGER=less
 export EDITOR=vim
+export VISUAL=vim
 
-export LANG=ja_JA.UTF-8
-export LC_ALL=ja_JP.UTF-8
-export OUTPUT_CHARSET=ja_JP.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export OUTPUT_CHARSET=en_US.UTF-8
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
 
 export HOME=${HOME%/}
 export PATH="$HOME/bin:$HOME/local/bin:$PATH"
@@ -21,7 +26,7 @@ export RUBYLIB="$HOME/lib"
 
 # Go settings
 export GOROOT=/usr/local/go
-export GOPATH=$HOME/go
+export GOPATH=$HOME
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 # rbenv settings
@@ -35,3 +40,5 @@ if [ -d $HOME/.plenv ]; then
   export PATH=$HOME/.plenv/bin:$PATH
   eval "$(plenv init -)"
 fi
+
+stty stop undef
