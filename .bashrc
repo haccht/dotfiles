@@ -18,11 +18,7 @@ function term_color {
 }
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-	if [ "$LOGNAME" = "vagrant" ]; then
-		export PS1='\[\e]0;\w\a\]\n\[\e[$(term_color)m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$ '
-	else
-		export PS1='\[\e]0;\w\a\]\n\[\e[$(term_color)m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$ '
-	fi
+	export PS1='\[\e]0;\w\a\]\n\[\e[$(term_color)m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$ '
 else
 	export PS1='\[\e]0;\w\a\]\n\[\e[1;35m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$ '
 fi

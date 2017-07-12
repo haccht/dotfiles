@@ -13,13 +13,14 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export OUTPUT_CHARSET=en_US.UTF-8
 
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-
 export HOME=${HOME%/}
 export PATH="$HOME/bin:$HOME/local/bin:$PATH"
 cd $HOME
+
+# IM settings
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
 
 # Ruby settings
 export RUBYLIB="$HOME/lib"
