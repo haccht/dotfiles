@@ -35,6 +35,11 @@ then
 	esac
 fi
 
+if [ ! -e "$HOME/.git-prompt.sh" ]; then
+	curl -L https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -o $HOME/.git-prompt.sh
+fi
+
+
 case "${OSTYPE}" in
 	linux*)
 		symlink "$cwd/.gvimrc"       "$HOME/.gvimrc"

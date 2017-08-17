@@ -1,9 +1,5 @@
 # .bash_profile
 
-# Get the aliases and functions
-[[ -f ~/.bashrc ]]     && . ~/.bashrc
-[[ -f ~/.bash_local ]] && . ~/.bash_local
-
 # User specific environment and startup programs
 export PAGER=less
 export EDITOR=vim
@@ -13,17 +9,26 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export OUTPUT_CHARSET=en_US.UTF-8
 
-export HOME=${HOME%/}
 export PATH="$HOME/bin:$HOME/local/bin:$PATH"
-cd $HOME
 
 # IM settings
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
-# Ruby settings
-export RUBYLIB="$HOME/lib"
+# Prompt settings (with git-prompt.sh)
+function __term_color {
+	name=$(hostname)
+	code=$(echo $(printf "%d" \'${name}))
+	expr ${code} % 6 + 31
+}
+
+source $HOME/.git-prompt.sh
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+	export PS1='\[\e]0;\w\a\]\n\[\e[$(__term_color)m\]\u@\h \[\e[33m\]\w$(__git_ps1 " (%s)")\[\e[0m\]\n\$ '
+else
+	export PS1='\[\e]0;\w\a\]\n\[\e[1;35m\]\u@\h \[\e[33m\]\w$(__git_ps1 " (%s)")\[\e[0m\]\n\$ '
+fi
 
 # Go settings
 export GOROOT=/usr/local/go
@@ -42,4 +47,9 @@ if [ -d $HOME/.plenv ]; then
   eval "$(plenv init -)"
 fi
 
-stty stop undef
+# Get the aliases and functions
+if [ -n "$BASH_PROFILE" ]; then
+  export BASH_PROFILE=1
+  [[ -f ~/.bashrc ]]     && . ~/.bashrc
+  [[ -f ~/.bash_local ]] && . ~/.bash_local
+fi
