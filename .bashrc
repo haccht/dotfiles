@@ -1,28 +1,19 @@
 # .bashrc
 
 # Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
+[[ -f /etc/bashrc ]]      && . /etc/bashrc
 
-alias rm='rm -i'
-alias mv='mv -i'
-alias cp='cp -i'
-alias ls='ls -F --color=auto'
-alias grep='grep --color=auto'
-
-function term_color {
+# Get the functions for PS1
+[[ -f ~/.git-prompt.sh ]] && . ~/.git-prompt.sh
+function __term_color {
 	name=$(hostname)
 	code=$(echo $(printf "%d" \'${name}))
 	expr ${code} % 6 + 31
 }
 
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-	if [ "$LOGNAME" = "vagrant" ]; then
-		export PS1='\[\e]0;\w\a\]\n\[\e[$(term_color)m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$ '
-	else
-		export PS1='\[\e]0;\w\a\]\n\[\e[$(term_color)m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$ '
-	fi
-else
-	export PS1='\[\e]0;\w\a\]\n\[\e[1;35m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$ '
-fi
+# Aliases
+alias rm='rm -i'
+alias mv='mv -i'
+alias cp='cp -i'
+alias ls='ls -F --color=auto'
+alias grep='grep --color=auto'
