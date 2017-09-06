@@ -17,3 +17,6 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias ls='ls -F --color=auto'
 alias grep='grep --color=auto'
+
+# Source local definitions
+[[ -f ~/.bash_local ]] && . ~/.bash_local
