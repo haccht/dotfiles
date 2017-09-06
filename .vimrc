@@ -1,9 +1,6 @@
-" encodings
-set encoding=utf-8
-set termencoding=utf-8
-set fileencodings=utf-8,iso-2022-jp,shift-jis,euc-jp
-set fileformats=unix,dos,mac
-scriptencoding utf-8
+
+filetype plugin indent on
+set autoread
 
 " dein settings
 if &compatible
@@ -12,7 +9,6 @@ endif
 
 if isdirectory(expand('~/.vim/dein'))
   set runtimepath^=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
-
   call dein#begin(expand('~/.vim/dein'))
   call dein#add('Shougo/dein.vim')
   call dein#add('Shougo/unite.vim')
@@ -25,45 +21,56 @@ if isdirectory(expand('~/.vim/dein'))
   call dein#add('itchyny/lightline.vim')
   call dein#add('bronson/vim-trailing-whitespace')
   call dein#end()
-
-  colorscheme molokai
-else
-  colorscheme murphy
 endif
 
+" color settings
+syntax on
+try
+  colorscheme molokai
+catch
+  colorscheme murphy
+endtry
 set background=dark
 set cursorline
 
-syntax on
+" encodings
+set encoding=utf-8
+set termencoding=utf-8
+set fileencodings=utf-8,iso-2022-jp,shift-jis,euc-jp
+set fileformats=unix,dos,mac
+scriptencoding utf-8
 
 " global settings
 set t_vb=
 set novisualbell
 set noerrorbells
-set laststatus=2
-if version > 702
-  set noundofile
-endif
-
-set nobackup
-set autoindent
-set smartindent
-set wildmenu
 
 set number
 set nowrap
-
-set ignorecase
-set incsearch
-set smartcase
-set hlsearch
+set nobackup
 set clipboard=unnamed,autoselect
 
-" lightline settings
+set expandtab
+set smarttab
+set autoindent
+set smartindent
+set wildmenu
+set lazyredraw
+
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
 set laststatus=2
 set showmode
 set showcmd
 set ruler
+
+let mapleader=','
+
+" :W sudo save file
+command W w !sudo tee % > /dev/null
 
 " unite settings
 let g:unite_enable_start_insert=1
@@ -86,5 +93,3 @@ nmap <leader>mg :MemoGrep<CR>
 if filereadable(expand('~/.vim/local.vim'))
   source $HOME/.vim/local.vim
 endif
-
-filetype plugin indent on
