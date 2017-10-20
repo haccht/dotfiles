@@ -31,6 +31,11 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
+# dircolors
+if [ -f "$HOME/.dircolors" ] ; then
+  eval "$(dircolors -b $HOME/.dircolors)"
+fi
+
 # rbenv settings
 if [ -d "$HOME/.rbenv" ]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
