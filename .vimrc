@@ -21,6 +21,8 @@ if isdirectory(expand('~/.vim/dein'))
   call dein#add('itchyny/lightline.vim')
   call dein#add('bronson/vim-trailing-whitespace')
   call dein#end()
+else
+  echomsg 'dein directory does not exists.'
 endif
 
 " color settings
@@ -50,6 +52,8 @@ set nowrap
 set nobackup
 set clipboard=unnamed,autoselect
 
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 set smarttab
 set autoindent

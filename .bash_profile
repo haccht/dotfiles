@@ -17,7 +17,10 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
 # Libvirt settings
-export VIRSH_DEFAULT_CONNECT_URI="qemu:///system"
+export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
+
+# VirtualBox settings
+export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1
 
 # Prompt settings (with git-prompt.sh)
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
