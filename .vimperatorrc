@@ -19,11 +19,11 @@ set nextpattern=\bnext\b,\bmore\b,^next$,^次(の)?ページ,\b次.*,^次へ$,�
 set previouspattern=\bprev|previous\b,^prev$,^前(の)?ページ,\b前.*,^前へ$,\b←,^<$,^(<<|≪)$,^(<|≪),(<|≪)$
 
 " ==ignorekeys==
-ignorekeys add feedly\\.com -except f,F,o,t,d,;,:
-ignorekeys add mail\\.google\\.com -except f,F,o,t,d,;,:
-ignorekeys add www\\.google\\.com/calendar -except f,F,o,t,d,;,:
-ignorekeys add twitter\\.com -except f,F,o,t,d,;,:
-ignorekeys add todoist\\.com -except f,F,o,t,d,;,:
+ignorekeys add feedly\\.com -except f,F,o,t,d,T,g,L,H,;,:
+ignorekeys add mail\\.google\\.com -except f,F,o,t,d,T,g,L,H,;,:
+ignorekeys add www\\.google\\.com/calendar -except f,F,o,t,d,T,g,L,H,;,:
+ignorekeys add twitter\\.com -except f,F,o,t,d,T,g,L,H,;,:
+ignorekeys add todoist\\.com -except f,F,o,t,d,T,g,L,H,;,:
 
 " ==about:config==
 set! browser.tabs.closeWindowWithLastTab=false
