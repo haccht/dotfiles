@@ -136,6 +136,7 @@ def configure(keymap):
                             "SLES-12.exe",        # WSL
                             "openSUSE-42.exe",    # WSL
                             "mintty.exe",         # mintty
+                            "Hyper.exe",          # Hyper
                             "Cmder.exe",          # Cmder
                             "ConEmu.exe",         # ConEmu
                             "ConEmu64.exe",       # ConEmu
@@ -162,6 +163,7 @@ def configure(keymap):
                             "SLES-12.exe",        # WSL
                             "openSUSE-42.exe",    # WSL
                             "mintty.exe",         # mintty
+                            "Hyper.exe",          # Hyper
                             "Cmder.exe",          # Cmder
                             "ConEmu.exe",         # ConEmu
                             "ConEmu64.exe",       # ConEmu
@@ -1826,7 +1828,7 @@ def configure(keymap):
         keymap_outlook[ "G" ][ "G" ] = "Home"    # カーソル先頭
         keymap_outlook[ "G" ][ "I" ] = "C-S-I"   # 受信トレイ
         keymap_outlook[ "G" ][ "S" ] = "C-S-O"   # 送信トレイ
-        keymap_outlook[ "G" ][ "N" ] = "C-S-M"   # メール作成	
+        keymap_outlook[ "G" ][ "N" ] = "C-S-M"   # メール作成
         keymap_outlook[ "G" ][ "M" ] = "C-M"     # メール受信
         keymap_outlook[ "S-G" ]      = "End"     # カーソル末尾
         keymap_outlook[ "Slash" ]    = "C-E"     # メール検索
@@ -1843,7 +1845,7 @@ def configure(keymap):
         keymap_outlook[ "S-S" ]      = "C-S-6"   # スケジュール
         keymap_outlook[ "U" ]        = "C-Z"     # アンドゥ
         keymap_outlook[ "E" ]        = keymap.InputKeyCommand("C-S-V", "Right") # アーカイブ
-        
+
         # for Outlook（エディットビュー）
         keymap_outlook_addr = keymap.defineWindowKeymap(exe_name=u'OUTLOOK.EXE', class_name=u'RichEdit20WPT')
         keymap_outlook_addr[ "C-I" ] = "C-K"     # 名前の確認
