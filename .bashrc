@@ -1,7 +1,7 @@
 # .bashrc
 
 # Source global definitions
-[[ -f /etc/bashrc ]]      && . /etc/bashrc
+[[ -f /etc/bashrc ]] && . /etc/bashrc
 
 # Get the functions for PS1
 [[ -f ~/.git-prompt.sh ]] && . ~/.git-prompt.sh
@@ -16,7 +16,6 @@ alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
 alias ls='ls -hFG --color=auto -I NTUSER.\* -I ntuser.\*'
-
 alias grep='grep --color=auto'
 
 # Source local definitions

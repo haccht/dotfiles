@@ -14,16 +14,16 @@ export OUTPUT_CHARSET=en_US.UTF-8
 
 export PATH="$HOME/bin:$PATH"
 
-# IM settings
+# IM settings(GUI)
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
+# VirtualBox settings(WSL)
+export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1
+
 # Libvirt settings
 export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
-
-# VirtualBox settings
-export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1
 
 # Prompt settings (with git-prompt.sh)
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
@@ -37,11 +37,6 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
-# dircolors
-if [ -f "$HOME/.dircolors" ] ; then
-  eval "$(dircolors -b $HOME/.dircolors)"
-fi
-
 # rbenv settings
 if [ -d "$HOME/.rbenv" ]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
@@ -54,5 +49,10 @@ if [ -d $HOME/.plenv ]; then
   eval "$(plenv init -)"
 fi
 
+# dircolors
+if [ -f "$HOME/.dircolors" ] ; then
+  eval "$(dircolors -b $HOME/.dircolors)"
+fi
+
 # Get the aliases and functions
-[[ -f ~/.bashrc ]]     && . ~/.bashrc
+[[ -f ~/.bashrc ]] && . ~/.bashrc

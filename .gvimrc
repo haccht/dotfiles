@@ -5,8 +5,6 @@ set noswapfile
 
 if has('win32')
   let $MYVIMRC='$HOME/.vimrc'
-  set guifont=Noto\ Mono\ 11,migu\ 1m\ 11
-  colorscheme molokai
 endif
 
 if has('multi_byte_ime')
