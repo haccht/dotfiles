@@ -3,14 +3,6 @@
 # Source global definitions
 [[ -f /etc/bashrc ]] && . /etc/bashrc
 
-# Functions for PS1
-[[ -f ~/.git-prompt.sh ]] && . ~/.git-prompt.sh
-function __term_color {
-  name=$(hostname)
-  code=$(echo $(printf "%d" \'${name}))
-  expr ${code} % 6 + 31
-}
-
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export OUTPUT_CHARSET=en_US.UTF-8
@@ -31,11 +23,18 @@ export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1
 export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
 
 # Prompt settings (with git-prompt.sh)
+function __term_color {
+  name=$(hostname)
+  code=$(echo $(printf "%d" \'${name}))
+  expr ${code} % 6 + 31
+}
+
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  export PS1='\[\e]0;\w\a\]\n\[\e[$(__term_color)m\]\u@\h \[\e[33m\]\w$(__git_ps1 " (%s)")\[\e[0m\]\n\$ '
+  export PS1='\[\e]0;\w\a\]\n\[\e[$(__term_color)m\]\u@\h \[\e[33m\]\w$(__git_ps1)\[\e[0m\]'$'\n\$ '
 else
-  export PS1='\[\e]0;\w\a\]\n\[\e[1;35m\]\u@\h \[\e[33m\]\w$(__git_ps1 " (%s)")\[\e[0m\]\n\$ '
+  export PS1='\[\e]0;\w\a\]\n\[\e[1;35m\]\u@\h \[\e[33m\]\w$(__git_ps1)\[\e[0m\]'$'\n\$ '
 fi
+[[ -f ~/.git-prompt.sh ]] && . ~/.git-prompt.sh
 
 # Go settings
 export GOROOT=/usr/local/go
