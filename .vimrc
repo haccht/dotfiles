@@ -76,6 +76,9 @@ let mapleader=','
 " :W sudo save file
 command W w !sudo tee % > /dev/null
 
+" go settings
+autocmd FileType go setlocal shiftwidth=4 softtabstop=4 tabstop=4 noexpandtab
+
 " unite settings
 let g:unite_enable_start_insert=1
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
