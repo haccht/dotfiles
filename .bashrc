@@ -29,7 +29,7 @@ function __term_color {
     code=$(echo $(printf "%d" \'${name}))
     expr ${code} % 6 + 31
   else
-    '1;35'
+    expr "1;35"
   fi
 }
 
