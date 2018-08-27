@@ -3,14 +3,6 @@
 # Source global definitions
 [[ -f /etc/bashrc ]] && . /etc/bashrc
 
-# Functions for PS1
-[[ -f ~/.git-prompt.sh ]] && . ~/.git-prompt.sh
-function __term_color {
-  name=$(hostname)
-  code=$(echo $(printf "%d" \'${name}))
-  expr ${code} % 6 + 31
-}
-
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export OUTPUT_CHARSET=en_US.UTF-8
@@ -19,7 +11,7 @@ export PAGER=less
 export EDITOR=vim
 export VISUAL=vim
 
-export HISTSIZE=2000
+export HISTSIZE=10000
 export HISTCONTROL=ignoredups
 
 export PATH="$HOME/bin:$PATH"
@@ -30,17 +22,29 @@ export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1
 # Libvirt settings
 export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
 
-# Prompt settings (with git-prompt.sh)
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  export PS1='\[\e]0;\w\a\]\n\[\e[$(__term_color)m\]\u@\h \[\e[33m\]\w$(__git_ps1 " (%s)")\[\e[0m\]\n\$ '
+# Prompt settings
+function __term_color {
+  if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    name=$(hostname)
+    code=$(echo $(printf "%d" \'${name}))
+    expr ${code} % 6 + 31
+  else
+    '1;35'
+  fi
+}
+
+if [ -f ~/.git-prompt.sh ]; then
+  source ~/.git-prompt.sh
+  export PS1='\[\e]0;\w\a\]\n\[\e[$(__term_color)m\]\u@\h \[\e[33m\]\w$(__git_ps1)\[\e[0m\]'$'\n\$ '
 else
-  export PS1='\[\e]0;\w\a\]\n\[\e[1;35m\]\u@\h \[\e[33m\]\w$(__git_ps1 " (%s)")\[\e[0m\]\n\$ '
+  export PS1='\[\e]0;\w\a\]\n\[\e[$(__term_color)m\]\u@\h \[\e[33m\]\w\[\e[0m\]'$'\n\$ '
 fi
 
 # Go settings
 export GOROOT=/usr/local/go
 export GOPATH=$HOME
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+export GHQ_ROOT=$GOPATH/src
 
 # rbenv settings
 if [ -d "$HOME/.rbenv" ]; then

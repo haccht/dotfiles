@@ -154,7 +154,9 @@ def configure(keymap):
                             "ttermpro.exe",       # TeraTerm
                             "MobaXterm.exe",      # MobaXterm
                             "TurboVNC.exe",       # TurboVNC
-                            "vncviewer.exe"]      # UltraVNC
+                            "vncviewer.exe",      # UltraVNC
+                            "wfica32.exe",        # Citrix reciever
+                            ]
 
     # IME の切り替え“のみをしたい”アプリケーションソフトを指定する
     # （指定できるアプリケーションソフトは、not_emacs_target で（除外）指定したものからのみとなります）
@@ -171,7 +173,8 @@ def configure(keymap):
                             "xyzzy.exe",          # xyzzy
                             "putty.exe",          # PuTTY
                             "ttermpro.exe",       # TeraTerm
-                            "MobaXterm.exe"]      # MobaXterm
+                            "MobaXterm.exe",      # MobaXterm
+                            ]
 
     # clipboard 監視の対象外とするアプリケーションソフトを指定する
     not_clipboard_target = ["EXCEL.EXE"]          # Excel
@@ -190,11 +193,11 @@ def configure(keymap):
     use_region_reset = True
 
     # emacs日本語入力モードを使うかどうかを指定する（True: 使う、False: 使わない）
-    use_emacs_ime_mode = True
+    use_emacs_ime_mode = False
 
     # emacs日本語入力モードを切り替える（トグルする）キーを指定する
-    # toggle_emacs_ime_mode_key = None
-    toggle_emacs_ime_mode_key = "C-t"
+    toggle_emacs_ime_mode_key = None
+    #toggle_emacs_ime_mode_key = "C-t"
 
     # emacs日本語入力モードが有効なときに表示するバルーンメッセージを指定する
     emacs_ime_mode_balloon_message = None
@@ -255,8 +258,8 @@ def configure(keymap):
     desktop_switching_key = [["A-C-b", "A-C-f"], ["A-C-Left", "A-C-Right"]] # for Windows 10
 
     # IME の「単語登録」プログラムを起動するキーを指定する
-    # word_register_key = None
-    word_register_key = "C-CloseBracket"
+    word_register_key = None
+    # word_register_key = "C-CloseBracket"
 
     # IME の「単語登録」プログラムとそのパラメータを指定する（for Google日本語入力）
     # word_register_name = r"C:\Program Files\Google\Google Japanese Input\GoogleIMEJaTool.exe"
@@ -371,6 +374,7 @@ def configure(keymap):
 
     def toggle_input_method():
         self_insert_command("A-(25)")()
+        #self_insert_command("243")()
         delay(0.05)
 
         # IME の状態を格納する
@@ -1033,12 +1037,12 @@ def configure(keymap):
     define_key(keymap_emacs, "C-u", universal_argument)
 
     ## 「IME の切り替え」のキー設定
-    define_key(keymap_emacs, "(243)",  toggle_input_method)
-    define_key(keymap_emacs, "(244)",  toggle_input_method)
+    #define_key(keymap_emacs, "(243)",  toggle_input_method)
+    #define_key(keymap_emacs, "(244)",  toggle_input_method)
     define_key(keymap_emacs, "A-(25)", toggle_input_method)
 
-    define_key(keymap_ime,   "(243)",  toggle_input_method)
-    define_key(keymap_ime,   "(244)",  toggle_input_method)
+    #define_key(keymap_ime,   "(243)",  toggle_input_method)
+    #define_key(keymap_ime,   "(244)",  toggle_input_method)
     define_key(keymap_ime,   "A-(25)", toggle_input_method)
 
     ## 「ファイル操作」のキー設定
@@ -1285,8 +1289,8 @@ def configure(keymap):
                 define_key(keymap_ei, "A-S-" + s_vkey, ei_record_func(self_insert_command("A-" + s_vkey)))
 
         ## 「IME の切り替え」のキー設定
-        define_key(keymap_ei, "(243)",  ei_toggle_input_method)
-        define_key(keymap_ei, "(244)",  ei_toggle_input_method)
+        #define_key(keymap_ei, "(243)",  ei_toggle_input_method)
+        #define_key(keymap_ei, "(244)",  ei_toggle_input_method)
         define_key(keymap_ei, "A-(25)", ei_toggle_input_method)
 
         ## Escキーの設定
@@ -1812,7 +1816,6 @@ def configure(keymap):
     # ローカルセッティング
     ########################################################################
     keymap.clipboard_history.maxnum = 100
-    keymap.replaceKey( 28, 244 )    # 変換キーをIMEトグルに
     keymap.replaceKey( 29, 'Apps' ) # 無変換キーをメニューキーに
 
     # グローバルキーマップ
