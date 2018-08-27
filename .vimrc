@@ -15,11 +15,10 @@ if isdirectory(expand('~/.vim/dein'))
   call dein#add('tomasr/molokai')
   call dein#add('fatih/vim-go')
   call dein#add('vim-ruby/vim-ruby')
-  call dein#add('tpope/vim-markdown')
-  call dein#add('thinca/vim-quickrun')
-  call dein#add('glidenote/memolist.vim')
-  call dein#add('itchyny/lightline.vim')
   call dein#add('bronson/vim-trailing-whitespace')
+  call dein#add('thinca/vim-quickrun')
+  call dein#add('tpope/vim-markdown')
+  call dein#add('itchyny/lightline.vim')
   call dein#end()
 else
   echomsg 'dein directory does not exists.'
@@ -29,11 +28,13 @@ endif
 syntax on
 try
   colorscheme molokai
+  set background=dark
+  set cursorline
 catch
   colorscheme murphy
+  set background=dark
+  set cursorline
 endtry
-set background=dark
-set cursorline
 
 " encodings
 set encoding=utf-8
@@ -86,15 +87,6 @@ nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
-
-" memolist settings
-let g:memolist_path = '~/memo'
-let g:memolist_unite = 1
-let g:memolist_memo_suffix = 'md'
-let g:memolist_template_dir_path = '~/memo/.template'
-nmap <leader>mn :MemoNew<CR>
-nmap <leader>ml :MemoList<CR>
-nmap <leader>mg :MemoGrep<CR>
 
 " local settings
 if filereadable(expand('~/.vim/local.vim'))

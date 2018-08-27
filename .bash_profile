@@ -1,7 +1,8 @@
 # .bash_profile
 
 # User specific environment and startup programs
-# IM settings(GUI)
+
+# Linux Desktop IM settings
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
