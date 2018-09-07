@@ -16,8 +16,13 @@ export HISTCONTROL=ignoredups
 
 export PATH="$HOME/bin:$PATH"
 
-# VirtualBox settings(WSL)
-export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1
+if [[ `uname -a` =~ Linux && `uname -a` =~ Microsoft ]]; then
+  # VirtualBox settings(WSL)
+  export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1
+
+  # pbcopy
+  alias pbcopy='clip.exe'
+fi
 
 # Libvirt settings
 export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
@@ -40,6 +45,11 @@ else
   export PS1='\[\e]0;\w\a\]\n\[\e[$(__term_color)m\]\u@\h \[\e[33m\]\w\[\e[0m\]'$'\n\$ '
 fi
 
+# dircolors
+if [ -f "$HOME/.dircolors" ] ; then
+  eval "$(dircolors -b $HOME/.dircolors)"
+fi
+
 # Go settings
 export GOROOT=/usr/local/go
 export GOPATH=$HOME
@@ -52,25 +62,8 @@ if [ -d "$HOME/.rbenv" ]; then
   eval "$(rbenv init -)"
 fi
 
-# pyenv settings
-if [ -d "$HOME/.pyenv" ]; then
-  export PATH="$HOME/.pyenv/bin:$PATH"
-  eval "$(pyenv virtualenv-init -)"
-fi
-
-# plenv settings
-if [ -d $HOME/.plenv ]; then
-  export PATH=$HOME/.plenv/bin:$PATH
-  eval "$(plenv init -)"
-fi
-
-# dircolors
-if [ -f "$HOME/.dircolors" ] ; then
-  eval "$(dircolors -b $HOME/.dircolors)"
-fi
-
 # History backward search using fzf
-if type fzf > /dev/null 2>&1; then
+if type fzf > /dev/null 2>&1 && [[ -t 1 ]]; then
   bind -x '"\C-r":history -n;READLINE_LINE=$(history|sed "s/ *[^ ]*  //"|fzf -e +s --tac);READLINE_POINT=${#READLINE_LINE}'
 fi
 
