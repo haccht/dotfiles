@@ -11,27 +11,18 @@ export PAGER=less
 export EDITOR=vim
 export VISUAL=vim
 
-export HISTSIZE=10000
-export HISTCONTROL=ignoredups
-
 export PATH="$HOME/bin:$PATH"
 
-if [[ `uname -a` =~ Linux && `uname -a` =~ Microsoft ]]; then
-  # VirtualBox settings(WSL)
-  export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1
+export HISTSIZE=9999
+export HISTCONTROL=ignoredups
 
-  # pbcopy
-  alias pbcopy='clip.exe'
+if type fzf > /dev/null 2>&1 && [[ -t 1 ]]; then
+  bind -x '"\C-r":history -n;READLINE_LINE=$(history|sed "s/ *[^ ]*  //"|fzf -e +s --tac);READLINE_POINT=${#READLINE_LINE}'
 fi
 
-# Libvirt settings
-export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
-
-# Prompt settings
 function __term_color {
   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    name=$(hostname)
-    code=$(echo $(printf "%d" \'${name}))
+    code=$(echo $(printf "%d" \'$(hostname)))
     expr ${code} % 6 + 31
   else
     expr "1;35"
@@ -45,10 +36,18 @@ else
   export PS1='\[\e]0;\w\a\]\n\[\e[$(__term_color)m\]\u@\h \[\e[33m\]\w\[\e[0m\]'$'\n\$ '
 fi
 
-# dircolors
 if [ -f "$HOME/.dircolors" ] ; then
   eval "$(dircolors -b $HOME/.dircolors)"
 fi
+
+# for WSL shell
+if [[ `uname -a` =~ Linux && `uname -a` =~ Microsoft ]]; then
+  export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1
+  alias pbcopy='clip.exe'
+fi
+
+# Libvirt settings
+export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
 
 # Go settings
 export GOROOT=/usr/local/go

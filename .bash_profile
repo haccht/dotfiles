@@ -8,5 +8,5 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
 # Get the aliases and functions
-[[ -f ~/.bashrc ]]     && . ~/.bashrc
+[[ -f ~/.bashrc ]] && . ~/.bashrc
 [[ -f ~/.bash_local ]] && . ~/.bash_local
