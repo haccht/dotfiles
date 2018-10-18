@@ -21,6 +21,7 @@ symlink "$cwd/.gitconfig"    "$HOME/.gitconfig"
 symlink "$cwd/.gitignore"    "$HOME/.gitignore"
 symlink "$cwd/.tmux.conf"    "$HOME/.tmux.conf"
 symlink "$cwd/.vimrc"        "$HOME/.vimrc"
+symlink "$cwd/.irbrc"        "$HOME/.irbrc"
 
 if [ ! -e "$HOME/.vim/dein" ]; then
   curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
