@@ -61,6 +61,12 @@ if [ -d "$HOME/.rbenv" ]; then
   eval "$(rbenv init -)"
 fi
 
+# History backward search using fzf
+if type fzf > /dev/null 2>&1 && [[ -t 1 ]]; then
+  bind -x '"\C-r":history -n;READLINE_LINE=$(history|sed "s/ *[^ ]*  //"|fzf -e +s --tac);READLINE_POINT=${#READLINE_LINE}'
+  alias cdq='cd $(ghq root)/$(ghq list | fzf)'
+fi
+
 # Aliases
 alias rm='rm -i'
 alias mv='mv -i'
