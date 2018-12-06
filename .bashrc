@@ -10,6 +10,7 @@ export OUTPUT_CHARSET=en_US.UTF-8
 export PAGER=less
 export EDITOR=vim
 export VISUAL=vim
+export LESS="-iMR"
 
 export PATH="$HOME/bin:$PATH"
 
