@@ -17,10 +17,6 @@ export PATH="$HOME/bin:$PATH"
 export HISTSIZE=9999
 export HISTCONTROL=ignoredups
 
-if type fzf > /dev/null 2>&1 && [[ -t 1 ]]; then
-  bind -x '"\C-r":history -n;READLINE_LINE=$(history|sed "s/ *[^ ]*  //"|fzf -e +s --tac);READLINE_POINT=${#READLINE_LINE}'
-fi
-
 function __term_color {
   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     code=$(echo $(printf "%d" \'$(hostname)))
@@ -65,8 +61,16 @@ fi
 # History backward search using fzf
 if type fzf > /dev/null 2>&1 && [[ -t 1 ]]; then
   bind -x '"\C-r":history -n;READLINE_LINE=$(history|sed "s/ *[^ ]*  //"|fzf -e +s --tac);READLINE_POINT=${#READLINE_LINE}'
-  alias cdq='cd $(ghq root)/$(ghq list | fzf)'
+  alias repo='cd $(ghq root)/$(ghq list | fzf)'
 fi
+
+function share_history {
+  history -a
+  history -c
+  history -r
+}
+PROMPT_COMMAND='share_history'
+shopt -u histappend
 
 # Aliases
 alias rm='rm -i'
