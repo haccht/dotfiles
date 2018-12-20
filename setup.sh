@@ -47,6 +47,7 @@ if confirm 'Install binaries?'; then
     curl -LO https://github.com/motemen/ghq/releases/download/v0.8.0/ghq_linux_amd64.zip
     unzip ghq_linux_amd64.zip -d _ghq
     mv _ghq/ghq "$HOME/bin"
+    rm  -f ghq_linux_amd64.zip
     rm -rf _ghq
   fi
 fi
@@ -64,4 +65,11 @@ fi
 
 if confirm 'Install git-prompt.sh?'; then
   curl -L https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -o "$HOME/.git-prompt.sh"
+fi
+
+if [[ $(uname -r) =~ Microsoft ]]; then
+  WIN_USER=$(/mnt/c/Windows/System32/whoami.exe | awk -F'\' '{print $2}' | tr -cd [a-z])
+  WIN_HOME="/mnt/c/Users/$WIN_USER"
+  cp -f "$cwd/.hyper.js" "$WIN_HOME/.hyper.js"
+  cp -f "$cwd/.vimrc"    "$WIN_HOME/.vimrc"
 fi
