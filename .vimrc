@@ -1,27 +1,8 @@
-
 filetype plugin indent on
 set autoread
 
-" dein settings
 if &compatible
   set nocompatible
-endif
-
-if isdirectory(expand('~/.vim/dein'))
-  set runtimepath^=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
-  call dein#begin(expand('~/.vim/dein'))
-  call dein#add('Shougo/dein.vim')
-  call dein#add('Shougo/unite.vim')
-  call dein#add('tomasr/molokai')
-  call dein#add('fatih/vim-go')
-  call dein#add('vim-ruby/vim-ruby')
-  call dein#add('bronson/vim-trailing-whitespace')
-  call dein#add('thinca/vim-quickrun')
-  call dein#add('tpope/vim-markdown')
-  call dein#add('itchyny/lightline.vim')
-  call dein#end()
-else
-  echomsg 'dein directory does not exists.'
 endif
 
 " color settings
@@ -51,7 +32,7 @@ set noerrorbells
 set number
 set nowrap
 set nobackup
-set clipboard=unnamed,autoselect
+set clipboard=unnamed
 
 set shiftwidth=2
 set softtabstop=2
@@ -76,9 +57,6 @@ let mapleader=','
 
 " :W sudo save file
 command W w !sudo tee % > /dev/null
-
-" go settings
-autocmd FileType go setlocal shiftwidth=4 softtabstop=4 tabstop=4 noexpandtab
 
 " unite settings
 let g:unite_enable_start_insert=1
