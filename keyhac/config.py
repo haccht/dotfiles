@@ -144,6 +144,7 @@ def configure(keymap):
                             "emacs-X11.exe",      # Emacs
                             "emacs-w32.exe",      # Emacs
                             "gvim.exe",           # GVim
+                            "Oni.exe",            # OniVim
                             "xyzzy.exe",          # xyzzy
                             "VirtualBox.exe",     # VirtualBox
                             "XWin.exe",           # Cygwin/X
@@ -170,6 +171,7 @@ def configure(keymap):
                             "ConEmu.exe",         # ConEmu
                             "ConEmu64.exe",       # ConEmu
                             "gvim.exe",           # GVim
+                            "Oni.exe",            # OniVim
                             "xyzzy.exe",          # xyzzy
                             "putty.exe",          # PuTTY
                             "ttermpro.exe",       # TeraTerm
