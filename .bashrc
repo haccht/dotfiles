@@ -73,5 +73,7 @@ fi
 
 # history backward search using fzf
 if type fzf > /dev/null 2>&1; then
-  bind -x '"\C-r":history -n;READLINE_LINE=$(history|sed "s/ *[^ ]*  //"|fzf -e +s --tac);READLINE_POINT=${#READLINE_LINE}'
+  if [[ -t 1 ]]; then
+    bind -x '"\C-r":history -n;READLINE_LINE=$(history|sed "s/ *[^ ]*  //"|fzf -e +s --tac);READLINE_POINT=${#READLINE_LINE}'
+  fi
 fi
