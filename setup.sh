@@ -1,6 +1,6 @@
 #! /bin/bash
 
-function confirm {
+confirm () {
   message=$1
   while :
   do
@@ -38,11 +38,11 @@ symlink "$cwd/.irbrc"        "$HOME/.irbrc"
 
 if confirm 'Install binaries?'; then
   mkdir -p "$HOME/bin"
-  type volt >/dev/null 2>&1 && curl -L https://github.com/vim-volt/volt/releases/download/v0.3.2/volt-v0.3.2-linux-amd64 -o "$HOME/bin/volt" && chmod a+x "$HOME/bin/volt"
-  type fzf  >/dev/null 2>&1 && curl -L https://github.com/junegunn/fzf-bin/releases/download/0.17.4/fzf-0.17.4-linux_amd64.tgz | tar xz -C "$HOME/bin"
-  type dep  >/dev/null 2>&1 && curl -L https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+  type volt >/dev/null 2>&1 || curl -L https://github.com/vim-volt/volt/releases/download/v0.3.2/volt-v0.3.2-linux-amd64 -o "$HOME/bin/volt" && chmod a+x "$HOME/bin/volt"
+  type fzf  >/dev/null 2>&1 || curl -L https://github.com/junegunn/fzf-bin/releases/download/0.17.4/fzf-0.17.4-linux_amd64.tgz | tar xz -C "$HOME/bin"
+  type dep  >/dev/null 2>&1 || curl -L https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 
-  if type ghq >/dev/null 2>&1; then
+  if !(type ghq >/dev/null 2>&1); then
     mkdir _ghq
     curl -LO https://github.com/motemen/ghq/releases/download/v0.8.0/ghq_linux_amd64.zip
     unzip ghq_linux_amd64.zip -d _ghq
