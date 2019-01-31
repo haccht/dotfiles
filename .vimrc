@@ -24,6 +24,11 @@ set fileencodings=utf-8,iso-2022-jp,shift-jis,euc-jp
 set fileformats=unix,dos,mac
 scriptencoding utf-8
 
+" encrypt
+if has('crypt-blowfish2')
+  set cryptmethod=blowfish2
+endif
+
 " global settings
 set t_vb=
 set novisualbell
