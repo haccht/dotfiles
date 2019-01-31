@@ -73,7 +73,10 @@ fi
 
 # history backward search using peco
 if type peco > /dev/null 2>&1; then
-  if [[ -t 1 ]]; then
-    bind -x '"\C-r":history -n;READLINE_LINE=$(history|sed "s/ *[^ ]*  //"|peco);READLINE_POINT=${#READLINE_LINE}'
-  fi
+  peco_history() {
+    declare l=$(HISTTIMEFORMAT=  history | LC_ALL=C sort -r |  awk '{for(i=2;i<NF;i++){printf("%s%s",$i,OFS=" ")}print $NF}'   |  peco --query "$READLINE_LINE")
+    READLINE_LINE="$l"
+    READLINE_POINT=${#l}
+  }
+  bind -x '"\C-r": peco_history'
 fi
