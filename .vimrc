@@ -71,6 +71,11 @@ nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 
+" quickrun esttings
+let g:quickrun_config={'_': {'split': ''}}
+set splitbelow
+set splitright
+
 " local settings
 if filereadable(expand('~/.vim/local.vim'))
   source $HOME/.vim/local.vim
