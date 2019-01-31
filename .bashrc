@@ -62,7 +62,7 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 # ghq settings
 if type ghq > /dev/null 2>&1; then
   export GHQ_ROOT=$GOPATH/src
-  alias repo='cd ${GHQ_ROOT}/$(ghq list | fzf)'
+  alias repo='cd ${GHQ_ROOT}/$(ghq list | peco)'
 fi
 
 # rbenv settings
@@ -71,9 +71,9 @@ if [ -d "$HOME/.rbenv" ]; then
   eval "$(rbenv init -)"
 fi
 
-# history backward search using fzf
-if type fzf > /dev/null 2>&1; then
+# history backward search using peco
+if type peco > /dev/null 2>&1; then
   if [[ -t 1 ]]; then
-    bind -x '"\C-r":history -n;READLINE_LINE=$(history|sed "s/ *[^ ]*  //"|fzf -e +s --tac);READLINE_POINT=${#READLINE_LINE}'
+    bind -x '"\C-r":history -n;READLINE_LINE=$(history|sed "s/ *[^ ]*  //"|peco);READLINE_POINT=${#READLINE_LINE}'
   fi
 fi
