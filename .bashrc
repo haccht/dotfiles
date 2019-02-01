@@ -62,7 +62,9 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 # ghq settings
 if type ghq > /dev/null 2>&1; then
   export GHQ_ROOT=$GOPATH/src
-  alias repo='cd ${GHQ_ROOT}/$(ghq list | peco)'
+  function repo {
+    cd ${GHQ_ROOT}/$(ghq list | peco --query ${@:-""})
+  }
 fi
 
 # rbenv settings
@@ -74,7 +76,7 @@ fi
 # history backward search using peco
 if type peco > /dev/null 2>&1; then
   peco_history() {
-    declare l=$(HISTTIMEFORMAT=  history | LC_ALL=C sort -r |  awk '{for(i=2;i<NF;i++){printf("%s%s",$i,OFS=" ")}print $NF}'   |  peco --query "$READLINE_LINE")
+    declare l=$(HISTTIMEFORMAT= history|LC_ALL=C sort -r|awk '{for(i=2;i<NF;i++){printf("%s%s",$i,OFS=" ")}print $NF}'|peco --layout=bottom-up --query "$READLINE_LINE")
     READLINE_LINE="$l"
     READLINE_POINT=${#l}
   }
