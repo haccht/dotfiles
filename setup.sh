@@ -55,6 +55,7 @@ if confirm 'Install vim plugins?'; then
   $HOME/bin/volt get -u thinca/vim-quickrun
   $HOME/bin/volt get -u tpope/vim-markdown
   $HOME/bin/volt get -u itchyny/lightline.vim
+  $HOME/bin/volt get -u justinmk/vim-dirvish
 fi
 
 if confirm 'Install git-prompt.sh?'; then
