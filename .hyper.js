@@ -6,7 +6,7 @@ module.exports = {
   config: {
     // Choose either "stable" for receiving highly polished,
     // or "canary" for less polished but more frequent updates
-    updateChannel: 'canary',
+    updateChannel: 'stable',
 
     // default font size in pixels for all tabs
     fontSize: 14,
@@ -114,6 +114,7 @@ module.exports = {
     // bellSoundURL: 'http://example.com/bell.mp3',
 
     // for advanced config flags please refer to https://hyper.is/#cfg
+    alwaysOnTop: { default: false },
   },
 
   // a list of plugins to fetch and install from npm
@@ -124,7 +125,8 @@ module.exports = {
   //   `project#1.0.1`
   //plugins: [],
   plugins: [
-    "hyper-material-theme"
+    "hyper-always-on-top",
+    "hyper-subliminal-theme"
   ],
 
   // in development, you can create a directory under
