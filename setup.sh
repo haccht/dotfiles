@@ -49,7 +49,6 @@ if confirm 'Install vim plugins?'; then
   $HOME/bin/volt get -u tomasr/molokai
   $HOME/bin/volt get -u fatih/vim-go
   $HOME/bin/volt get -u vim-ruby/vim-ruby
-  $HOME/bin/volt get -u Shougo/unite.vim
   $HOME/bin/volt get -u airblade/vim-gitgutter
   $HOME/bin/volt get -u bronson/vim-trailing-whitespace
   $HOME/bin/volt get -u thinca/vim-quickrun

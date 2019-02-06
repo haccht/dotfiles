@@ -60,10 +60,8 @@ set ruler
 
 let mapleader=','
 
-" :W sudo save file
 command W w !sudo tee % > /dev/null
 
-" unite settings
 let g:unite_enable_start_insert=1
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
@@ -71,10 +69,12 @@ nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 
-" quickrun esttings
 let g:quickrun_config={'_': {'split': ''}}
 set splitbelow
 set splitright
+
+let g:gitgutter_enabled = 0
+map <Leader>g :GitGutterToggle<CR>
 
 " local settings
 if filereadable(expand('~/.vim/local.vim'))
