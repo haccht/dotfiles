@@ -38,11 +38,11 @@ symlink "$cwd/.irbrc"        "$HOME/.irbrc"
 
 if confirm 'Install binaries?'; then
   mkdir -p "$HOME/bin"
-  type volt >/dev/null 2>&1 || curl -L https://github.com/vim-volt/volt/releases/download/v0.3.2/volt-v0.3.2-linux-amd64 -o "$HOME/bin/volt" && chmod a+x "$HOME/bin/volt"
-  type peco >/dev/null 2>&1 || curl -L https://github.com/peco/peco/releases/download/v0.5.3/peco_linux_amd64.tar.gz | tar xz && mv -f peco_linux_amd64/peco "$HOME/bin" && rm -rf peco_linux_amd64
-  type dep  >/dev/null 2>&1 || curl -L https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-  type memo >/dev/null 2>&1 || curl -LO https://github.com/mattn/memo/releases/download/v0.0.4/memo_linux_amd64.zip && unzip memo_linux_amd64.zip -d "$HOME/bin" && rm -f memo_linux_amd64.zip
-  type ghq  >/dev/null 2>&1 || curl -LO https://github.com/motemen/ghq/releases/download/v0.8.0/ghq_linux_amd64.zip && mkdir -p _ghq && unzip ghq_linux_amd64.zip -d _ghq && mv -f _ghq/ghq "$HOME/bin" && rm -rf _ghq ghq_linux_amd64.zip
+  type volt >/dev/null 2>&1 || (curl -L https://github.com/vim-volt/volt/releases/download/v0.3.2/volt-v0.3.2-linux-amd64 -o "$HOME/bin/volt" && chmod a+x "$HOME/bin/volt")
+  type peco >/dev/null 2>&1 || (curl -L https://github.com/peco/peco/releases/download/v0.5.3/peco_linux_amd64.tar.gz | tar xz && mv -f peco_linux_amd64/peco "$HOME/bin" && rm -rf peco_linux_amd64)
+  type dep  >/dev/null 2>&1 || (curl -L https://raw.githubusercontent.com/golang/dep/master/install.sh | sh)
+  type memo >/dev/null 2>&1 || (curl -LO https://github.com/mattn/memo/releases/download/v0.0.4/memo_linux_amd64.zip && unzip memo_linux_amd64.zip -d "$HOME/bin" && rm -f memo_linux_amd64.zip)
+  type ghq  >/dev/null 2>&1 || (curl -LO https://github.com/motemen/ghq/releases/download/v0.8.0/ghq_linux_amd64.zip && mkdir -p _ghq && unzip ghq_linux_amd64.zip -d _ghq && mv -f _ghq/ghq "$HOME/bin" && rm -rf _ghq ghq_linux_amd64.zip)
 fi
 
 if confirm 'Install vim plugins?'; then
