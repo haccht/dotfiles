@@ -74,7 +74,7 @@ if [ -d "$HOME/.rbenv" ]; then
 fi
 
 # history backward search using peco
-if type peco > /dev/null 2>&1; then
+if type peco > /dev/null 2>&1 && [[ -t 1 ]]; then
   peco_history() {
     declare l=$(HISTTIMEFORMAT= history|LC_ALL=C sort -r|awk '{for(i=2;i<NF;i++){printf("%s%s",$i,OFS=" ")}print $NF}'|peco --layout=bottom-up --query "$READLINE_LINE")
     READLINE_LINE="$l"
