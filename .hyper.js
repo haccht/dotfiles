@@ -34,7 +34,10 @@ module.exports = {
     borderColor: '#333',
 
     // terminal opacity
-    opacity: 0.95,
+    opacity: {
+      focus: 0.95,
+      blur: 0.85,
+    },
 
     // custom css to embed in the main window
     css: '',
@@ -114,7 +117,10 @@ module.exports = {
     // bellSoundURL: 'http://example.com/bell.mp3',
 
     // for advanced config flags please refer to https://hyper.is/#cfg
+
+    // other configurations for plugins
     alwaysOnTop: { default: false },
+    activeTab: { symbol: '⚡', color: 'yellow' }
   },
 
   // a list of plugins to fetch and install from npm
@@ -125,7 +131,10 @@ module.exports = {
   //   `project#1.0.1`
   //plugins: [],
   plugins: [
+    "hyperlinks",
+    "hyper-opacity",
     "hyper-always-on-top",
+    "hyper-active-tab",
     "hyper-subliminal-theme"
   ],
 
