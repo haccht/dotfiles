@@ -47,12 +47,14 @@ if confirm 'Install binaries?'; then
     ln -s "$HOME/.linuxbrew/Homebrew/bin/brew" "$HOME/.linuxbrew/bin"
 
     eval $(~/.linuxbrew/bin/brew shellenv)
-
-    type peco >/dev/null 2>&1 || brew install peco
-    type ghq  >/dev/null 2>&1 || brew install ghq
-    type dep  >/dev/null 2>&1 || brew install --ignore-dependencies dep
-    brew update
   fi
+
+  brew update
+  brew upgrade
+
+  brew list peco >/dev/null 2>&1 || brew install peco
+  brew list ghq  >/dev/null 2>&1 || brew install ghq
+  brew list dep  >/dev/null 2>&1 || brew install --ignore-dependencies dep
 
   type volt >/dev/null 2>&1 || (curl -L https://github.com/vim-volt/volt/releases/download/v0.3.2/volt-v0.3.2-linux-amd64 -o "$HOME/bin/volt" && chmod a+x "$HOME/bin/volt")
   $HOME/bin/volt get -u tomasr/molokai
