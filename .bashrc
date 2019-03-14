@@ -21,6 +21,10 @@ alias cp='cp -i'
 alias ls='ls -F --color=auto -I NTUSER.\* -I ntuser.\*'
 alias grep='grep --color=auto'
 
+test -d "$HOME/.rbenv" && eval "$(/home/haccht/.rbenv/bin/rbenv init -)"
+test -d "$HOME/.linuxbrew" && eval $(/home/haccht/.linuxbrew/bin/brew shellenv)
+test -d "/home/linuxbrew/.linuxbrew" && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
 # history settings
 export HISTSIZE=9999
 export HISTCONTROL=ignoredups
@@ -38,6 +42,11 @@ function __term_color {
   fi
 }
 
+# Go settings
+export GOROOT=/usr/local/go
+export GOPATH=$HOME
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
 if [ -f ~/.git-prompt.sh ]; then
   source ~/.git-prompt.sh
   export PS1='\[\e]0;\w\a\]\n\[\e[$(__term_color)m\]\u@\h \[\e[33m\]\w$(__git_ps1)\[\e[0m\]'$'\n\$ '
@@ -45,19 +54,14 @@ else
   export PS1='\[\e]0;\w\a\]\n\[\e[$(__term_color)m\]\u@\h \[\e[33m\]\w\[\e[0m\]'$'\n\$ '
 fi
 
+# Libvirt settings
+export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
+
 # for WSL shell
 if [[ `uname -a` =~ Linux && `uname -a` =~ Microsoft ]]; then
   export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1
   alias pbcopy='clip.exe'
 fi
-
-# Libvirt settings
-export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
-
-# Go settings
-export GOROOT=/usr/local/go
-export GOPATH=$HOME
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 # ghq settings
 if type ghq > /dev/null 2>&1; then
@@ -65,12 +69,6 @@ if type ghq > /dev/null 2>&1; then
   function repo {
     cd ${GHQ_ROOT}/$(ghq list | peco --query ${@:-""})
   }
-fi
-
-# rbenv settings
-if [ -d "$HOME/.rbenv" ]; then
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  eval "$(rbenv init -)"
 fi
 
 # history backward search using peco
