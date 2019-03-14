@@ -21,8 +21,8 @@ alias cp='cp -i'
 alias ls='ls -F --color=auto -I NTUSER.\* -I ntuser.\*'
 alias grep='grep --color=auto'
 
-test -d "$HOME/.rbenv" && eval "$(/home/haccht/.rbenv/bin/rbenv init -)"
-test -d "$HOME/.linuxbrew" && eval $(/home/haccht/.linuxbrew/bin/brew shellenv)
+test -d "$HOME/.rbenv" && eval "$(~/.rbenv/bin/rbenv init -)"
+test -d "$HOME/.linuxbrew" && eval $(~/.linuxbrew/bin/brew shellenv)
 test -d "/home/linuxbrew/.linuxbrew" && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 # history settings
