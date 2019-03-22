@@ -51,6 +51,7 @@ if confirm 'Install binaries?'; then
 
   brew update
   brew upgrade
+  brew cleanup
 
   brew list peco >/dev/null 2>&1 || brew install peco
   brew list ghq  >/dev/null 2>&1 || brew install ghq

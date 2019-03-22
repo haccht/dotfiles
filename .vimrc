@@ -20,9 +20,12 @@ endtry
 " encodings
 set encoding=utf-8
 set termencoding=utf-8
-set fileencodings=utf-8,iso-2022-jp,shift-jis,euc-jp
+set fileencodings=utf-8
 set fileformats=unix,dos,mac
+set ambiwidth=double
 scriptencoding utf-8
+
+set hidden
 
 " encrypt
 if has('crypt-blowfish2')
@@ -54,13 +57,15 @@ set incsearch
 set hlsearch
 
 set laststatus=2
+set showmatch
 set showmode
 set showcmd
 set ruler
 
 let mapleader=','
+nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
 
-command W w !sudo tee % > /dev/null
+cmap w!! w !sudo tee > /dev/null %
 
 let g:unite_enable_start_insert=1
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
