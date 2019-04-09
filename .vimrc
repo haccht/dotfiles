@@ -44,6 +44,7 @@ set clipboard=unnamed
 
 set shiftwidth=2
 set softtabstop=2
+set pastetoggle=<F10>
 set expandtab
 set smarttab
 set autoindent
@@ -64,8 +65,6 @@ set ruler
 
 let mapleader=','
 nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
-
-cmap w!! w !sudo tee > /dev/null %
 
 let g:unite_enable_start_insert=1
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
