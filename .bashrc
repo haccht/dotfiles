@@ -21,9 +21,8 @@ alias cp='cp -i'
 alias ls='ls -F --color=auto -I NTUSER.\* -I ntuser.\*'
 alias grep='grep --color=auto'
 
+# environments
 test -d "$HOME/.rbenv" && eval "$(~/.rbenv/bin/rbenv init -)"
-test -d "$HOME/.linuxbrew" && eval $(~/.linuxbrew/bin/brew shellenv)
-test -d "/home/linuxbrew/.linuxbrew" && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 # history settings
 export HISTSIZE=9999
@@ -42,7 +41,7 @@ function __term_color {
   fi
 }
 
-# Go settings
+# go settings
 export GOROOT=/usr/local/go
 export GOPATH=$HOME
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
@@ -54,7 +53,7 @@ else
   export PS1='\[\e]0;\w\a\]\n\[\e[$(__term_color)m\]\u@\h \[\e[33m\]\w\[\e[0m\]'$'\n\$ '
 fi
 
-# Libvirt settings
+# libvirt settings
 export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
 
 # for WSL shell

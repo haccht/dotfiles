@@ -40,24 +40,12 @@ fi
 if confirm 'Install binaries?'; then
   mkdir -p "$HOME/bin"
 
-  if [ ! -d "$HOME/.linuxbrew" ]; then
-    mkdir -p "$HOME/.linuxbrew/bin"
-
-    git clone https://github.com/Homebrew/brew "$HOME/.linuxbrew/Homebrew"
-    ln -s "$HOME/.linuxbrew/Homebrew/bin/brew" "$HOME/.linuxbrew/bin"
-
-    eval $(~/.linuxbrew/bin/brew shellenv)
-  fi
-
-  brew update
-  brew upgrade
-  brew cleanup
-
-  brew list peco >/dev/null 2>&1 || brew install peco
-  brew list ghq  >/dev/null 2>&1 || brew install ghq
-  brew list dep  >/dev/null 2>&1 || brew install --ignore-dependencies dep
-
+  type dep  >/dev/null 2>&1 || (curl -L https://raw.githubusercontent.com/golang/dep/master/install.sh | sh)
+  type peco >/dev/null 2>&1 || (curl -L https://github.com/peco/peco/releases/download/v0.5.3/peco_linux_amd64.tar.gz | tar xz && mv -f peco_linux_amd64/peco "$HOME/bin" && rm -rf peco_linux_amd64)
+  type memo >/dev/null 2>&1 || (curl -LO https://github.com/mattn/memo/releases/download/v0.0.4/memo_linux_amd64.zip && unzip memo_linux_amd64.zip -d "$HOME/bin" && rm -f memo_linux_amd64.zip)
+  type ghq  >/dev/null 2>&1 || (curl -LO https://github.com/motemen/ghq/releases/download/v0.8.0/ghq_linux_amd64.zip && mkdir -p _ghq && unzip ghq_linux_amd64.zip -d _ghq && mv -f _ghq/ghq "$HOME/bin" && rm -rf _ghq ghq_linux_amd64.zip)
   type volt >/dev/null 2>&1 || (curl -L https://github.com/vim-volt/volt/releases/download/v0.3.2/volt-v0.3.2-linux-amd64 -o "$HOME/bin/volt" && chmod a+x "$HOME/bin/volt")
+
   $HOME/bin/volt get -u tomasr/molokai
   $HOME/bin/volt get -u fatih/vim-go
   $HOME/bin/volt get -u vim-ruby/vim-ruby
