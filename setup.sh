@@ -38,8 +38,15 @@ if [[ $(uname -r) =~ Microsoft ]]; then
 fi
 
 if confirm 'Install binaries?'; then
+  source "$HOME/.bashrc"
   mkdir -p "$HOME/bin"
+  type unzip >/dev/null 2>&1 
+  if [ $? -ne 0 ]; then
+    echo "unzip not installed"
+    exit 1
+  fi
 
+  type go   >/dev/null 2>&1 || (curl -L https://dl.google.com/go/go1.12.4.linux-amd64.tar.gz | sudo tar xz -C /usr/local)
   type dep  >/dev/null 2>&1 || (curl -L https://raw.githubusercontent.com/golang/dep/master/install.sh | sh)
   type peco >/dev/null 2>&1 || (curl -L https://github.com/peco/peco/releases/download/v0.5.3/peco_linux_amd64.tar.gz | tar xz && mv -f peco_linux_amd64/peco "$HOME/bin" && rm -rf peco_linux_amd64)
   type memo >/dev/null 2>&1 || (curl -LO https://github.com/mattn/memo/releases/download/v0.0.4/memo_linux_amd64.zip && unzip memo_linux_amd64.zip -d "$HOME/bin" && rm -f memo_linux_amd64.zip)
