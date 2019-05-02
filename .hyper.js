@@ -14,8 +14,23 @@ module.exports = {
     // font family with optional fallbacks
     fontFamily: '"Myrica M", Consolas,"DejaVu Sans Mono", "Lucida Console", monospace',
 
+    // default font weight: 'normal' or 'bold'
+    fontWeight: 'normal',
+
+    // font weight for bold characters: 'normal' or 'bold'
+    fontWeightBold: 'bold',
+
+    // line height as a relative unit
+    lineHeight: 1,
+
+    // letter spacing as a relative unit
+    letterSpacing: 0,
+
     // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
     cursorColor: 'rgba(248, 28, 229, 0.7)',
+
+    // terminal text color under BLOCK cursor
+    cursorAccentColor: '#000',
 
     // `BEAM` for |, `UNDERLINE` for _, `BLOCK` for █
     cursorShape: 'BLOCK',
@@ -29,6 +44,9 @@ module.exports = {
     // terminal background color
     //backgroundColor: '#000',
     backgroundColor: 'rgba(30, 30, 30)',
+
+    // terminal selection color
+    selectionColor: 'rgba(248,28,229,0.3)',
 
     // border color (window, tabs)
     borderColor: '#333',
@@ -57,8 +75,6 @@ module.exports = {
     // custom padding (css format, i.e.: `top right bottom left`)
     // padding: '6px 6px 6px 6px',
     padding: '6px',
-
-    windowSize: [1080, 760],
 
     // the full list. if you're going to provide the full color palette,
     // including the 6 x 6 color cubes and the grayscale map, just provide
@@ -94,11 +110,10 @@ module.exports = {
     //
     // Powershell on Windows
     // - Example: `C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe`
-    shell: 'C:\\Windows\\System32\\bash.exe',
-
     // for setting shell arguments (i.e. for using interactive shellArgs: ['-i'])
     // by default ['--login'] will be used
-    shellArgs: ['~'],
+    //WSLshell: 'C:\\Windows\\System32\\bash.exe', shellArgs: ['--login'],
+    shell: '', shellArgs: ['~'],
 
     // for environment variables
     env: {},
@@ -107,7 +122,10 @@ module.exports = {
     bell: false,
 
     // if true, selected text will automatically be copied to the clipboard
-    copyOnSelect: false,
+    copyOnSelect: true,
+
+    // if `true` (without backticks and without quotes), hyper will be set as the default protocol client for SSH
+    defaultSSHApp: true,
 
     // if true, on right click selected text will be copied or pasted if no
     // selection is present (true by default on Windows)

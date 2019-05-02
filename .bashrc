@@ -22,7 +22,10 @@ alias ls='ls -F --color=auto -I NTUSER.\* -I ntuser.\*'
 alias grep='grep --color=auto'
 
 # environments
-test -d "$HOME/.rbenv" && eval "$(~/.rbenv/bin/rbenv init -)"
+if [ -d "$HOME/.rbenv" ];then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(~/.rbenv/bin/rbenv init -)"
+fi
 
 # history settings
 export HISTSIZE=9999
