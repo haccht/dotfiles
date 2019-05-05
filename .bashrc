@@ -63,6 +63,7 @@ export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
 if [[ `uname -a` =~ Linux && `uname -a` =~ Microsoft ]]; then
   export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1
   alias pbcopy='clip.exe'
+  umask 022
 fi
 
 # ghq settings
