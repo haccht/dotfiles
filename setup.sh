@@ -30,7 +30,7 @@ symlink "$cwd/.vimrc"        "$HOME/.vimrc"
 symlink "$cwd/.irbrc"        "$HOME/.irbrc"
 
 if [[ $(uname -r) =~ Microsoft ]]; then
-  WINUSER=$(/mnt/c/Windows/System32/whoami.exe | awk -F'\' '{print $2}' | tr -cd [a-z])
+  WINUSER=$(/mnt/c/Windows/System32/whoami.exe | awk -F'\' '{print $2}' | tr -cd [a-z\.])
   WINHOME="/mnt/c/Users/$WINUSER"
 
   cp -f "$cwd/.vimrc" "$WINHOME/.vimrc"
@@ -40,9 +40,15 @@ fi
 if confirm 'Install binaries?'; then
   source "$HOME/.bashrc"
   mkdir -p "$HOME/bin"
+
   type unzip >/dev/null 2>&1 
   if [ $? -ne 0 ]; then
     echo "unzip not installed"
+    exit 1
+  fi
+  type curl >/dev/null 2>&1 
+  if [ $? -ne 0 ]; then
+    echo "curl not installed"
     exit 1
   fi
 
