@@ -28,14 +28,13 @@ symlink "$cwd/.gitignore"    "$HOME/.gitignore"
 symlink "$cwd/.tmux.conf"    "$HOME/.tmux.conf"
 symlink "$cwd/.vimrc"        "$HOME/.vimrc"
 symlink "$cwd/.irbrc"        "$HOME/.irbrc"
-symlink "$cwd/.hyper.js"     "$HOME/.hyper.js"
 
 if [[ $(uname -r) =~ Microsoft ]]; then
   WINUSER=$(/mnt/c/Windows/System32/whoami.exe | awk -F'\' '{print $2}' | tr -cd [a-z])
   WINHOME="/mnt/c/Users/$WINUSER"
 
   cp -f "$cwd/.vimrc" "$WINHOME/.vimrc"
-  cat "$cwd/.hyper.js" | sed -e '/\/\/WSLshell/{n;d;}' | sed -e 's/\/\/WSLshell:/shell:/' > "$WINHOME/.hyper.js"
+  cat "$cwd/.hyper.js" | sed -e '/\/\/WSLshell/{n;d;}' | sed -e 's/\/\/WSLshell:/shell:/' > "$WINHOME/AppData/Roaming/Hyper/.hyper.js"
 fi
 
 if confirm 'Install binaries?'; then
