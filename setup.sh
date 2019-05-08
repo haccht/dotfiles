@@ -59,7 +59,7 @@ if confirm 'Install binaries?'; then
   type ghq  >/dev/null 2>&1 || (curl -LO https://github.com/motemen/ghq/releases/download/v0.8.0/ghq_linux_amd64.zip && mkdir -p _ghq && unzip ghq_linux_amd64.zip -d _ghq && mv -f _ghq/ghq "$HOME/bin" && rm -rf _ghq ghq_linux_amd64.zip)
   type volt >/dev/null 2>&1 || (curl -L https://github.com/vim-volt/volt/releases/download/v0.3.2/volt-v0.3.2-linux-amd64 -o "$HOME/bin/volt" && chmod a+x "$HOME/bin/volt")
 
-  $HOME/bin/volt get -u tomasr/molokai
+  $HOME/bin/volt get -u jacoborus/tender
   $HOME/bin/volt get -u fatih/vim-go
   $HOME/bin/volt get -u vim-ruby/vim-ruby
   $HOME/bin/volt get -u airblade/vim-gitgutter

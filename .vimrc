@@ -8,7 +8,7 @@ endif
 " color settings
 syntax on
 try
-  colorscheme molokai
+  colorscheme tender
   set background=dark
   set cursorline
 catch
