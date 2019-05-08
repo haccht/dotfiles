@@ -35,6 +35,7 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 shopt -s histappend
 
 # prompt settings
+eval `dircolors -b ~/.colorrc`
 function __term_color {
   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     code=$(echo $(printf "%d" \'$(hostname)))

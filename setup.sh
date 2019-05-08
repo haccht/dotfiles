@@ -22,11 +22,12 @@ symlink () {
 cwd=$(pwd)
 symlink "$cwd/.bash_profile" "$HOME/.bash_profile"
 symlink "$cwd/.bashrc"       "$HOME/.bashrc"
-symlink "$cwd/.gemrc"        "$HOME/.gemrc"
+symlink "$cwd/.colorrc"      "$HOME/.colorrc"
 symlink "$cwd/.gitconfig"    "$HOME/.gitconfig"
 symlink "$cwd/.gitignore"    "$HOME/.gitignore"
 symlink "$cwd/.tmux.conf"    "$HOME/.tmux.conf"
 symlink "$cwd/.vimrc"        "$HOME/.vimrc"
+symlink "$cwd/.gemrc"        "$HOME/.gemrc"
 symlink "$cwd/.irbrc"        "$HOME/.irbrc"
 
 if [[ $(uname -r) =~ Microsoft ]]; then
