@@ -1,21 +1,8 @@
 filetype plugin indent on
-set autoread
 
 if &compatible
   set nocompatible
 endif
-
-" color settings
-syntax on
-try
-  colorscheme tender
-  set background=dark
-  set cursorline
-catch
-  colorscheme murphy
-  set background=dark
-  set cursorline
-endtry
 
 " encodings
 set encoding=utf-8
@@ -24,8 +11,6 @@ set fileencodings=utf-8
 set fileformats=unix,dos,mac
 set ambiwidth=double
 scriptencoding utf-8
-
-set hidden
 
 " encrypt
 if has('crypt-blowfish2')
@@ -37,9 +22,11 @@ set t_vb=
 set novisualbell
 set noerrorbells
 
+set hidden
 set number
 set nowrap
 set nobackup
+set autoread
 set clipboard=unnamed
 
 set shiftwidth=2
@@ -62,6 +49,19 @@ set showmatch
 set showmode
 set showcmd
 set ruler
+
+" color settings
+syntax on
+autocmd ColorScheme * highlight Normal ctermbg=none
+autocmd ColorScheme * highlight LineNr ctermbg=none
+set background=dark
+set cursorline
+hi clear CursorLine
+try
+  colorscheme molokai
+catch
+  colorscheme murphy
+endtry
 
 let mapleader=','
 nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
