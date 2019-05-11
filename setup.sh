@@ -35,7 +35,9 @@ if [[ $(uname -r) =~ Microsoft ]]; then
   WINHOME="/mnt/c/Users/$WINUSER"
 
   cp -f "$cwd/.vimrc" "$WINHOME/.vimrc"
-  cat "$cwd/.hyper.js" | sed -e '/\/\/WSLshell/{n;d;}' | sed -e 's/\/\/WSLshell:/shell:/' > "$WINHOME/AppData/Roaming/Hyper/.hyper.js"
+  cp -f "$cwd/.hyper.windows.js" "$WINHOME/AppData/Roaming/Hyper/.hyper.js"
+else
+  symlink "$cwd/.hyper.linux.js" "$HOME/.hyper.js"
 fi
 
 if confirm 'Install binaries?'; then

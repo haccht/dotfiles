@@ -9,7 +9,7 @@ module.exports = {
     updateChannel: 'stable',
 
     // default font size in pixels for all tabs
-    fontSize: 14,
+    fontSize: 12,
 
     // font family with optional fallbacks
     fontFamily: '"Myrica M", Consolas,"DejaVu Sans Mono", "Lucida Console", monospace',
@@ -70,11 +70,11 @@ module.exports = {
     // set to `false` if you want to hide the minimize, maximize and close buttons
     // additionally, set to `'left'` if you want them on the left, like in Ubuntu
     // default: `true` on windows and Linux (ignored on macOS)
-    showWindowControls: '',
+    showWindowControls: false,
 
     // custom padding (css format, i.e.: `top right bottom left`)
     // padding: '6px 6px 6px 6px',
-    padding: '6px',
+    padding: '0px 6px 6px 6px',
 
     // the full list. if you're going to provide the full color palette,
     // including the 6 x 6 color cubes and the grayscale map, just provide
@@ -112,7 +112,6 @@ module.exports = {
     // - Example: `C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe`
     // for setting shell arguments (i.e. for using interactive shellArgs: ['-i'])
     // by default ['--login'] will be used
-    //WSLshell: 'C:\\Windows\\System32\\bash.exe', shellArgs: ['~'],
     shell: '', shellArgs: ['--login'],
 
     // for environment variables
@@ -122,7 +121,7 @@ module.exports = {
     bell: false,
 
     // if true, selected text will automatically be copied to the clipboard
-    copyOnSelect: true,
+    copyOnSelect: false,
 
     // if `true` (without backticks and without quotes), hyper will be set as the default protocol client for SSH
     defaultSSHApp: true,
