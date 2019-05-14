@@ -44,16 +44,14 @@ if confirm 'Install binaries?'; then
   source "$HOME/.bashrc"
   mkdir -p "$HOME/bin"
 
-  type unzip >/dev/null 2>&1
-  if [ $? -ne 0 ]; then
-    echo "unzip not installed"
-    exit 1
-  fi
-  type curl >/dev/null 2>&1
-  if [ $? -ne 0 ]; then
-    echo "curl not installed"
-    exit 1
-  fi
+  packages=(unzip curl vim)
+  for pkg in ${packages[@]}; do
+    type $pkg >/dev/null 2>&1
+    if [ $? -ne 0 ]; then
+      echo "$pkg not installed"
+      exit 1
+    fi
+  done
 
   type go   >/dev/null 2>&1 || (curl -L https://dl.google.com/go/go1.12.4.linux-amd64.tar.gz | sudo tar xz -C /usr/local)
   type dep  >/dev/null 2>&1 || (curl -L https://raw.githubusercontent.com/golang/dep/master/install.sh | sh)
