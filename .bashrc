@@ -48,6 +48,7 @@ function __term_color {
 # go settings
 export GOROOT=/usr/local/go
 export GOPATH=$HOME
+export GO111MODULE=on
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 if [ -f ~/.git-prompt.sh ]; then
