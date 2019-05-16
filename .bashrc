@@ -20,6 +20,7 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias ls='ls -F --color=auto -I NTUSER.\* -I ntuser.\*'
 alias grep='grep --color=auto'
+alias todoist='todoist --namespace --project-namespace --color'
 
 # environments
 if [ -d "$HOME/.rbenv" ];then
@@ -79,16 +80,23 @@ fi
 # history backward search using peco
 if type peco > /dev/null 2>&1 && [[ -t 1 ]]; then
   peco_history() {
-    declare l=$(HISTTIMEFORMAT= history|LC_ALL=C sort -r|awk '{for(i=2;i<NF;i++){printf("%s%s",$i,OFS=" ")}print $NF}'|peco --layout=bottom-up --query "$READLINE_LINE")
+    declare l=$(HISTTIMEFORMAT= history | sort -r | awk '{for(i=2;i<NF;i++){printf("%s%s",$i,OFS=" ")}print $NF}' | peco --layout=bottom-up --query "$READLINE_LINE")
     READLINE_LINE="$l"
     READLINE_POINT=${#l}
   }
-  bind -x '"\C-r": peco_history'
+  bind -x '"\C-r":peco_history'
 
   peco_snippets() {
-    declare l=$(grep -v "^#" ~/.snippets|peco --layout=bottom-up --query "$READLINE_LINE")
+    declare l=$(grep -v "^#" ~/.snippets | peco --layout=bottom-up --query "$READLINE_LINE" | sed "s/^[.*\] *//g")
     READLINE_LINE="$l"
     READLINE_POINT=${#l}
   }
-  bind -x '"\C-t": peco_snippets'
+  bind -x '"\C-xs":peco_snippets'
+
+  peco_tasklist() {
+    declare l=$(todoist l | sort -k1,1 -nr | peco | awk '{print $1}')
+    READLINE_LINE="$READLINE_LINE $l"
+    READLINE_POINT=${#READLINE_LINE}
+  }
+  bind -x '"\C-xt":peco_tasklist'
 fi
