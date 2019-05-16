@@ -28,7 +28,7 @@ if [ -d "$HOME/.rbenv" ];then
 fi
 
 # history settings
-export HISTSIZE=9999
+export HISTSIZE=50000
 export HISTCONTROL=ignoredups
 
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
@@ -84,4 +84,11 @@ if type peco > /dev/null 2>&1 && [[ -t 1 ]]; then
     READLINE_POINT=${#l}
   }
   bind -x '"\C-r": peco_history'
+
+  peco_snippets() {
+    declare l=$(grep -v "^#" ~/.snippets|peco --layout=bottom-up --query "$READLINE_LINE")
+    READLINE_LINE="$l"
+    READLINE_POINT=${#l}
+  }
+  bind -x '"\C-t": peco_snippets'
 fi
