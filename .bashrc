@@ -80,7 +80,7 @@ fi
 # history backward search using peco
 if type peco > /dev/null 2>&1 && [[ -t 1 ]]; then
   peco_history() {
-    declare l=$(HISTTIMEFORMAT= history | sort -r | awk '{for(i=2;i<NF;i++){printf("%s%s",$i,OFS=" ")}print $NF}' | peco --layout=bottom-up --query "$READLINE_LINE")
+    declare l=$(HISTTIMEFORMAT= history | sort -k1,1nr | awk '{for(i=2;i<NF;i++){printf("%s%s",$i,OFS=" ")}print $NF}' | peco --layout=bottom-up --query "$READLINE_LINE")
     READLINE_LINE="$l"
     READLINE_POINT=${#l}
   }
