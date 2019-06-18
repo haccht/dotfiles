@@ -28,16 +28,15 @@ set nowrap
 set nobackup
 set autoread
 set clipboard=unnamed
+set undofile
+set undodir=$HOME/.vim/undo
 
 set shiftwidth=2
 set softtabstop=2
-set pastetoggle=<F10>
 set expandtab
 set smarttab
 set autoindent
 set smartindent
-set wildmenu
-set lazyredraw
 
 set ignorecase
 set smartcase
@@ -49,6 +48,10 @@ set showmatch
 set showmode
 set showcmd
 set ruler
+set wildmenu
+set lazyredraw
+
+set pastetoggle=<F10>
 
 " color settings
 syntax on
