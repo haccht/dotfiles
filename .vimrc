@@ -27,16 +27,25 @@ set number
 set nowrap
 set nobackup
 set autoread
+set smarttab
+set wildmenu
 set clipboard=unnamed
 set undofile
 set undodir=$HOME/.vim/undo
 
+set lazyredraw
+set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-set smarttab
 set autoindent
 set smartindent
+augroup fileTypeIndent
+    autocmd!
+    autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4
+    autocmd BufNewFile,BufRead *.go setlocal tabstop=4 softtabstop=4 shiftwidth=4
+augroup END
 
 set ignorecase
 set smartcase
