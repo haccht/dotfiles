@@ -28,6 +28,7 @@ yay -S mpv skype handbrake handbrake-cli libdvdread libdvdcss libdvdnav asunder 
 sudo gpasswd -a haccht docker
 sudo gpasswd -a haccht libvirt
 sudo gpasswd -a haccht optical
+sudo systemctl start docker   && sudo systemctl enable docker
 sudo systemctl start libvirtd && sudo systemctl enable libvirtd
 
 yay -S lightdm-webkit2-greeter --noconfirm

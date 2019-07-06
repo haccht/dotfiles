@@ -288,12 +288,13 @@ exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 #exec --no-startup-id start_conky_maia
 exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -detectsleep -time 5 -locker "i3exit lock" -killtime 15 -killer "systemctl suspend"
+exec --no-startup-id xautolock -detectsleep -bell 20 -time 5 -locker "i3exit lock" -killtime 15 -killer "systemctl suspend"
 #exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec --no-startup-id feh --bg-scale ~/Pictures/791325.jpg
-exec --no-startup-id setxkbmap -option ctrl:nocaps
 exec --no-startup-id fcitx
+#exec --no-startup-id setxkbmap -option ctrl:nocaps
+exec --no-startup-id /home/haccht/bin/xkeysnail.sh
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -342,32 +343,33 @@ bar {
   font pango: Monospace, FontAwesome 9
 	strip_workspace_numbers yes
 
-    colors {
-        background #222D31
-        statusline #F9FAF9
-        separator  #454947
+  colors {
+    background #000000
+    statusline #FFFFFF
+    separator  #666666
 
-#                      border  backgr. text
-        focused_workspace  #F9FAF9 #16a085 #292F34
-        active_workspace   #595B5B #353836 #FDF6E3
-        inactive_workspace #595B5B #222D31 #EEE8D5
-        binding_mode       #16a085 #2C2C2C #F9FAF9
-        urgent_workspace   #16a085 #FDF6E3 #E5201D
-    }
+    #                  border  backgr. text
+    focused_workspace  #4C7899 #285577 #FFFFFF
+    active_workspace   #333333 #222222 #FFFFFF
+    inactive_workspace #333333 #222222 #888888
+    urgent_workspace   #2F343A #900000 #FFFFFF
+    binding_mode       #2F343A #900000 #FFFFFF
+  }
 }
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
 
 # Theme colors
-# class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #556064 #80FFF9 #FDF6E3
-  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-  client.placeholder      #000000 #0c0c0c #ffffff #000000 
+# class                 border  bground text    indicator child_border
+client.focused          #4C7899 #285577 #FFFFFF #2E9EF4   #285577
+client.focused_inactive #333333 #5F676A #FFFFFF #484E50   #5F676A
+client.unfocused        #333333 #222222 #888888 #292D2E   #222222
+client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
+client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 
-  client.background       #2B2C2B
+client.background       #FFFFFF
+
 
 #############################
 ### settings for i3-gaps: ###
