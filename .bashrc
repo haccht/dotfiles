@@ -10,7 +10,6 @@ alias ls='ls -F --color=auto -I NTUSER.\* -I ntuser.\*'
 alias grep='grep --color=auto'
 alias todoist='todoist --namespace --project-namespace --color'
 
-eval `dircolors -b ~/.colorrc`
 shopt -s histappend
 
 if [[ `uname -a` =~ Linux && `uname -a` =~ Microsoft ]]; then

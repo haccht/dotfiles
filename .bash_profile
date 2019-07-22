@@ -38,6 +38,7 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   __term_code=$(printf "%d" \'$(hostname))
   __term_color="$(expr ${__term_code} % 6 + 31)"
 fi
+eval `dircolors -b ~/.colorrc`
 
 if [ -f ~/.git-prompt.sh ]; then
   source ~/.git-prompt.sh
