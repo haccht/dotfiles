@@ -1,6 +1,5 @@
 # .bashrc
 
-# Source global definitions
 [[ -f /etc/bashrc ]] && . /etc/bashrc
 
 alias rm='rm -i'
@@ -27,5 +26,5 @@ if type peco > /dev/null 2>&1 && [[ -t 1 ]]; then
     READLINE_LINE="$l"
     READLINE_POINT=${#l}
   }
-  bind -x '"\C-r":peco_history'
+  [[ "$-" =~ "i" ]] && bind -x '"\C-r":peco_history'
 fi
