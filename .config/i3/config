@@ -218,6 +218,7 @@ for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
+for_window [title="mpv"] floating enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -293,6 +294,7 @@ exec --no-startup-id xautolock -detectsleep -bell 20 -time 5 -locker "i3exit loc
 exec_always --no-startup-id fix_xcursor
 exec --no-startup-id feh --bg-scale ~/Pictures/791325.jpg
 exec --no-startup-id fcitx
+exec --no-startup-id xinput set-prop 12 --type=int --format=8 "Device Enabled" 0
 #exec --no-startup-id setxkbmap -option ctrl:nocaps
 exec --no-startup-id /home/haccht/bin/xkeysnail.sh
 
@@ -367,7 +369,6 @@ client.focused_inactive #333333 #5F676A #FFFFFF #484E50   #5F676A
 client.unfocused        #333333 #222222 #888888 #292D2E   #222222
 client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
 client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
-
 client.background       #FFFFFF
 
 
