@@ -27,6 +27,7 @@ symlink () {
   ln -snfv "$1" "$2"
 }
 
+cwd=$(pwd)
 if [[ $(uname -r) =~ Microsoft ]]; then
   WINUSER=$(/mnt/c/Windows/System32/whoami.exe | awk -F'\' '{print $2}' | tr -cd [a-z\.])
   WINHOME="/mnt/c/Users/$WINUSER"
@@ -80,7 +81,6 @@ if confirm 'Install other files?'; then
   curl -L https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -o "$HOME/.git-prompt.sh"
 fi
 
-cwd=$(pwd)
 symlink "$cwd/.bash_profile" "$HOME/.bash_profile"
 symlink "$cwd/.bashrc"       "$HOME/.bashrc"
 symlink "$cwd/.colorrc"      "$HOME/.colorrc"
