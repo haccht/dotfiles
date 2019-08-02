@@ -1,7 +1,5 @@
 # .bash_profile
 
-[[ -f "$HOME/.bashrc" ]] && . "$HOME/.bashrc"
-
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export OUTPUT_CHARSET=en_US.UTF-8
@@ -48,3 +46,5 @@ if [ -f ~/.git-prompt.sh ]; then
 else
   export PS1='\[\e]0;\w\a\]\n\[\e[${__term_color}m\]\u@\h \[\e[33m\]\w\[\e[0m\]'$'\n\$ '
 fi
+
+[[ -f "$HOME/.bashrc" ]] && . "$HOME/.bashrc"
