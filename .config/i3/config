@@ -294,7 +294,7 @@ exec --no-startup-id xautolock -detectsleep -bell 20 -time 5 -corners +-00 -lock
 exec_always --no-startup-id fix_xcursor
 exec --no-startup-id feh --bg-scale ~/Pictures/791325.jpg
 exec --no-startup-id fcitx
-exec --no-startup-id xinput set-prop 12 --type=int --format=8 "Device Enabled" 0
+exec --no-startup-id xinput set-prop 11 --type=int --format=8 "Device Enabled" 0 #Synaptics TM3289-002 
 #exec --no-startup-id setxkbmap -option ctrl:nocaps
 exec --no-startup-id /home/haccht/bin/xkeysnail.sh
 
