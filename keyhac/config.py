@@ -213,7 +213,7 @@ def configure(keymap):
 
     # IME の「単語登録」プログラムを起動するキーを指定する
     # word_register_key = None
-    word_register_key = "C-CloseBracket"
+    # word_register_key = "C-CloseBracket"
 
     # IME の「単語登録」プログラムとそのパラメータを指定する（for Google日本語入力）
     # word_register_name = r"C:\Program Files\Google\Google Japanese Input\GoogleIMEJaTool.exe"
