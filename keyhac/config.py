@@ -212,7 +212,7 @@ def configure(keymap):
     window_switching_key = None # A-S-Tab、A-Tabキーのみを利用する
 
     # IME の「単語登録」プログラムを起動するキーを指定する
-    # word_register_key = None
+    word_register_key = None
     # word_register_key = "C-CloseBracket"
 
     # IME の「単語登録」プログラムとそのパラメータを指定する（for Google日本語入力）
