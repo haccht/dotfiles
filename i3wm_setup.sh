@@ -14,6 +14,7 @@ yay -S noto-fonts-cjk noto-fonts-emoji ttf-myricam ttf-font-awesome awesome-term
 mkdir -p ~/.config/i3 ~/.config/rofi ~/.config/dunst
 ln -snfv ~/dotfiles/.config/i3/config       ~/.config/i3/config
 ln -snfv ~/dotfiles/.config/i3/i3bloks.conf ~/.config/i3/i3blocks.conf
+ln -snfv ~/dotfiles/.config/i3/disable-touchpad.sh ~/.config/i3/disable-touchpad.sh
 ln -snfv ~/dotfiles/.config/rofi/i3/config  ~/.config/rofi/config
 ln -snfv ~/dotfiles/.config/dunst/i3/config ~/.config/dunst/config
 git clone https://github.com/vivien/i3blocks-contrib ~/.config/i3/i3blocks-contrib

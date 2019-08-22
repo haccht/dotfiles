@@ -274,7 +274,6 @@ mode "resize" {
 }
 
 # Lock screen
-#bindsym $mod+9 exec --no-startup-id blurlock
 bindsym $mod+9 exec --no-startup-id i3exit lock
 
 # Autostart applications
@@ -286,7 +285,6 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 #exec --no-startup-id clipit
 exec --no-startup-id blueman-applet
-# exec_always --no-startup-id sbxkb
 #exec --no-startup-id start_conky_maia
 exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -detectsleep -bell 20 -time 5 -corners +-00 -locker "i3exit lock" -killtime 15 -killer "systemctl suspend"
@@ -294,8 +292,7 @@ exec --no-startup-id xautolock -detectsleep -bell 20 -time 5 -corners +-00 -lock
 exec_always --no-startup-id fix_xcursor
 exec --no-startup-id feh --bg-scale ~/Pictures/791325.jpg
 exec --no-startup-id fcitx
-exec --no-startup-id xinput set-prop 12 --type=int --format=8 "Device Enabled" 0
-#exec --no-startup-id setxkbmap -option ctrl:nocaps
+exec --no-startup-id /home/haccht/.config/i3/disable-touchpad.sh
 exec --no-startup-id /home/haccht/bin/xkeysnail.sh
 
 # Color palette used for the terminal ( ~/.Xresources file )
