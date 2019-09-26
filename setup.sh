@@ -28,6 +28,18 @@ symlink () {
 }
 
 cwd=$(pwd)
+mkdir -p "$HOME/bin"
+
+symlink "$cwd/.bash_profile" "$HOME/.bash_profile"
+symlink "$cwd/.bashrc"       "$HOME/.bashrc"
+symlink "$cwd/.colorrc"      "$HOME/.colorrc"
+symlink "$cwd/.gitconfig"    "$HOME/.gitconfig"
+symlink "$cwd/.gitignore"    "$HOME/.gitignore"
+symlink "$cwd/.tmux.conf"    "$HOME/.tmux.conf"
+symlink "$cwd/.vimrc"        "$HOME/.vimrc"
+symlink "$cwd/.gemrc"        "$HOME/.gemrc"
+symlink "$cwd/.irbrc"        "$HOME/.irbrc"
+
 if [[ $(uname -r) =~ Microsoft ]]; then
   WINUSER=$(/mnt/c/Windows/System32/whoami.exe | awk -F'\' '{print $2}' | tr -cd [a-z\.])
   WINHOME="/mnt/c/Users/$WINUSER"
@@ -38,8 +50,6 @@ else
   symlink "$cwd/.hyper.linux.js" "$HOME/.hyper.js"
 fi
 
-mkdir -p "$HOME/bin"
-
 if confirm 'Install rbenv?'; then
   git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
   git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
@@ -48,7 +58,7 @@ fi
 if confirm 'Install go binaries?'; then
   installed curl
 
-  source "$HOME/.bashrc"
+  source "$HOME/.bash_profile"
   type go   >/dev/null 2>&1 || (curl -L https://dl.google.com/go/go1.12.4.linux-amd64.tar.gz | sudo tar xz -C /usr/local)
   type dep  >/dev/null 2>&1 || (curl -L https://raw.githubusercontent.com/golang/dep/master/install.sh | sh)
 fi
@@ -80,13 +90,3 @@ if confirm 'Install other files?'; then
 
   curl -L https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -o "$HOME/.git-prompt.sh"
 fi
-
-symlink "$cwd/.bash_profile" "$HOME/.bash_profile"
-symlink "$cwd/.bashrc"       "$HOME/.bashrc"
-symlink "$cwd/.colorrc"      "$HOME/.colorrc"
-symlink "$cwd/.gitconfig"    "$HOME/.gitconfig"
-symlink "$cwd/.gitignore"    "$HOME/.gitignore"
-symlink "$cwd/.tmux.conf"    "$HOME/.tmux.conf"
-symlink "$cwd/.vimrc"        "$HOME/.vimrc"
-symlink "$cwd/.gemrc"        "$HOME/.gemrc"
-symlink "$cwd/.irbrc"        "$HOME/.irbrc"
