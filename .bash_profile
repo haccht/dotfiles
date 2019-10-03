@@ -33,6 +33,10 @@ if [ -d "$HOME/.rbenv" ];then
   eval "$(~/.rbenv/bin/rbenv init -)"
 fi
 
+if [ -f ~/bin/direnv ]; then
+  eval "$(~/bin/direnv hook bash)"
+fi
+
 __term_color="$(expr '1;35')"
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   __term_code=$(printf "%d" \'$(hostname))
