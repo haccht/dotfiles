@@ -52,5 +52,5 @@ if [ -x /usr/bin/xkeysnail ]; then
   xhost +SI:localuser:xkeysnail
   sudo -u xkeysnail /usr/bin/xkeysnail /etc/xkeysnail/config.py &
 fi
-EOL > ~/bin/xkeysnail.sh
-chmod a+x ~/bin/xkeysnail.sh
+EOL > ~/.config/i3/xkeysnail.sh
+chmod a+x ~/.config/i3/xkeysnail.sh
