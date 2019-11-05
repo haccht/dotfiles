@@ -83,6 +83,7 @@ let mapleader=','
 noremap ; :
 nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
 
+" plugins
 let g:unite_enable_start_insert=1
 nnoremap <silent> <Leader>uy :<C-u>Unite history/yank<CR>
 nnoremap <silent> <Leader>ub :<C-u>Unite buffer<CR>
@@ -96,6 +97,8 @@ set splitright
 
 let g:gitgutter_enabled = 0
 map <Leader>g :GitGutterToggle<CR>
+
+let g:go_version_warning = 0
 
 " local settings
 if filereadable(expand('~/.vim/local.vim'))
