@@ -1,15 +1,14 @@
 filetype plugin indent on
 
-if &compatible
-  set nocompatible
-endif
+set nocompatible
 
 " encodings
-set encoding=utf-8
-set termencoding=utf-8
-set fileencodings=utf-8
-set fileformats=unix,dos,mac
-set ambiwidth=double
+if has('vim_starting')
+  set encoding=utf-8
+  set termencoding=utf-8
+  set fileencodings=utf-8
+  set fileformats=unix,dos,mac
+endif
 scriptencoding utf-8
 
 " encrypt
@@ -17,28 +16,29 @@ if has('crypt-blowfish2')
   set cryptmethod=blowfish2
 endif
 
-" global settings
-set t_vb=
-set novisualbell
-set noerrorbells
-
+" appearance
+set ambiwidth=double
+set laststatus=2
+set showmatch
+set showmode
+set showcmd
+set ruler
+set wildmenu
+set lazyredraw
 set hidden
 set number
 set nowrap
-set nobackup
 set autoread
 set smarttab
 set wildmenu
-set clipboard=unnamed
-set undofile
-set undodir=$HOME/.vim/undo
 
-set lazyredraw
+" indent
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
 set autoindent
+set breakindent
 set smartindent
 augroup fileTypeIndent
     autocmd!
@@ -47,22 +47,25 @@ augroup fileTypeIndent
     autocmd BufNewFile,BufRead *.go setlocal tabstop=4 softtabstop=4 shiftwidth=4
 augroup END
 
+" search
 set ignorecase
 set smartcase
 set incsearch
 set hlsearch
 
-set laststatus=2
-set showmatch
-set showmode
-set showcmd
-set ruler
-set wildmenu
-set lazyredraw
+" global
+set t_vb=
+set novisualbell
+set noerrorbells
+set clipboard=unnamed
+set backup
+set backupdir=$HOME/.vim/backup
+set undofile
+set undodir=$HOME/.vim/undo
 
 set pastetoggle=<F10>
 
-" color settings
+" colors
 syntax on
 autocmd ColorScheme * highlight Normal ctermbg=none
 autocmd ColorScheme * highlight LineNr ctermbg=none
@@ -75,15 +78,17 @@ catch
   colorscheme murphy
 endtry
 
+" mapping
 let mapleader=','
+noremap ; :
 nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
 
 let g:unite_enable_start_insert=1
-nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
-nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
-nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> <Leader>uy :<C-u>Unite history/yank<CR>
+nnoremap <silent> <Leader>ub :<C-u>Unite buffer<CR>
+nnoremap <silent> <Leader>uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> <Leader>uu :<C-u>Unite file_mru buffer<CR>
+nnoremap <silent> <leader>ur :<C-u>Unite -buffer-name=register register<CR>
 
 let g:quickrun_config={'_': {'split': ''}}
 set splitbelow
