@@ -33,15 +33,16 @@ if [ -d "$HOME/.rbenv" ];then
   eval "$(~/.rbenv/bin/rbenv init -)"
 fi
 
+eval `dircolors -b ~/.colorrc`
 __term_color="$(expr '1;35')"
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   __term_code=$(printf "%d" \'$(hostname))
   __term_color="$(expr ${__term_code} % 6 + 31)"
 fi
-eval `dircolors -b ~/.colorrc`
 
 [[ -f ~/.git-prompt.sh ]] && source ~/.git-prompt.sh
-if [ type __git_ps1 >/dev/null 2>&1 ]; then
+if type __git_ps1 >/dev/null 2>&1; then
+  GIT_PS1_SHOWDIRTYSTATE=1
   export PS1='\[\e]0;\w\a\]\n\[\e[${__term_color}m\]\u@\h \[\e[33m\]\w$(__git_ps1)\[\e[0m\]'$'\n\$ '
 else
   export PS1='\[\e]0;\w\a\]\n\[\e[${__term_color}m\]\u@\h \[\e[33m\]\w\[\e[0m\]'$'\n\$ '
