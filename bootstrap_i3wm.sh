@@ -1,24 +1,25 @@
 #! /bin/bash
 
 sudo pacman -S git vim tmux unzip yay --noconfirm
-git clone https://github.com/haccht/dotfiles ~/dotfiles
-yes | sh dotfiles/setup.sh
+sh ~/dotfiles/bootstrap.sh
 
 sudo sed -i "s/^#en_US.UTF-8/en_US.UTF-8/g" /etc/locale.gen
 sudo sed -i "s/^#ja_JP.UTF-8/ja_JP.UTF-8/g" /etc/locale.gen
 sudo locale-gen
 
-yay -S rofi feh i3bloks i3lock-fancy google-chrome fcitx fcitx-im fcitx-mozc fcitx-configtool --noconfirm
+yay -S rofi feh i3blocks i3lock-fancy google-chrome fcitx fcitx-im fcitx-mozc fcitx-configtool --noconfirm
 yay -S noto-fonts-cjk noto-fonts-emoji ttf-myricam ttf-font-awesome awesome-terminal-fonts --noconfirm
 
 mkdir -p ~/.config/i3 ~/.config/rofi ~/.config/dunst
-ln -snfv ~/dotfiles/.config/i3/config       ~/.config/i3/config
-ln -snfv ~/dotfiles/.config/i3/i3bloks.conf ~/.config/i3/i3blocks.conf
-ln -snfv ~/dotfiles/.config/i3/disable-touchpad.sh ~/.config/i3/disable-touchpad.sh
-ln -snfv ~/dotfiles/.config/rofi/i3/config  ~/.config/rofi/config
-ln -snfv ~/dotfiles/.config/dunst/i3/config ~/.config/dunst/config
+ln -snfv ~/dotfiles/config/i3 ~/.config/i3/config
+ln -snfv ~/dotfiles/config/i3 ~/.config/i3/i3blocks.conf
+ln -snfv ~/dotfiles/config/i3 ~/.config/i3/disable-touchpad.sh
+ln -snfv ~/dotfiles/config/rofi/config ~/.config/rofi/config
+ln -snfv ~/dotfiles/config/dunst/config ~/.config/dunst/config
+
 git clone https://github.com/vivien/i3blocks-contrib ~/.config/i3/i3blocks-contrib
-sudo cp ~/dotfiles/.config/i3/i3lock.service /etc/systemd/system/
+sudo cp ~/dotfiles/config/i3/i3exit.sh /usr/bin/i3exit
+sudo cp ~/dotfiles/config/i3/i3lock\@.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable i3lock.service
 
@@ -42,6 +43,7 @@ yay -S xkeysnail --noconfirm
 sudo groupadd uinput
 sudo useradd -G input,uinput -s /sbin/nologin xkeysnail
 
+sudo cp ~/dotfiles/xkeysnail.py /etc/xkeysnail/config.py
 echo 'KERNEL=="uinput", GROUP="uinput"' | sudo tee /etc/udev/rules.d/40-udev-xkeysnail.rules
 echo 'uinput' | sudo tee /etc/modules-load.d/uinput.conf
 echo 'haccht ALL=(ALL) ALL, (xkeysnail) NOPASSWD: /usr/bin/xkeysnail' | sudo tee /etc/sudoers.d/20-xkeysnail
@@ -52,5 +54,5 @@ if [ -x /usr/bin/xkeysnail ]; then
   xhost +SI:localuser:xkeysnail
   sudo -u xkeysnail /usr/bin/xkeysnail /etc/xkeysnail/config.py &
 fi
-EOL > ~/.config/i3/xkeysnail.sh
-chmod a+x ~/.config/i3/xkeysnail.sh
+EOL > ~/.config/i3/xkeysnail-init.sh
+chmod a+x ~/.config/i3/xkeysnail-init.sh
