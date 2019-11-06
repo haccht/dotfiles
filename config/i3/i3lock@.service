@@ -1,12 +1,12 @@
 [Unit]
 Description=Starts i3lock at suspend time
-After=sleep.target
+After=suspend.target
 
 [Service]
-User=haccht
+User=%i
 Type=forking
 Environment=DISPLAY=:0
-ExecStart=/usr/bin/i3exit lock
+ExecStart=/usr/bin/i3exit lock-fork
 
 [Install]
-WantedBy=sleep.target
+WantedBy=suspend.target
