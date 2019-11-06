@@ -41,6 +41,7 @@ curl -L https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -
 GO111MODULE=on
 GOROOT=/usr/local/go
 GOPATH=/home/hachimura
+PATH=${GOPATH}/bin:${GOROOT}/bin:${PATH}
 
 ( cd ${GOPATH}/src && go get -u github.com/vim-volt/volt )
 ( cd ${GOPATH}/src && go get -u github.com/motemen/ghq )
