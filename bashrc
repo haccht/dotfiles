@@ -16,6 +16,10 @@ if [[ `uname -a` =~ Linux && `uname -a` =~ Microsoft ]]; then
 fi
 
 if type peco > /dev/null 2>&1 && [[ -t 1 ]]; then
+  function attach {
+    tmux a -t $(tmux ls | peco --layout=bottom-up | cut -d: -f1)
+  }
+
   function repo {
     cd ${GHQ_ROOT}/$(ghq list | peco --query ${@:-""})
   }
