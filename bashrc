@@ -21,7 +21,7 @@ if type peco > /dev/null 2>&1 && [[ -t 1 ]]; then
   }
 
   function repo {
-    cd ${GHQ_ROOT}/$(ghq list | peco --query ${@:-""})
+    cd ${GHQ_ROOT}/$(ghq list | sort | peco --query ${@:-""})
   }
 
   peco_history() {
