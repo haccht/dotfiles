@@ -9,7 +9,7 @@ sudo sed -i "s/^#en_US.UTF-8/en_US.UTF-8/g" /etc/locale.gen
 sudo sed -i "s/^#ja_JP.UTF-8/ja_JP.UTF-8/g" /etc/locale.gen
 sudo locale-gen
 
-yay -S rofi feh i3blocks i3lock-fancy google-chrome fcitx fcitx-im fcitx-mozc fcitx-configtool --noconfirm
+yay -S rofi feh i3blocks i3lock-fancy-git i3lock-color-git google-chrome fcitx fcitx-im fcitx-mozc fcitx-configtool --noconfirm
 yay -S noto-fonts-cjk noto-fonts-emoji ttf-myricam ttf-font-awesome awesome-terminal-fonts --noconfirm
 
 git clone https://github.com/haccht/ditfiles.git ~/dotfiles

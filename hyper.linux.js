@@ -9,7 +9,7 @@ module.exports = {
     updateChannel: 'stable',
 
     // default font size in pixels for all tabs
-    fontSize: 12,
+    fontSize: 10,
 
     // font family with optional fallbacks
     fontFamily: '"Myrica M", Consolas,"DejaVu Sans Mono", "Lucida Console", monospace',
@@ -65,7 +65,7 @@ module.exports = {
 
     // set to `true` (without backticks) if you're using a Linux setup that doesn't show native menus
     // default: `false` on Linux, `true` on Windows (ignored on macOS)
-    showHamburgerMenu: '',
+    showHamburgerMenu: true,
 
     // set to `false` if you want to hide the minimize, maximize and close buttons
     // additionally, set to `'left'` if you want them on the left, like in Ubuntu
@@ -129,7 +129,7 @@ module.exports = {
 
     // if true, on right click selected text will be copied or pasted if no
     // selection is present (true by default on Windows)
-    // quickEdit: true
+    quickEdit: false,
 
     // URL to custom bell
     // bellSoundURL: 'http://example.com/bell.mp3',
