@@ -149,10 +149,9 @@ module.exports = {
   //   `project#1.0.1`
   //plugins: [],
   plugins: [
-    "hyperlinks",
     "hyper-opacity",
-    "hyper-always-on-top",
     "hyper-active-tab",
+    "hyper-always-on-top",
     "hyper-subliminal-theme"
   ],
 
