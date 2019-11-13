@@ -15,6 +15,11 @@ if [[ `uname -a` =~ Linux && `uname -a` =~ Microsoft ]]; then
   umask 022
 fi
 
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+  alias pbcopy='lemonade copy'
+  alias pbpaste='lemonade paste'
+fi
+
 if type peco > /dev/null 2>&1 && [[ -t 1 ]]; then
   function attach {
     tmux a -t $(tmux ls | peco --layout=bottom-up | cut -d: -f1)
