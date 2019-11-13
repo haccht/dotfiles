@@ -47,6 +47,7 @@ PATH=${GOPATH}/bin:${GOROOT}/bin:${PATH}
 ( cd ${GOPATH}/src && go get -u github.com/motemen/ghq )
 ( cd ${GOPATH}/src && go get -u github.com/mattn/memo )
 ( cd ${GOPATH}/src && go get -u github.com/peco/peco )
+( cd ${GOPATH}/src && go get -u github.com/lemonade-command/lemonade )
 
 volt get -u tomasr/molokai
 volt get -u fatih/vim-go
@@ -57,6 +58,7 @@ volt get -u thinca/vim-quickrun
 volt get -u tpope/vim-markdown
 volt get -u itchyny/lightline.vim
 volt get -u justinmk/vim-dirvish
+volt get -u kana/vim-fakeclip
 
 if [ -d "${HOME}/.rbenv" ];then
   ( cd "${HOME}/.rbenv" && git pull origin master )
