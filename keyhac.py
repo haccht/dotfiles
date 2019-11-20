@@ -116,6 +116,7 @@ def configure(keymap):
                             "kali.exe",           # WSL
                             "mintty.exe",         # mintty
                             "Hyper.exe",          # Hyper
+                            "alacritty.exe",      # Alacritty
                             "Cmder.exe",          # Cmder
                             "ConEmu.exe",         # ConEmu
                             "ConEmu64.exe",       # ConEmu
