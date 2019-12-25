@@ -58,8 +58,8 @@ set t_vb=
 set novisualbell
 set noerrorbells
 set clipboard=unnamed
-set backup
-set backupdir=$HOME/.vim/backup
+"set backup
+"set backupdir=$HOME/.vim/backup
 set undofile
 set undodir=$HOME/.vim/undo
 
@@ -100,7 +100,19 @@ map <Leader>g :GitGutterToggle<CR>
 
 let g:go_version_warning = 0
 
-" local settings
-if filereadable(expand('~/.vim/local.vim'))
-  source $HOME/.vim/local.vim
+if executable('gopls')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'gopls',
+        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+        \ 'whitelist': ['go'],
+        \ })
+endif
+
+if executable('solargraph')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'solargraph',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
+        \ 'initialization_options': {"diagnostics": "true"},
+        \ 'whitelist': ['ruby'],
+        \ })
 endif

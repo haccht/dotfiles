@@ -1,11 +1,12 @@
 #! /bin/bash
 
-GO_VERSION=go1.12.4.linux-amd64
+GO_VERSION=go1.13.5.linux-amd64
 
 install_package() {
   pkgname=$1
 
   if !type "${pkgname}" >/dev/null 2>&1; then
+    echo "Installing ${pkgname}..."
     type yum      >/dev/null 2>&1 && sudo yum install -y "${pkgname}"
     type yay      >/dev/null 2>&1 && sudo yay -S --noconfirm "${pkgname}"
     type pacman   >/dev/null 2>&1 && sudo pacman -S --noconfirm "${pkgname}"
@@ -29,6 +30,7 @@ if [[ $(uname -r) =~ Microsoft ]]; then
   cp -f "$cwd/hyper.windows.js" "${WINHOME}/AppData/Roaming/Hyper/hyper.js"
 fi
 
+mkdir -p "${HOME}/src"
 mkdir -p "${HOME}/bin"
 
 install_package vim
@@ -43,15 +45,14 @@ PATH=${GOPATH}/bin:${GOROOT}/bin:${PATH}
 [[ -f "${GOROOT}/bin/go"       ]] || ( curl -L https://dl.google.com/go/${GO_VERSION}.tar.gz | sudo tar xz -C /usr/local )
 [[ -f "${HOME}/.git-prompt.sh" ]] || ( curl -L https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -o "${HOME}/.git-prompt.sh" )
 
-mkdir -p ${HOME}/.vim/backup
 ( cd ${GOPATH}/src && go get -u github.com/vim-volt/volt )
 ( cd ${GOPATH}/src && go get -u github.com/motemen/ghq )
 ( cd ${GOPATH}/src && go get -u github.com/mattn/memo )
 ( cd ${GOPATH}/src && go get -u github.com/peco/peco )
+( cd ${GOPATH}/src && go get -u golang.org/x/tools/cmd/gopls )
 ( cd ${GOPATH}/src && go get -u github.com/lemonade-command/lemonade )
 
 volt get -u tomasr/molokai
-volt get -u fatih/vim-go
 volt get -u vim-ruby/vim-ruby
 volt get -u airblade/vim-gitgutter
 volt get -u bronson/vim-trailing-whitespace
@@ -60,6 +61,10 @@ volt get -u tpope/vim-markdown
 volt get -u itchyny/lightline.vim
 volt get -u justinmk/vim-dirvish
 volt get -u kana/vim-fakeclip
+volt get -u prabirshrestha/async.vim
+volt get -u prabirshrestha/vim-lsp
+volt get -u prabirshrestha/asyncomplete.vim
+volt get -u prabirshrestha/asyncomplete-lsp.vim
 
 if [ -d "${HOME}/.rbenv" ];then
   ( cd "${HOME}/.rbenv" && git pull origin master )
