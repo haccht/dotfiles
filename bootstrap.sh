@@ -4,7 +4,6 @@ GO_VERSION=go1.13.5.linux-amd64
 
 install_package() {
   pkgname=$1
-
   if !type "${pkgname}" >/dev/null 2>&1; then
     echo "Installing ${pkgname}..."
     type yum      >/dev/null 2>&1 && sudo yum install -y "${pkgname}"
@@ -27,7 +26,7 @@ ln -sfv "${PWD}/hyper.linux.js" "${HOME}/.hyper.js"
 if [[ $(uname -r) =~ Microsoft ]]; then
   WINUSER=$(/mnt/c/Windows/System32/whoami.exe | awk -F'\' '{print $2}' | tr -cd [a-z\.])
   WINHOME="/mnt/c/Users/${WINUSER}"
-  cp -f "$cwd/hyper.windows.js" "${WINHOME}/AppData/Roaming/Hyper/hyper.js"
+  cp -f "${PWD}/hyper.windows.js" "${WINHOME}/AppData/Roaming/Hyper/hyper.js"
 fi
 
 mkdir -p "${HOME}/src"
@@ -49,8 +48,8 @@ PATH=${GOPATH}/bin:${GOROOT}/bin:${PATH}
 ( cd ${GOPATH}/src && go get -u github.com/motemen/ghq )
 ( cd ${GOPATH}/src && go get -u github.com/mattn/memo )
 ( cd ${GOPATH}/src && go get -u github.com/peco/peco )
-( cd ${GOPATH}/src && go get -u golang.org/x/tools/cmd/gopls )
-( cd ${GOPATH}/src && go get -u github.com/lemonade-command/lemonade )
+#( cd ${GOPATH}/src && go get -u github.com/lemonade-command/lemonade )
+#( cd ${GOPATH}/src && go get -u golang.org/x/tools/cmd/gopls )
 
 volt get -u tomasr/molokai
 volt get -u vim-ruby/vim-ruby

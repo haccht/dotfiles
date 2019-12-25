@@ -31,6 +31,7 @@ set nowrap
 set autoread
 set smarttab
 set wildmenu
+set ttyfast
 
 " indent
 set tabstop=4
