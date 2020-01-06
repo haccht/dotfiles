@@ -48,8 +48,9 @@ PATH=${GOPATH}/bin:${GOROOT}/bin:${PATH}
 ( cd ${GOPATH}/src && go get -u github.com/motemen/ghq )
 ( cd ${GOPATH}/src && go get -u github.com/mattn/memo )
 ( cd ${GOPATH}/src && go get -u github.com/peco/peco )
-#( cd ${GOPATH}/src && go get -u github.com/lemonade-command/lemonade )
-#( cd ${GOPATH}/src && go get -u golang.org/x/tools/cmd/gopls )
+( cd ${GOPATH}/src && go get -u github.com/lemonade-command/lemonade )
+( cd ${GOPATH}/src && go get -u golang.org/x/tools/cmd/gopls )
+( cd ${GOPATH}/src && go get -u golang.org/x/tools/cmd/goimports )
 
 volt get -u tomasr/molokai
 volt get -u vim-ruby/vim-ruby
@@ -64,6 +65,7 @@ volt get -u prabirshrestha/async.vim
 volt get -u prabirshrestha/vim-lsp
 volt get -u prabirshrestha/asyncomplete.vim
 volt get -u prabirshrestha/asyncomplete-lsp.vim
+volt get -u mattn/vim-goimports
 
 if [ -d "${HOME}/.rbenv" ];then
   ( cd "${HOME}/.rbenv" && git pull origin master )
