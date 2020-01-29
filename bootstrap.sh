@@ -40,12 +40,13 @@ GO111MODULE=on
 GOROOT=/usr/local/go
 GOPATH=${HOME}
 PATH=${GOPATH}/bin:${GOROOT}/bin:${PATH}
+export PATH
 
 [[ -f "${GOROOT}/bin/go"       ]] || ( curl -L https://dl.google.com/go/${GO_VERSION}.tar.gz | sudo tar xz -C /usr/local )
 [[ -f "${HOME}/.git-prompt.sh" ]] || ( curl -L https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -o "${HOME}/.git-prompt.sh" )
 
 ( cd ${GOPATH}/src && go get -u github.com/vim-volt/volt )
-( cd ${GOPATH}/src && go get -u github.com/motemen/ghq )
+( cd ${GOPATH}/src && go get -u github.com/x-motemen/ghq )
 ( cd ${GOPATH}/src && go get -u github.com/mattn/memo )
 ( cd ${GOPATH}/src && go get -u github.com/peco/peco )
 ( cd ${GOPATH}/src && go get -u github.com/lemonade-command/lemonade )
