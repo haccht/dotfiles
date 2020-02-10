@@ -99,6 +99,7 @@ if executable('gopls')
         \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
         \ 'whitelist': ['go'],
         \ })
+  au Filetype go call s:configure_lsp()
 endif
 
 " settings for ruby
@@ -109,4 +110,18 @@ if executable('solargraph')
         \ 'initialization_options': {"diagnostics": "true"},
         \ 'whitelist': ['ruby'],
         \ })
+  au Filetype ruby call s:configure_lsp()
 endif
+
+function! s:configure_lsp() abort
+  setlocal omnifunc=lsp#complete
+  nnoremap <buffer> gd :<C-u>LspDefinition<CR>
+  nnoremap <buffer> gD :<C-u>LspReferences<CR>
+  nnoremap <buffer> gs :<C-u>LspDocumentSymbol<CR>
+  nnoremap <buffer> gS :<C-u>LspWorkspaceSymbol<CR>
+  nnoremap <buffer> gQ :<C-u>LspDocumentFormat<CR>
+  vnoremap <buffer> gQ :LspDocumentRangeFormat<CR>
+  nnoremap <buffer> K :<C-u>LspHover<CR>
+  nnoremap <buffer> <F1> :<C-u>LspImplementation<CR>
+  nnoremap <buffer> <F2> :<C-u>LspRename<CR>
+endfunction
