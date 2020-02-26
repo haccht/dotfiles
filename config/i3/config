@@ -286,7 +286,7 @@ set $fg      #f8f8f2
 set $cyan    #8be9fd
 set $green   #50fa7b
 set $magenta #ff79c6
-set $comment #555555
+set $comment #AA5555
 set $purple  #bd93f9
 
 # Set some nice colors      border	 background text     indicator
@@ -317,11 +317,11 @@ bar {
      separator  #666666
 
      #                  border    backgr. text
-     focused_workspace   $comment $lg     $fg
-		 active_workspace    $bg      $bg     $purple
-		 inactive_workspace  $bg      $bg     $fg
-		 urgent_workspace    $bg      $bg     $magenta
-		 background          $bg
+     focused_workspace  $comment $lg     $fg
+     active_workspace   $bg      $bg     $purple
+     inactive_workspace $bg      $bg     $fg
+     urgent_workspace   $bg      $bg     $magenta
+     background         $bg
    }
 }
 
@@ -331,17 +331,17 @@ bindsym $mod+m bar mode toggle
 # settings for i3-gaps
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window pixel
-default_border pixel 2
+default_border pixel 10
 
 bindsym $mod+u border none
-bindsym $mod+y border pixel 1
+bindsym $mod+y border pixel 10
 
 # Set inner/outer gaps
 gaps inner 8
 #gaps outer 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-#smart_gaps on
+smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace)
-#smart_borders on
+smart_borders on
