@@ -84,9 +84,14 @@ noremap ; :
 nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
 
 " plugins
-let g:quickrun_config={'_': {'split': ''}}
-set splitbelow
-set splitright
+let g:quickrun_config = {
+            \  '_': {
+            \    'outputter/buffer/split': ':botright',
+            \    'outputter/buffer/close_on_empty': 1
+            \  }}
+let g:quickrun_config['ruby.bundle'] = { 'command': 'ruby', 'cmdopt': 'bundle exec', 'exec': '%o %c %s' }
+nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
+nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
 
 let g:gitgutter_enabled = 0
 map <Leader>g :GitGutterToggle<CR>
