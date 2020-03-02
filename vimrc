@@ -113,9 +113,9 @@ if executable('solargraph')
         \ 'name': 'solargraph',
         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
         \ 'initialization_options': {"diagnostics": "true"},
-        \ 'whitelist': ['ruby'],
+        \ 'whitelist': ['ruby','ruby.bundle'],
         \ })
-  au Filetype ruby call s:configure_lsp()
+  au Filetype ruby,ruby.bundle call s:configure_lsp()
 endif
 
 function! s:configure_lsp() abort
