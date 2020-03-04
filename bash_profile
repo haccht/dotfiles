@@ -33,6 +33,11 @@ if [ -d "$HOME/.rbenv" ];then
   eval "$(~/.rbenv/bin/rbenv init -)"
 fi
 
+if [ -z "$GEM_HOME" ];then
+  export GEM_HOME="$HOME/.gem"
+  export PATH="$GEM_HOME/bin:$PATH"
+fi
+
 eval `dircolors -b ~/.colorrc`
 __term_color="$(expr '1;35')"
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then

@@ -36,37 +36,39 @@ install_package vim
 install_package curl
 install_package unzip
 
-GO111MODULE=on
-GOROOT=/usr/local/go
-GOPATH=${HOME}
-PATH=${GOPATH}/bin:${GOROOT}/bin:${PATH}
-export PATH
 
-[[ -f "${GOROOT}/bin/go"       ]] || ( curl -L https://dl.google.com/go/${GO_VERSION}.tar.gz | sudo tar xz -C /usr/local )
-[[ -f "${HOME}/.git-prompt.sh" ]] || ( curl -L https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -o "${HOME}/.git-prompt.sh" )
+(
+    source "${HOME}/.bash_profile"
 
-( cd ${GOPATH}/src && go get -u github.com/vim-volt/volt )
-( cd ${GOPATH}/src && go get -u github.com/x-motemen/ghq )
-( cd ${GOPATH}/src && go get -u github.com/mattn/memo )
-( cd ${GOPATH}/src && go get -u github.com/peco/peco )
-( cd ${GOPATH}/src && go get -u github.com/lemonade-command/lemonade )
-( cd ${GOPATH}/src && go get -u golang.org/x/tools/cmd/gopls )
-( cd ${GOPATH}/src && go get -u golang.org/x/tools/cmd/goimports )
+    [[ -f "${GOROOT}/bin/go"       ]] || ( curl -L https://dl.google.com/go/${GO_VERSION}.tar.gz | sudo tar xz -C /usr/local )
+    [[ -f "${HOME}/.git-prompt.sh" ]] || ( curl -L https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -o "${HOME}/.git-prompt.sh" )
 
-volt get -u tomasr/molokai
-volt get -u vim-ruby/vim-ruby
-volt get -u airblade/vim-gitgutter
-volt get -u bronson/vim-trailing-whitespace
-volt get -u thinca/vim-quickrun
-volt get -u tpope/vim-markdown
-volt get -u itchyny/lightline.vim
-volt get -u justinmk/vim-dirvish
-volt get -u kana/vim-fakeclip
-volt get -u prabirshrestha/async.vim
-volt get -u prabirshrestha/vim-lsp
-volt get -u prabirshrestha/asyncomplete.vim
-volt get -u prabirshrestha/asyncomplete-lsp.vim
-volt get -u mattn/vim-goimports
+    cd "${GOPATH}/src"
+    go get -u github.com/vim-volt/volt
+    go get -u github.com/x-motemen/ghq
+    go get -u github.com/mattn/memo
+    go get -u github.com/peco/peco
+    go get -u github.com/MichaelMure/mdr
+    go get -u github.com/lemonade-command/lemonade
+    go get -u golang.org/x/tools/cmd/gopls
+    go get -u golang.org/x/tools/cmd/goimports
+
+    cd "${HOME}"
+    volt get -u tomasr/molokai
+    volt get -u vim-ruby/vim-ruby
+    volt get -u airblade/vim-gitgutter
+    volt get -u bronson/vim-trailing-whitespace
+    volt get -u thinca/vim-quickrun
+    volt get -u tpope/vim-markdown
+    volt get -u itchyny/lightline.vim
+    volt get -u justinmk/vim-dirvish
+    volt get -u kana/vim-fakeclip
+    volt get -u prabirshrestha/async.vim
+    volt get -u prabirshrestha/vim-lsp
+    volt get -u prabirshrestha/asyncomplete.vim
+    volt get -u prabirshrestha/asyncomplete-lsp.vim
+    volt get -u mattn/vim-goimports
+)
 
 if [ -d "${HOME}/.rbenv" ];then
   ( cd "${HOME}/.rbenv" && git pull origin master )
