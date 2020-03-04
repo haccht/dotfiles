@@ -7,10 +7,10 @@
 case "$1" in
     lock)
 	i3lock-fancy -n -p -f Noto-Sans-CJK-JP
-        ;;
-    lock-fork)
+	;;
+    forklock)
 	i3lock-fancy -p -f Noto-Sans-CJK-JP
-        ;;
+	;;
     logout)
         i3-msg exit
         ;;
@@ -18,10 +18,10 @@ case "$1" in
         dm-tool switch-to-greeter
         ;;
     suspend)
-        i3lock-fancy -p -f Noto-Sans-CJK-JP && $logind suspend
+        $logind suspend
         ;;
     hibernate)
-        i3lock-fancy -p -f Noto-Sans-CJK-JP && $logind hibernate
+        $logind hibernate
         ;;
     reboot)
         $logind reboot
