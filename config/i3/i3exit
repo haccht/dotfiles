@@ -6,6 +6,7 @@
 
 case "$1" in
     lock)
+	[[ -z "$(pgrep i3lock)" ]] || exit
 	i3lock-fancy -n -p -f Noto-Sans-CJK-JP
 	;;
     forklock)
