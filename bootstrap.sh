@@ -49,6 +49,7 @@ export PATH
 ( cd ${GOPATH}/src && go get -u github.com/x-motemen/ghq )
 ( cd ${GOPATH}/src && go get -u github.com/mattn/memo )
 ( cd ${GOPATH}/src && go get -u github.com/peco/peco )
+( cd ${GOPATH}/src && go get -u github.com/MichaelMure/mdr )
 ( cd ${GOPATH}/src && go get -u github.com/lemonade-command/lemonade )
 ( cd ${GOPATH}/src && go get -u golang.org/x/tools/cmd/gopls )
 ( cd ${GOPATH}/src && go get -u golang.org/x/tools/cmd/goimports )
