@@ -53,4 +53,5 @@ else
   export PS1='\[\e]0;\w\a\]\n\[\e[${__term_color}m\]\u@\h \[\e[33m\]\w\[\e[0m\]'$'\n\$ '
 fi
 
-[[ -f "$HOME/.bashrc" ]] && . "$HOME/.bashrc"
+[[ -f "$HOME/.bashrc" ]]     && . "$HOME/.bashrc"
+[[ -f "$HOME/.bash_local" ]] && . "$HOME/.bash_local"
