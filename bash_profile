@@ -13,12 +13,11 @@ export HISTSIZE=50000
 export HISTCONTROL=ignoredups
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-export PATH="$HOME/bin:$HOME/local/bin:$PATH"
-
 export GOROOT=/usr/local/go
 export GOPATH=$HOME
 export GO111MODULE=on
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
+export PATH="$HOME/local/bin:$PATH"
 
 export GHQ_ROOT=$GOPATH/src
 export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1
