@@ -27,7 +27,11 @@ export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
-if [ -d "$HOME/.rbenv" ];then
+if [ -f "$HOME/bin/ghg" ];then
+  export PATH="$(ghg bin):$PATH"
+fi
+
+if [ -d "$HOME/.rbenv/bin" ];then
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(~/.rbenv/bin/rbenv init -)"
 fi
@@ -52,4 +56,5 @@ else
   export PS1='\[\e]0;\w\a\]\n\[\e[${__term_color}m\]\u@\h \[\e[33m\]\w\[\e[0m\]'$'\n\$ '
 fi
 
-[[ -f "$HOME/.bashrc" ]] && . "$HOME/.bashrc"
+[[ -f "$HOME/.bashrc" ]]     && . "$HOME/.bashrc"
+[[ -f "$HOME/.bash_local" ]] && . "$HOME/.bash_local"

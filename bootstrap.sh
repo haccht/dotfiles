@@ -44,33 +44,36 @@ install_package unzip
     [[ -f "${HOME}/.git-prompt.sh" ]] || ( curl -L https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -o "${HOME}/.git-prompt.sh" )
 
     cd "${GOPATH}/src"
-    go get -u github.com/vim-volt/volt
-    go get -u github.com/x-motemen/ghq
-    go get -u github.com/mattn/memo
-    go get -u github.com/peco/peco
-    go get -u github.com/MichaelMure/mdr
-    go get -u github.com/lemonade-command/lemonade
     go get -u golang.org/x/tools/cmd/gopls
     go get -u golang.org/x/tools/cmd/goimports
+    go get -u github.com/Songmu/ghg/cmd/ghg
 
     cd "${HOME}"
-    volt get -u tomasr/molokai
-    volt get -u vim-ruby/vim-ruby
-    volt get -u airblade/vim-gitgutter
-    volt get -u bronson/vim-trailing-whitespace
-    volt get -u thinca/vim-quickrun
-    volt get -u tpope/vim-markdown
-    volt get -u itchyny/lightline.vim
-    volt get -u justinmk/vim-dirvish
-    volt get -u kana/vim-fakeclip
-    volt get -u prabirshrestha/async.vim
-    volt get -u prabirshrestha/vim-lsp
-    volt get -u prabirshrestha/asyncomplete.vim
-    volt get -u prabirshrestha/asyncomplete-lsp.vim
-    volt get -u mattn/vim-goimports
+    ghg get -u vim-volt/volt
+    ghg get -u x-motemen/ghq
+    ghg get -u mattn/memo
+    ghg get -u peco/peco
+    ghg get -u MichaelMure/mdr
+    ghg get -u lemonade-command/lemonade
+
+    cd "${HOME}"
+    $(ghg bin)/volt get -u tomasr/molokai
+    $(ghg bin)/volt get -u vim-ruby/vim-ruby
+    $(ghg bin)/volt get -u airblade/vim-gitgutter
+    $(ghg bin)/volt get -u bronson/vim-trailing-whitespace
+    $(ghg bin)/volt get -u thinca/vim-quickrun
+    $(ghg bin)/volt get -u tpope/vim-markdown
+    $(ghg bin)/volt get -u itchyny/lightline.vim
+    $(ghg bin)/volt get -u justinmk/vim-dirvish
+    $(ghg bin)/volt get -u kana/vim-fakeclip
+    $(ghg bin)/volt get -u prabirshrestha/async.vim
+    $(ghg bin)/volt get -u prabirshrestha/vim-lsp
+    $(ghg bin)/volt get -u prabirshrestha/asyncomplete.vim
+    $(ghg bin)/volt get -u prabirshrestha/asyncomplete-lsp.vim
+    $(ghg bin)/volt get -u mattn/vim-goimports
 )
 
-if [ -d "${HOME}/.rbenv" ];then
+if [ -d "${HOME}/.rbenv/bin" ];then
   ( cd "${HOME}/.rbenv" && git pull origin master )
   ( cd "${HOME}/.rbenv/plugins/ruby-build" && git pull origin master )
 else
