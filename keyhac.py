@@ -1,6 +1,4 @@
-﻿# -*- mode: python; coding: utf-8-with-signature-dos -*-
-
-##                             nickname: Fakeymacs Light
+﻿##                             nickname: Fakeymacs Light
 ##
 ## Windows の操作を emacs のキーバインドで行うための設定 Light（Keyhac版）ver.20190327_02
 ##
