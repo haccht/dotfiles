@@ -41,6 +41,11 @@ if [ -z "$GEM_HOME" ];then
   export PATH="$GEM_HOME/bin:$PATH"
 fi
 
+if [ -d "$HOME/.ndenv/bin" ];then
+  export PATH="$HOME/.ndenv/bin:$PATH"
+  eval "$(ndenv init -)"
+fi
+
 eval `dircolors -b ~/.colorrc`
 __term_color="$(expr '1;35')"
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
