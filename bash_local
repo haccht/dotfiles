@@ -1,0 +1,12 @@
+SSH_AGENT_FILE="$HOME/.ssh/ssh_agent"
+[ -f $SSH_AGENT_FILE ] && source $SSH_AGENT_FILE >& /dev/null
+if ! ssh-add -l >& /dev/null ; then
+    echo "Add ssh key to the ssh-agent"
+    echo ""
+    ssh-agent > $SSH_AGENT_FILE
+    source $SSH_AGENT_FILE >& /dev/null
+    find $HOME/.ssh -name id_rsa | xargs ssh-add
+fi
+
+# Add below line to ~/.bash_logout
+#/usr/bin/ssh-agent -k
