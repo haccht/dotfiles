@@ -55,10 +55,10 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 fi
 
 prompt_cmd() {
-    if [ $? != 0 ]; then
-        local prompt_symbol="\[\e[0;31m\]$\[\e[0m\]"
-    else
+    if [ $? == 0 ]; then
         local prompt_symbol="\[\e[0m\]$"
+    else
+        local prompt_symbol="\[\e[0;31m\]$\[\e[0m\]"
     fi
 
     [[ -f ~/.git-prompt.sh ]] && source ~/.git-prompt.sh
