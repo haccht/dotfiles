@@ -14,7 +14,7 @@ export HISTCONTROL=ignoredups
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 export GOROOT=/usr/local/go
-export GOPATH=$HOME
+export GOPATH="$HOME"
 export GO111MODULE=on
 export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 export PATH="$HOME/local/bin:$PATH"
@@ -28,6 +28,7 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
 if [ -f "$HOME/bin/ghg" ];then
+  export GHG_HOME="$HOME"
   export PATH="$(ghg bin):$PATH"
 fi
 
