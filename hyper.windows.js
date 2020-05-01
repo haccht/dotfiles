@@ -12,7 +12,7 @@ module.exports = {
     fontSize: 14,
 
     // font family with optional fallbacks
-    fontFamily: '"Myrica M", Consolas,"DejaVu Sans Mono", "Lucida Console", monospace',
+    fontFamily: 'MyricaM, Menlo, Consolas,"DejaVu Sans Mono", "Lucida Console", monospace',
 
     // default font weight: 'normal' or 'bold'
     fontWeight: 'normal',
