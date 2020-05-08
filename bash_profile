@@ -47,29 +47,5 @@ if [ -d "$HOME/.ndenv/bin" ];then
   eval "$(ndenv init -)"
 fi
 
-eval `dircolors -b ~/.colorrc`
-__term_color="$(expr '1;35')"
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  __term_code=$(printf "%d" \'$(hostname))
-  __term_color="$(expr ${__term_code} % 6 + 31)"
-fi
-
-prompt_cmd() {
-    if [ $? == 0 ]; then
-        local prompt_symbol="\[\e[0m\]$"
-    else
-        local prompt_symbol="\[\e[0;31m\]$\[\e[0m\]"
-    fi
-
-    [[ -f ~/.git-prompt.sh ]] && source ~/.git-prompt.sh
-    if type __git_ps1 >/dev/null 2>&1; then
-        GIT_PS1_SHOWDIRTYSTATE=1
-        PS1="\[\e]0;\w\a\]\n\[\e[${__term_color}m\]\u@\h \[\e[33m\]\w$(__git_ps1)\n${prompt_symbol} "
-    else
-        PS1="\[\e]0;\w\a\]\n\[\e[${__term_color}m\]\u@\h \[\e[33m\]\w\n${prompt_symbol} "
-    fi
-}
-PROMPT_COMMAND=prompt_cmd
-
 [[ -f "$HOME/.bashrc" ]]     && . "$HOME/.bashrc"
 [[ -f "$HOME/.bash_local" ]] && . "$HOME/.bash_local"
