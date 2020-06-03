@@ -1,7 +1,7 @@
 SSH_AGENT_FILE="$HOME/.ssh/ssh_agent"
 [ -f $SSH_AGENT_FILE ] && source $SSH_AGENT_FILE >& /dev/null
 
-if [ -z "$SSH_AUTH_SOCK" ]; then
+if ! ssh-add -l >& /dev/null ; then
   echo "Add ssh key to the ssh-agent"
   echo ""
 
