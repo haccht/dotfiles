@@ -114,7 +114,7 @@ def configure(keymap):
                             "kali.exe",           # WSL
                             "mintty.exe",         # mintty
                             "Hyper.exe",          # Hyper
-                            "wt.exe",             # WindowsTerminal
+                            "WindowsTerminal.exe",# WindowsTerminal
                             "alacritty.exe",      # Alacritty
                             "Cmder.exe",          # Cmder
                             "ConEmu.exe",         # ConEmu
@@ -148,7 +148,8 @@ def configure(keymap):
                             "kali.exe",           # WSL
                             "mintty.exe",         # mintty
                             "Hyper.exe",          # Hyper
-                            "wt.exe",             # WindowsTerminal
+                            "WindowsTerminal.exe",# WindowsTerminal
+                            "alacritty.exe",      # Alacritty
                             "Cmder.exe",          # Cmder
                             "ConEmu.exe",         # ConEmu
                             "ConEmu64.exe",       # ConEmu
