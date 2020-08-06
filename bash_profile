@@ -21,6 +21,7 @@ export PATH="$HOME/local/bin:$PATH"
 
 export GHQ_ROOT=$GOPATH/src
 export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1
+export VAGRANT_DISABLE_VBOXSYMLINKCREATE=1
 export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
 
 export GTK_IM_MODULE=fcitx
