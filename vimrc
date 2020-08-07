@@ -101,10 +101,10 @@ let g:go_version_warning = 0
 if executable('gopls')
   au User lsp_setup call lsp#register_server({
         \ 'name': 'gopls',
-        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+        \ 'cmd': {server_info->['gopls']},
         \ 'whitelist': ['go'],
         \ })
-  au Filetype go call s:configure_lsp()
+  autocmd BufWritePre *.go LspDocumentFormatSync
 endif
 
 " settings for ruby
@@ -114,10 +114,10 @@ if executable('solargraph')
         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
         \ 'whitelist': ['ruby','ruby.bundle'],
         \ })
-  au Filetype ruby,ruby.bundle call s:configure_lsp()
+  au Filetype ruby,ruby.bundle setlocal omnifunc=lsp#complete
 endif
 
-function! s:on_ldp_buffer_enabled() abort
+function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
   nmap <buffer> gd   <plug>(lsp-definition)
@@ -129,6 +129,11 @@ function! s:on_ldp_buffer_enabled() abort
   nmap <buffer> <F1> <plug>(lsp-implementation)
   nmap <buffer> <F2> <plug>(lsp-rename)
 endfunction
+
+augroup lsp_install
+    au!
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
 
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1

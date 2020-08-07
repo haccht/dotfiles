@@ -11,7 +11,6 @@ export LESS="-iMR"
 
 export HISTSIZE=100000
 export HISTCONTROL=ignoredups
-export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 export GOROOT=/usr/local/go
 export GOPATH="$HOME"

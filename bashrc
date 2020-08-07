@@ -54,4 +54,4 @@ __prompt_cmd() {
         PS1="\[\e]0;\w\a\]\n\[\e[${__term_color}m\]\u@\h \[\e[33m\]\w\n${prompt_symbol} "
     fi
 }
-export PROMPT_COMMAND="__prompt_cmd; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a; __prompt_cmd"
