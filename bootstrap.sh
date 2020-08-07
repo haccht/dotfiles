@@ -67,10 +67,9 @@ mkdir -p "${HOME}/bin"
     $(ghg bin)/volt get -u itchyny/lightline.vim
     $(ghg bin)/volt get -u justinmk/vim-dirvish
     $(ghg bin)/volt get -u kana/vim-fakeclip
-    $(ghg bin)/volt get -u prabirshrestha/async.vim
-    $(ghg bin)/volt get -u prabirshrestha/vim-lsp
     $(ghg bin)/volt get -u prabirshrestha/asyncomplete.vim
     $(ghg bin)/volt get -u prabirshrestha/asyncomplete-lsp.vim
+    $(ghg bin)/volt get -u prabirshrestha/vim-lsp
     $(ghg bin)/volt get -u mattn/vim-goimports
 )
 

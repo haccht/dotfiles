@@ -1,15 +1,11 @@
+SSH_KEY_LIFE_TIME_SEC=3600
 SSH_AGENT_FILE="$HOME/.ssh/ssh_agent"
-[ -f $SSH_AGENT_FILE ] && source $SSH_AGENT_FILE >& /dev/null
+test -f $SSH_AGENT_FILE && source $SSH_AGENT_FILE > /dev/null 2>&1
 
-if ! ssh-add -l >& /dev/null ; then
+if ! /usr/bin/ssh-add -l >& /dev/null ; then
   echo "Add ssh key to the ssh-agent"
   echo ""
 
-  /usr/bin/ssh-agent -s > $SSH_AGENT_FILE
-  source $SSH_AGENT_FILE &> /dev/null
-
-  /usr/bin/ssh-add ~/.ssh/testbed.key
+  /usr/bin/ssh-agent -s -t $SSH_KEY_LIFE_TIME_SEC -s > $SSH_AGENT_FILE
+  source $SSH_AGENT_FILE > /dev/null 2>&1
 fi
-
-# Add below line to ~/.bash_logout
-#/usr/bin/ssh-agent -k

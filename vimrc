@@ -112,21 +112,30 @@ if executable('solargraph')
     au User lsp_setup call lsp#register_server({
         \ 'name': 'solargraph',
         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
-        \ 'initialization_options': {"diagnostics": "true"},
         \ 'whitelist': ['ruby','ruby.bundle'],
         \ })
   au Filetype ruby,ruby.bundle call s:configure_lsp()
 endif
 
-function! s:configure_lsp() abort
+function! s:on_ldp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
-  nnoremap <buffer> gd :<C-u>LspDefinition<CR>
-  nnoremap <buffer> gD :<C-u>LspReferences<CR>
-  nnoremap <buffer> gs :<C-u>LspDocumentSymbol<CR>
-  nnoremap <buffer> gS :<C-u>LspWorkspaceSymbol<CR>
-  nnoremap <buffer> gQ :<C-u>LspDocumentFormat<CR>
-  vnoremap <buffer> gQ :LspDocumentRangeFormat<CR>
-  nnoremap <buffer> K :<C-u>LspHover<CR>
-  nnoremap <buffer> <F1> :<C-u>LspImplementation<CR>
-  nnoremap <buffer> <F2> :<C-u>LspRename<CR>
+  setlocal signcolumn=yes
+  nmap <buffer> gd   <plug>(lsp-definition)
+  nmap <buffer> gD   <plug>(lsp-references)
+  nmap <buffer> gs   <plug>(lsp-document-symbol)
+  nmap <buffer> gS   <plug>(lsp-workspace-symbol)
+  nmap <buffer> gQ   <plug>(lsp-document-format)
+  nmap <buffer> K    <plug>(lsp-hover)
+  nmap <buffer> <F1> <plug>(lsp-implementation)
+  nmap <buffer> <F2> <plug>(lsp-rename)
 endfunction
+
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+" let g:asyncomplete_auto_popup = 1
+" let g:asyncomplete_auto_completeopt = 0
+let g:asyncomplete_popup_delay = 200
+let g:lsp_text_edit_enabled = 1
+let g:lsp_preview_float = 1
+let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_settings_filetype_go = ['gopls', 'golangci-lint-langserver']
