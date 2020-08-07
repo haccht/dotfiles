@@ -1,4 +1,4 @@
-SSH_KEY_LIFE_TIME_SEC=3600
+SSH_KEY_LIFE_TIME_SEC=43200
 SSH_AGENT_FILE="$HOME/.ssh/ssh_agent"
 test -f $SSH_AGENT_FILE && source $SSH_AGENT_FILE > /dev/null 2>&1
 
