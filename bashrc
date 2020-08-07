@@ -15,13 +15,8 @@ if [[ `uname -a` =~ Linux && `uname -a` =~ Microsoft ]]; then
   umask 022
 fi
 
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  alias pbcopy='lemonade copy'
-  alias pbpaste='lemonade paste'
-fi
-
 if type peco > /dev/null 2>&1 && [[ -t 1 ]]; then
-  function attach {
+  function tmuxa {
     tmux a -t $(tmux ls | peco --layout=bottom-up | cut -d: -f1)
   }
 
@@ -59,4 +54,4 @@ __prompt_cmd() {
         PS1="\[\e]0;\w\a\]\n\[\e[${__term_color}m\]\u@\h \[\e[33m\]\w\n${prompt_symbol} "
     fi
 }
-PROMPT_COMMAND="__prompt_cmd"
+export PROMPT_COMMAND="__prompt_cmd; $PROMPT_COMMAND"

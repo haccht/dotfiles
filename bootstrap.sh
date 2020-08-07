@@ -55,7 +55,6 @@ mkdir -p "${HOME}/bin"
     ghg get -u mattn/memo
     ghg get -u peco/peco
     ghg get -u MichaelMure/mdr
-    ghg get -u lemonade-command/lemonade
 
     cd "${HOME}"
     $(ghg bin)/volt get -u tomasr/molokai
@@ -66,7 +65,6 @@ mkdir -p "${HOME}/bin"
     $(ghg bin)/volt get -u tpope/vim-markdown
     $(ghg bin)/volt get -u itchyny/lightline.vim
     $(ghg bin)/volt get -u justinmk/vim-dirvish
-    $(ghg bin)/volt get -u kana/vim-fakeclip
     $(ghg bin)/volt get -u prabirshrestha/asyncomplete.vim
     $(ghg bin)/volt get -u prabirshrestha/asyncomplete-lsp.vim
     $(ghg bin)/volt get -u prabirshrestha/vim-lsp

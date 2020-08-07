@@ -9,7 +9,7 @@ export EDITOR=vim
 export VISUAL=vim
 export LESS="-iMR"
 
-export HISTSIZE=50000
+export HISTSIZE=100000
 export HISTCONTROL=ignoredups
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
@@ -20,9 +20,9 @@ export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 export PATH="$HOME/local/bin:$PATH"
 
 export GHQ_ROOT=$GOPATH/src
+export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
 export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1
 export VAGRANT_DISABLE_VBOXSYMLINKCREATE=1
-export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
 
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
