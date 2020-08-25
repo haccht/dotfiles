@@ -1,11 +1,8 @@
-SSH_KEY_LIFE_TIME_SEC=3600
 SSH_AGENT_FILE="$HOME/.ssh/ssh_agent"
 test -f $SSH_AGENT_FILE && source $SSH_AGENT_FILE > /dev/null 2>&1
 
 if ! /usr/bin/ssh-add -l >& /dev/null ; then
-  echo "Add ssh key to the ssh-agent"
-  echo ""
-
-  /usr/bin/ssh-agent -s -t $SSH_KEY_LIFE_TIME_SEC -s > $SSH_AGENT_FILE
+  echo "Start ssh-agent"
+  /usr/bin/ssh-agent -s > $SSH_AGENT_FILE
   source $SSH_AGENT_FILE > /dev/null 2>&1
 fi
