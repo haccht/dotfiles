@@ -17,7 +17,7 @@ fi
 
 if type peco > /dev/null 2>&1 && [[ -t 1 ]]; then
   function tmuxa {
-    tmux a -t $(tmux ls | tac | peco --layout=bottom-up | cut -d: -f1)
+    tmux a -t $(tmux ls | sort -nr | peco --layout=bottom-up | cut -d: -f1)
   }
 
   function repo {
