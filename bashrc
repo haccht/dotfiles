@@ -17,7 +17,7 @@ fi
 
 if type peco > /dev/null 2>&1 && [[ -t 1 ]]; then
   function tmuxa {
-    tmux a -t $(tmux ls | peco --layout=bottom-up | cut -d: -f1)
+    tmux a -t $(tmux ls | sort -nr | peco --layout=bottom-up | cut -d: -f1)
   }
 
   function repo {
@@ -55,3 +55,5 @@ __prompt_cmd() {
     fi
 }
 export PROMPT_COMMAND="history -a; __prompt_cmd"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
