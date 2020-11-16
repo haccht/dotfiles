@@ -15,21 +15,21 @@ if [[ `uname -a` =~ Linux && `uname -a` =~ Microsoft ]]; then
   umask 022
 fi
 
-if type peco > /dev/null 2>&1 && [[ -t 1 ]]; then
+if type fzf > /dev/null 2>&1 && [[ -t 1 ]]; then
   function tmuxa {
-    tmux a -t $(tmux ls | sort -nr | peco --layout=bottom-up | cut -d: -f1)
+    tmux a -t $(tmux ls | sort -nr | fzf --no-sort --cycle | cut -d: -f1)
   }
 
   function repo {
-    cd ${GHQ_ROOT}/$(ghq list | sort | peco --query ${@:-""})
+    cd ${GHQ_ROOT}/$(ghq list | sort | fzf --no-sort --cycle --query ${@:-""} --prompt="Repository > ")
   }
 
-  peco_history() {
-    declare l=$(HISTTIMEFORMAT= history | sort -k1,1nr | awk '{for(i=2;i<NF;i++){printf("%s%s",$i,OFS=" ")}print $NF}' | peco --layout=bottom-up --query "$READLINE_LINE")
+  fzf_history() {
+    declare l=$(history -w /dev/stdout | tac | fzf --no-sort --cycle --exact --query "$LBUFFER" --prompt="History > ")
     READLINE_LINE="$l"
     READLINE_POINT=${#l}
   }
-  [[ "$-" =~ "i" ]] && bind -x '"\C-r":peco_history'
+  [[ "$-" =~ "i" ]] && bind -x '"\C-r":fzf_history'
 fi
 
 eval `dircolors -b ~/.colorrc`

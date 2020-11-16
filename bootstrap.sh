@@ -25,35 +25,28 @@ ln -sfv "${PWD}/tmux.conf"      "${HOME}/.tmux.conf"
 ln -sfv "${PWD}/vimrc"          "${HOME}/.vimrc"
 ln -sfv "${PWD}/gemrc"          "${HOME}/.gemrc"
 ln -sfv "${PWD}/irbrc"          "${HOME}/.irbrc"
-ln -sfv "${PWD}/hyper.linux.js" "${HOME}/.hyper.js"
-
-if [[ $(uname -r) =~ Microsoft ]]; then
-  WINUSER=$(/mnt/c/Windows/System32/whoami.exe | awk -F'\' '{print $2}' | tr -cd [a-z\.])
-  WINHOME="/mnt/c/Users/${WINUSER}"
-  cp -f "${PWD}/hyper.windows.js" "${WINHOME}/AppData/Roaming/Hyper/.hyper.js"
-fi
 
 mkdir -p "${HOME}/src"
 mkdir -p "${HOME}/bin"
 
+[[ -f "${HOME}/.git-prompt.sh" ]] || ( curl -L https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -o "${HOME}/.git-prompt.sh" )
 
 (
     source "${HOME}/.bash_profile"
-    export GHG_HOME="$HOME"
-
-    [[ -f "${GOROOT}/bin/go"       ]] || ( curl -L https://dl.google.com/go/${GO_VERSION}.tar.gz | sudo tar xz -C /usr/local )
-    [[ -f "${HOME}/.git-prompt.sh" ]] || ( curl -L https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -o "${HOME}/.git-prompt.sh" )
+    [[ -f "${GOROOT}/bin/go" ]] || ( curl -L https://dl.google.com/go/${GO_VERSION}.tar.gz | sudo tar xz -C /usr/local )
 
     cd "${GOPATH}/src"
     go get -u golang.org/x/tools/cmd/gopls
     go get -u golang.org/x/tools/cmd/goimports
-    go get -u github.com/Songmu/ghg/cmd/ghg
 
     cd "${HOME}"
+    export GHG_HOME="$HOME"
+    curl -sf https://gobinaries.com/junegunn/fzf       | PREFIX=${HOME}/bin sh
+    curl -sf https://gobinaries.com/Songmu/ghg/cmd/ghg | PREFIX=${HOME}/bin sh
+
     ghg get -u vim-volt/volt
     ghg get -u x-motemen/ghq
     ghg get -u mattn/memo
-    ghg get -u peco/peco
     ghg get -u MichaelMure/mdr
 
     cd "${HOME}"
