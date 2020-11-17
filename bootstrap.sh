@@ -36,8 +36,8 @@ mkdir -p "${HOME}/bin"
     [[ -f "${GOROOT}/bin/go" ]] || ( curl -L https://dl.google.com/go/${GO_VERSION}.tar.gz | sudo tar xz -C /usr/local )
 
     cd "${GOPATH}/src"
-    go get -u golang.org/x/tools/cmd/gopls
-    go get -u golang.org/x/tools/cmd/goimports
+    go get -u golang.org/x/tools/gopls@latest
+    go get -u golang.org/x/tools/cmd/goimports@latest
 
     cd "${HOME}"
     export GHG_HOME="$HOME"
@@ -51,13 +51,15 @@ mkdir -p "${HOME}/bin"
 
     cd "${HOME}"
     $(ghg bin)/volt get -u tomasr/molokai
+    $(ghg bin)/volt get -u junegunn/fzf
+    $(ghg bin)/volt get -u junegunn/fzf.vim
+    $(ghg bin)/volt get -u itchyny/lightline.vim
+    $(ghg bin)/volt get -u thinca/vim-quickrun
     $(ghg bin)/volt get -u vim-ruby/vim-ruby
     $(ghg bin)/volt get -u airblade/vim-gitgutter
     $(ghg bin)/volt get -u bronson/vim-trailing-whitespace
-    $(ghg bin)/volt get -u thinca/vim-quickrun
     $(ghg bin)/volt get -u tpope/vim-markdown
-    $(ghg bin)/volt get -u itchyny/lightline.vim
-    $(ghg bin)/volt get -u justinmk/vim-dirvish
+    $(ghg bin)/volt get -u github.com/cocopon/vaffle.vim
     $(ghg bin)/volt get -u prabirshrestha/asyncomplete.vim
     $(ghg bin)/volt get -u prabirshrestha/asyncomplete-lsp.vim
     $(ghg bin)/volt get -u prabirshrestha/vim-lsp

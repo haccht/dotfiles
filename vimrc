@@ -80,7 +80,6 @@ endtry
 
 " mapping
 let mapleader=','
-noremap ; :
 nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
 
 " plugins
@@ -91,13 +90,11 @@ let g:quickrun_config = {
             \  }}
 let g:quickrun_config['ruby.bundle'] = { 'command': 'ruby', 'cmdopt': 'bundle exec', 'exec': '%o %c %s' }
 nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
-nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
 
 let g:gitgutter_enabled = 0
 map <Leader>g :GitGutterToggle<CR>
 
 " settings for go
-let g:go_version_warning = 0
 if executable('gopls')
   au User lsp_setup call lsp#register_server({
         \ 'name': 'gopls',
@@ -117,6 +114,7 @@ if executable('solargraph')
   au Filetype ruby,ruby.bundle setlocal omnifunc=lsp#complete
 endif
 
+" lsp
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
@@ -134,13 +132,3 @@ augroup lsp_install
     au!
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
-
-let g:lsp_diagnostics_enabled = 1
-let g:lsp_diagnostics_echo_cursor = 1
-" let g:asyncomplete_auto_popup = 1
-" let g:asyncomplete_auto_completeopt = 0
-let g:asyncomplete_popup_delay = 200
-let g:lsp_text_edit_enabled = 1
-let g:lsp_preview_float = 1
-let g:lsp_diagnostics_float_cursor = 1
-let g:lsp_settings_filetype_go = ['gopls', 'golangci-lint-langserver']
