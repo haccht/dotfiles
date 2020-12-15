@@ -29,7 +29,8 @@ ln -sfv "${PWD}/irbrc"          "${HOME}/.irbrc"
 mkdir -p "${HOME}/src"
 mkdir -p "${HOME}/bin"
 
-[[ -f "${HOME}/.git-prompt.sh" ]] || ( curl -L https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -o "${HOME}/.git-prompt.sh" )
+mkdir -p "${HOME}/.bash.d"
+[[ -f "${HOME}/.bash.d/.git-prompt.sh" ]] || ( curl -L https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -o "${HOME}/.bash.d/git-prompt.sh" )
 
 (
     source "${HOME}/.bash_profile"
@@ -41,8 +42,8 @@ mkdir -p "${HOME}/bin"
 
     cd "${HOME}"
     export GHG_HOME="$HOME"
-    curl -sf https://gobinaries.com/junegunn/fzf       | PREFIX=${HOME}/bin sh
-    curl -sf https://gobinaries.com/Songmu/ghg/cmd/ghg | PREFIX=${HOME}/bin sh
+    curl -sf https://gobinaries.com/junegunn/fzf       | PREFIX="${HOME}/bin" sh
+    curl -sf https://gobinaries.com/Songmu/ghg/cmd/ghg | PREFIX="${HOME}/bin" sh
 
     ghg get -u vim-volt/volt
     ghg get -u x-motemen/ghq
