@@ -81,6 +81,7 @@ endtry
 " mapping
 let mapleader=','
 nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
+cnoremap <C-p> <Up>
 
 " plugins
 let g:quickrun_config = {
