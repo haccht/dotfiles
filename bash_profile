@@ -16,7 +16,7 @@ export GOROOT=/usr/local/go
 export GOPATH="$HOME"
 export GO111MODULE=on
 export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
-export PATH="$HOME/local/bin:$PATH"
+export PATH="$HOME/opt/bin:$PATH"
 
 export GHQ_ROOT="$GOPATH/src"
 export GHG_HOME="$HOME"

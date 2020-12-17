@@ -89,7 +89,6 @@ let g:quickrun_config = {
             \    'outputter/buffer/split': ':botright',
             \    'outputter/buffer/close_on_empty': 1
             \  }}
-let g:quickrun_config['ruby.bundle'] = { 'command': 'ruby', 'cmdopt': 'bundle exec', 'exec': '%o %c %s' }
 nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
 
 let g:gitgutter_enabled = 0
@@ -98,7 +97,7 @@ map <Leader>g :GitGutterToggle<CR>
 let g:vaffle_show_hidden_files = 1
 nnoremap <silent> - :execute 'Vaffle ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
 
-" settings for go
+" go
 if executable('gopls')
   au User lsp_setup call lsp#register_server({
         \ 'name': 'gopls',
@@ -108,14 +107,14 @@ if executable('gopls')
   autocmd BufWritePre *.go LspDocumentFormatSync
 endif
 
-" settings for ruby
+" ruby
 if executable('solargraph')
-    au User lsp_setup call lsp#register_server({
+  au User lsp_setup call lsp#register_server({
         \ 'name': 'solargraph',
         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
+        \ 'initialization_options': {"diagnostics": "true"},
         \ 'whitelist': ['ruby','ruby.bundle'],
         \ })
-  au Filetype ruby,ruby.bundle setlocal omnifunc=lsp#complete
 endif
 
 " lsp

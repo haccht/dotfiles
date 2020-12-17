@@ -55,5 +55,3 @@ __prompt_cmd() {
     fi
 }
 export PROMPT_COMMAND="history -a; __prompt_cmd"
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
