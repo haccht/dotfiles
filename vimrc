@@ -95,6 +95,9 @@ nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
 let g:gitgutter_enabled = 0
 map <Leader>g :GitGutterToggle<CR>
 
+let g:vaffle_show_hidden_files = 1
+nnoremap <silent> - :execute 'Vaffle ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
+
 " settings for go
 if executable('gopls')
   au User lsp_setup call lsp#register_server({
