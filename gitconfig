@@ -17,3 +17,5 @@
   default = simple
 [alias]
   graph = log --pretty=format:\"%C(yellow)%h %C(White)%ad | %C(White)%s%C(Green)%d %C(Red)[%an]\" --graph --date=short
+[pull]
+	ff = only
