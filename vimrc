@@ -85,10 +85,15 @@ cnoremap <C-p> <Up>
 
 " plugins
 let g:quickrun_config = {
-            \  '_': {
-            \    'outputter/buffer/split': ':botright',
-            \    'outputter/buffer/close_on_empty': 1
-            \  }}
+        \  '_': {
+        \    'outputter/buffer/split': ':botright 10',
+        \    'outputter/buffer/close_on_empty': 1
+        \  },
+        \   'bundle': {
+        \    'cmdopt': 'bundle exec',
+        \    'command': 'ruby',
+        \    'exec': '%o %c %s'
+        \  }}
 nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
 
 let g:gitgutter_enabled = 0
