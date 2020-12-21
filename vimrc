@@ -32,6 +32,7 @@ set autoread
 set smarttab
 set wildmenu
 set ttyfast
+set scrolloff=2
 
 " indent
 set tabstop=4
