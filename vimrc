@@ -59,8 +59,8 @@ set t_vb=
 set novisualbell
 set noerrorbells
 set clipboard=unnamed
-"set backup
-"set backupdir=$HOME/.vim/backup
+set backup
+set backupdir=$HOME/.vim/backup
 set undofile
 set undodir=$HOME/.vim/undo
 

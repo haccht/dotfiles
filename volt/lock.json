@@ -1,0 +1,103 @@
+{
+  "version": 2,
+  "current_profile_name": "default",
+  "repos": [
+    {
+      "type": "git",
+      "path": "github.com/airblade/vim-gitgutter",
+      "version": "512e2999ed7ff367580e0d6bc4d2daa81663221f"
+    },
+    {
+      "type": "git",
+      "path": "github.com/bronson/vim-trailing-whitespace",
+      "version": "05f068ebd9dbdf71d2d334d02abd99deb0311c40"
+    },
+    {
+      "type": "git",
+      "path": "github.com/cocopon/vaffle.vim",
+      "version": "0a314644c38402b659482568525b1303f7d0e01d"
+    },
+    {
+      "type": "git",
+      "path": "github.com/itchyny/lightline.vim",
+      "version": "709b2d8dc88fa622d6c076f34b05b58fcccf393f"
+    },
+    {
+      "type": "git",
+      "path": "github.com/junegunn/fzf",
+      "version": "e9bc7331bde238e84f24b76ebb1f5e18799b15c4"
+    },
+    {
+      "type": "git",
+      "path": "github.com/junegunn/fzf.vim",
+      "version": "e9d62b4c873f5f207202b4ba5bbd63de7003a0d3"
+    },
+    {
+      "type": "git",
+      "path": "github.com/mattn/vim-goimports",
+      "version": "183b7931f1f582d4b2063ef6e187ba36e7a905b4"
+    },
+    {
+      "type": "git",
+      "path": "github.com/prabirshrestha/async.vim",
+      "version": "6102020b4690f05ab6509a37fa25bc53e2d799a9"
+    },
+    {
+      "type": "git",
+      "path": "github.com/prabirshrestha/asyncomplete-lsp.vim",
+      "version": "684c34453db9dcbed5dbf4769aaa6521530a23e0"
+    },
+    {
+      "type": "git",
+      "path": "github.com/prabirshrestha/asyncomplete.vim",
+      "version": "e546095e4ac7a20d06bcf16d207275dd4d6b4115"
+    },
+    {
+      "type": "git",
+      "path": "github.com/prabirshrestha/vim-lsp",
+      "version": "778ebd3ca21d05283ca3956c0d1884d467a7ac4f"
+    },
+    {
+      "type": "git",
+      "path": "github.com/thinca/vim-quickrun",
+      "version": "c688f336a4aeb002319994f4fb4a8873f204f0ab"
+    },
+    {
+      "type": "git",
+      "path": "github.com/tomasr/molokai",
+      "version": "c67bdfcdb31415aa0ade7f8c003261700a885476"
+    },
+    {
+      "type": "git",
+      "path": "github.com/tpope/vim-markdown",
+      "version": "276524ed9c8aec415d3c6dbeec7c05fbd31c95ce"
+    },
+    {
+      "type": "git",
+      "path": "github.com/vim-ruby/vim-ruby",
+      "version": "e367f7b33fe9159c943963f3f839e4d08b74090e"
+    }
+  ],
+  "profiles": [
+    {
+      "name": "default",
+      "repos_path": [
+        "github.com/airblade/vim-gitgutter",
+        "github.com/bronson/vim-trailing-whitespace",
+        "github.com/cocopon/vaffle.vim",
+        "github.com/itchyny/lightline.vim",
+        "github.com/junegunn/fzf",
+        "github.com/junegunn/fzf.vim",
+        "github.com/mattn/vim-goimports",
+        "github.com/prabirshrestha/async.vim",
+        "github.com/prabirshrestha/asyncomplete-lsp.vim",
+        "github.com/prabirshrestha/asyncomplete.vim",
+        "github.com/prabirshrestha/vim-lsp",
+        "github.com/thinca/vim-quickrun",
+        "github.com/tomasr/molokai",
+        "github.com/tpope/vim-markdown",
+        "github.com/vim-ruby/vim-ruby"
+      ]
+    }
+  ]
+}

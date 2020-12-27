@@ -1,0 +1,2 @@
+[get]
+fallback_git_cmd = true
