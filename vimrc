@@ -150,6 +150,10 @@ augroup lsp_install
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
+let g:lsp_signs_enabled = 0
+let g:lsp_virtual_text_enabled = 0
+let g:lsp_highlights_enabled = 1
+let g:lsp_textprop_enabled = 1
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 " let g:asyncomplete_auto_popup = 1
