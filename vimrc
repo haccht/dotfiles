@@ -59,10 +59,14 @@ set t_vb=
 set novisualbell
 set noerrorbells
 set clipboard=unnamed
-set backup
-set backupdir=$HOME/.vim/backup
-set undofile
-set undodir=$HOME/.vim/undo
+if isdirectory($HOME . "/.vim/backup")
+    set backup
+    set backupdir=$HOME/.vim/backup
+endif
+if isdirectory($HOME . "/.vim/undo")
+    set undofile
+    set undodir=$HOME/.vim/undo
+endif
 
 set pastetoggle=<F10>
 
