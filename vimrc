@@ -140,6 +140,14 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> <F1> <plug>(lsp-implementation)
   nmap <buffer> <F2> <plug>(lsp-rename)
 endfunction
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+" let g:asyncomplete_auto_popup = 1
+" let g:asyncomplete_auto_completeopt = 0
+let g:asyncomplete_popup_delay = 200
+let g:lsp_text_edit_enabled = 1
+let g:lsp_preview_float = 1
+let g:lsp_diagnostics_float_cursor = 1
 
 augroup lsp_install
     au!
