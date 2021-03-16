@@ -5,7 +5,7 @@
     {
       "type": "git",
       "path": "github.com/airblade/vim-gitgutter",
-      "version": "512e2999ed7ff367580e0d6bc4d2daa81663221f"
+      "version": "1283ec1670d1f4fce37213c5d66924088b2e730c"
     },
     {
       "type": "git",
@@ -20,27 +20,27 @@
     {
       "type": "git",
       "path": "github.com/itchyny/lightline.vim",
-      "version": "709b2d8dc88fa622d6c076f34b05b58fcccf393f"
+      "version": "8e013f32f524157bf14ccaa87d97be3d3a7201e2"
     },
     {
       "type": "git",
       "path": "github.com/junegunn/fzf",
-      "version": "e9bc7331bde238e84f24b76ebb1f5e18799b15c4"
+      "version": "1b61e5e9e979d435e3d0b23bb76822e52feaf74a"
     },
     {
       "type": "git",
       "path": "github.com/junegunn/fzf.vim",
-      "version": "e9d62b4c873f5f207202b4ba5bbd63de7003a0d3"
+      "version": "711fb41e39e2ad3abec1ec9720782acbac6fb6b4"
     },
     {
       "type": "git",
       "path": "github.com/mattn/vim-goimports",
-      "version": "183b7931f1f582d4b2063ef6e187ba36e7a905b4"
+      "version": "cc0eab9ffa055718425d39911c300e8290b7c704"
     },
     {
       "type": "git",
       "path": "github.com/prabirshrestha/async.vim",
-      "version": "6102020b4690f05ab6509a37fa25bc53e2d799a9"
+      "version": "236debf1a68d69a74f1f6647c273b0477e1ec1bf"
     },
     {
       "type": "git",
@@ -50,7 +50,7 @@
     {
       "type": "git",
       "path": "github.com/prabirshrestha/asyncomplete.vim",
-      "version": "e546095e4ac7a20d06bcf16d207275dd4d6b4115"
+      "version": "8e018dee9c5e2205288bda01be0de196b04b7cf2"
     },
     {
       "type": "git",
@@ -60,7 +60,7 @@
     {
       "type": "git",
       "path": "github.com/thinca/vim-quickrun",
-      "version": "c688f336a4aeb002319994f4fb4a8873f204f0ab"
+      "version": "c980977f1d77b3285937b9d7b5baa964fc9ed7f5"
     },
     {
       "type": "git",
@@ -70,12 +70,12 @@
     {
       "type": "git",
       "path": "github.com/tpope/vim-markdown",
-      "version": "276524ed9c8aec415d3c6dbeec7c05fbd31c95ce"
+      "version": "65cb65a31a88cbd696fdd3301a1ef3afa6e12f34"
     },
     {
       "type": "git",
       "path": "github.com/vim-ruby/vim-ruby",
-      "version": "e367f7b33fe9159c943963f3f839e4d08b74090e"
+      "version": "4788a08433c3c90e131fc7d110d82577e1234a86"
     }
   ],
   "profiles": [
