@@ -5,7 +5,7 @@
     {
       "type": "git",
       "path": "github.com/airblade/vim-gitgutter",
-      "version": "1283ec1670d1f4fce37213c5d66924088b2e730c"
+      "version": "24cc47789557827209add5881c226243711475ce"
     },
     {
       "type": "git",
@@ -20,17 +20,17 @@
     {
       "type": "git",
       "path": "github.com/itchyny/lightline.vim",
-      "version": "8e013f32f524157bf14ccaa87d97be3d3a7201e2"
+      "version": "8a712365f9708044667589d9fffd87a4825d29f6"
     },
     {
       "type": "git",
       "path": "github.com/junegunn/fzf",
-      "version": "1b61e5e9e979d435e3d0b23bb76822e52feaf74a"
+      "version": "6a1f3ec08b3bbe11d527cd9b32ac6275df11dbf9"
     },
     {
       "type": "git",
       "path": "github.com/junegunn/fzf.vim",
-      "version": "711fb41e39e2ad3abec1ec9720782acbac6fb6b4"
+      "version": "caf7754b2636eabdf1bc11d30daccc5de66951ef"
     },
     {
       "type": "git",
@@ -40,7 +40,7 @@
     {
       "type": "git",
       "path": "github.com/prabirshrestha/async.vim",
-      "version": "236debf1a68d69a74f1f6647c273b0477e1ec1bf"
+      "version": "0fb846e1eb3c2bf04d52a57f41088afb3395212e"
     },
     {
       "type": "git",
@@ -70,7 +70,7 @@
     {
       "type": "git",
       "path": "github.com/tpope/vim-markdown",
-      "version": "65cb65a31a88cbd696fdd3301a1ef3afa6e12f34"
+      "version": "855b8915e0857f90cee180e1753ce1910d71c5b1"
     },
     {
       "type": "git",
