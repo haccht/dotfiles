@@ -5,7 +5,7 @@
     {
       "type": "git",
       "path": "github.com/airblade/vim-gitgutter",
-      "version": "f4bdaa4e9cf07f62ce1161a3d0ff70c8aad25bc5"
+      "version": "0f98634b92da9a35580b618c11a6d2adc42d9f90"
     },
     {
       "type": "git",
@@ -20,17 +20,17 @@
     {
       "type": "git",
       "path": "github.com/itchyny/lightline.vim",
-      "version": "d70d69b3418957cdf7c4993e484f8b9d3eb1603c"
+      "version": "b06d921023cf6536bcbee5754071d122296e8942"
     },
     {
       "type": "git",
       "path": "github.com/junegunn/fzf",
-      "version": "3f75a8369f63f2bd6ac3686fc5d88f2bc128e610"
+      "version": "7191ebb615f5d6ebbf51d598d8ec853a65e2274d"
     },
     {
       "type": "git",
       "path": "github.com/junegunn/fzf.vim",
-      "version": "a88311b222eb9f90fa9fa72292e61d15c6767866"
+      "version": "e34f6c129d39b90db44df1107c8b7dfacfd18946"
     },
     {
       "type": "git",
@@ -60,7 +60,7 @@
     {
       "type": "git",
       "path": "github.com/thinca/vim-quickrun",
-      "version": "7685488adfbd2950a8ef4ecaedafef8a036f9275"
+      "version": "e5e83bfd613bd58aa6bbbfaaed2f7eef1ed0b378"
     },
     {
       "type": "git",
@@ -75,7 +75,7 @@
     {
       "type": "git",
       "path": "github.com/vim-ruby/vim-ruby",
-      "version": "4788a08433c3c90e131fc7d110d82577e1234a86"
+      "version": "a006f67d18ce0ed6ff75c98b266eaa606dfcec30"
     }
   ],
   "profiles": [

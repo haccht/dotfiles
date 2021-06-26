@@ -25,7 +25,7 @@ if type fzf > /dev/null 2>&1 && [[ -t 1 ]]; then
   }
 
   fzf_history() {
-    declare l=$(history -w /dev/stdout | tac | fzf --no-sort --cycle --exact --query "$LBUFFER" --prompt="History > ")
+    declare l=$(history -w /dev/stdout | tac | grep -v '^#' | fzf --no-sort --cycle --exact --query "$LBUFFER" --prompt="History > ")
     READLINE_LINE="$l"
     READLINE_POINT=${#l}
   }
