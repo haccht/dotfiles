@@ -28,6 +28,11 @@ export XMODIFIERS=@im=fcitx
 export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 export PATH="$HOME/opt/bin:$PATH"
 
+if [ -z "$GEM_HOME" ]; then
+  export GEM_HOME="$HOME/.gem"
+  export PATH="$GEM_HOME/bin:$PATH"
+fi
+
 if [ -f "$HOME/bin/ghg" ]; then
   export GHG_HOME="$HOME"
   export PATH="$(ghg bin):$PATH"
@@ -43,9 +48,8 @@ if [ -d "$HOME/.ndenv/bin" ]; then
   eval "$(ndenv init -)"
 fi
 
-if [ -z "$GEM_HOME" ]; then
-  export GEM_HOME="$HOME/.gem"
-  export PATH="$GEM_HOME/bin:$PATH"
+if [ -d "$HOME/.cargo/" ]; then
+  source "$HOME/.cargo/env"
 fi
 
 [[ -f "$HOME/.bashrc" ]] && . "$HOME/.bashrc"

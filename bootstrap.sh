@@ -40,23 +40,21 @@ ln -sfv "${PWD}/volt/lock.json"   "${HOME}/volt/lock.json"
     [[ -f "${GOROOT}/bin/go" ]] || ( curl -L https://dl.google.com/go/${GO_VERSION}.tar.gz | sudo tar xz -C /usr/local )
 
     cd "${GOPATH}/src"
-    go get -u golang.org/x/tools/gopls@latest
-    go get -u golang.org/x/tools/cmd/goimports@latest
+    go get golang.org/x/tools/gopls@latest
+    go get golang.org/x/tools/cmd/goimports@latest
 
     cd "${HOME}"
     export GHG_HOME="$HOME"
     curl -sf https://gobinaries.com/junegunn/fzf       | PREFIX="${HOME}/bin" sh
     curl -sf https://gobinaries.com/Songmu/ghg/cmd/ghg | PREFIX="${HOME}/bin" sh
 
-    ghg get -u x-motemen/ghq
-    ghg get -u MichaelMure/mdr
-    ghg get -u mattn/memo
-    ghg get -u vim-volt/volt
-    $(ghg bin)/volt get -l -u
+    ghg get x-motemen/ghq
+    ghg get MichaelMure/mdr
+    ghg get mattn/memo
+    ghg get vim-volt/volt
+    $(ghg bin)/volt get -l
 
     if [ -d "${HOME}/.rbenv/bin" ];then
-      ( cd "${HOME}/.rbenv" && git pull origin master )
-      ( cd "${HOME}/.rbenv/plugins/ruby-build" && git pull origin master )
     else
       git clone https://github.com/sstephenson/rbenv.git "${HOME}/.rbenv"
       git clone https://github.com/sstephenson/ruby-build.git "${HOME}/.rbenv/plugins/ruby-build"
