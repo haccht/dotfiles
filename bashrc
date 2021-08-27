@@ -16,12 +16,13 @@ if [[ `uname -a` =~ Linux && `uname -a` =~ Microsoft ]]; then
 fi
 
 if type fzf > /dev/null 2>&1 && [[ -t 1 ]]; then
-  function tmuxa {
-    tmux a -t $(tmux ls | sort -nr | fzf --no-sort --cycle | cut -d: -f1)
+  repo() {
+    cd ${GHQ_ROOT}/$(ghq list | sort | fzf --no-sort --cycle --query ${@:-""} --prompt="Repository > ")
   }
 
-  function repo {
-    cd ${GHQ_ROOT}/$(ghq list | sort | fzf --no-sort --cycle --query ${@:-""} --prompt="Repository > ")
+  pet() {
+    selected="$(cat ~/.snippetrc | sed '/^$/d' | fzf -e -i)"
+    echo "$selected" | sed 's/\s*#.*$//' | tr -d '\n'
   }
 
   fzf_history() {
