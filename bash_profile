@@ -33,14 +33,14 @@ if [ -f "$HOME/bin/ghg" ]; then
   export PATH="$(ghg bin):$PATH"
 fi
 
-if [ -z "$GEM_HOME" ]; then
-  export GEM_HOME="$HOME/.gem"
-  export PATH="$GEM_HOME/bin:$PATH"
-fi
-
 if [ -d "$HOME/.rbenv/bin" ]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(~/.rbenv/bin/rbenv init -)"
+fi
+
+if [ -z "$GEM_HOME" ]; then
+  export GEM_HOME="$HOME/.gem"
+  export PATH="$GEM_HOME/bin:$PATH"
 fi
 
 if [ -d "$HOME/.ndenv/bin" ]; then
