@@ -54,8 +54,7 @@ ln -sfv "${PWD}/volt/lock.json"   "${HOME}/volt/lock.json"
     ghg get vim-volt/volt
     $(ghg bin)/volt get -l
 
-    if [ -d "${HOME}/.rbenv/bin" ];then
-    else
+    if [ ! -d "${HOME}/.rbenv/bin" ];then
       git clone https://github.com/sstephenson/rbenv.git "${HOME}/.rbenv"
       git clone https://github.com/sstephenson/ruby-build.git "${HOME}/.rbenv/plugins/ruby-build"
     fi
