@@ -5,7 +5,7 @@
     {
       "type": "git",
       "path": "github.com/airblade/vim-gitgutter",
-      "version": "0f98634b92da9a35580b618c11a6d2adc42d9f90"
+      "version": "7d9b7125ff2533f6c520573f54e91db2f13a44b0"
     },
     {
       "type": "git",
@@ -60,12 +60,12 @@
     {
       "type": "git",
       "path": "github.com/prabirshrestha/vim-lsp",
-      "version": "fb0a72306e1fc42c1ce8909aa1e420ddfccf6fbf"
+      "version": "7ba553effb021293c9ff5176b91e76da71797825"
     },
     {
       "type": "git",
       "path": "github.com/thinca/vim-quickrun",
-      "version": "e5e83bfd613bd58aa6bbbfaaed2f7eef1ed0b378"
+      "version": "b39b1f6c69f7086e500ad7a6318c7bc97249b944"
     },
     {
       "type": "git",
@@ -75,12 +75,12 @@
     {
       "type": "git",
       "path": "github.com/tpope/vim-markdown",
-      "version": "9d87cc19179496db50fb6d902987737c4b522e38"
+      "version": "addd5abaa66f015802ec351cd67893f6e521751e"
     },
     {
       "type": "git",
       "path": "github.com/vim-ruby/vim-ruby",
-      "version": "a006f67d18ce0ed6ff75c98b266eaa606dfcec30"
+      "version": "5516e301a5c3cacac008342006a712f5fa80f6a1"
     }
   ],
   "profiles": [
