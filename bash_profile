@@ -52,6 +52,11 @@ if [ -d "$HOME/.cargo/" ]; then
   source "$HOME/.cargo/env"
 fi
 
+if [ -d "$HOME/.deno/" ]; then
+  export DENO_INSTALL="$HOME/.deno"
+  export PATH="$DENO_INSTALL/bin:$PATH"
+fi
+
 [[ -f "$HOME/.bashrc" ]] && . "$HOME/.bashrc"
 if [ -d "$HOME/.bash.d" ]; then
   for i in "$HOME"/.bash.d/*.sh; do source $i; done
