@@ -107,26 +107,6 @@ map <Leader>g :GitGutterToggle<CR>
 let g:vaffle_show_hidden_files = 1
 nnoremap <silent> - :execute 'Vaffle ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
 
-" go
-if executable('gopls')
-  au User lsp_setup call lsp#register_server({
-        \ 'name': 'gopls',
-        \ 'cmd': {server_info->['gopls']},
-        \ 'whitelist': ['go'],
-        \ })
-  autocmd BufWritePre *.go LspDocumentFormatSync
-endif
-
-" ruby
-if executable('solargraph')
-  au User lsp_setup call lsp#register_server({
-        \ 'name': 'solargraph',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
-        \ 'initialization_options': {"diagnostics": "true"},
-        \ 'whitelist': ['ruby','ruby.bundle'],
-        \ })
-endif
-
 " lsp
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete

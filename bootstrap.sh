@@ -39,11 +39,6 @@ ln -sfv "${PWD}/volt/lock.json"   "${HOME}/volt/lock.json"
     source "${HOME}/.bash_profile"
     [[ -f "${GOROOT}/bin/go" ]] || ( curl -L https://dl.google.com/go/${GO_VERSION}.tar.gz | sudo tar xz -C /usr/local )
 
-    cd "${GOPATH}/src"
-    go get golang.org/x/tools/gopls@latest
-    go get golang.org/x/tools/cmd/goimports@latest
-
-    cd "${HOME}"
     export GHG_HOME="$HOME"
     curl -sf https://gobinaries.com/junegunn/fzf       | PREFIX="${HOME}/bin" sh
     curl -sf https://gobinaries.com/Songmu/ghg/cmd/ghg | PREFIX="${HOME}/bin" sh
