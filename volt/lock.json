@@ -5,7 +5,7 @@
     {
       "type": "git",
       "path": "github.com/airblade/vim-gitgutter",
-      "version": "7d9b7125ff2533f6c520573f54e91db2f13a44b0"
+      "version": "256702dd1432894b3607d3de6cd660863b331818"
     },
     {
       "type": "git",
@@ -25,12 +25,12 @@
     {
       "type": "git",
       "path": "github.com/junegunn/fzf",
-      "version": "7191ebb615f5d6ebbf51d598d8ec853a65e2274d"
+      "version": "0f02fc0c77356a7b72b05131edf6c99d8efa6d33"
     },
     {
       "type": "git",
       "path": "github.com/junegunn/fzf.vim",
-      "version": "e34f6c129d39b90db44df1107c8b7dfacfd18946"
+      "version": "bd703a7a7d7afd113634a346290acc27dd314bfc"
     },
     {
       "type": "git",
@@ -55,12 +55,12 @@
     {
       "type": "git",
       "path": "github.com/prabirshrestha/asyncomplete.vim",
-      "version": "6c653c3f8f1c1cf7a34522c9555d5160f36d29ee"
+      "version": "73ac8e4e4525ba48e82d0f30643987b015233d4e"
     },
     {
       "type": "git",
       "path": "github.com/prabirshrestha/vim-lsp",
-      "version": "7ba553effb021293c9ff5176b91e76da71797825"
+      "version": "14f9ab319ff96eea16ef6dbf57ed801c8fc8967e"
     },
     {
       "type": "git",
@@ -75,12 +75,12 @@
     {
       "type": "git",
       "path": "github.com/tpope/vim-markdown",
-      "version": "addd5abaa66f015802ec351cd67893f6e521751e"
+      "version": "ed76403b2e0622bc137df4576275a9fd3720b875"
     },
     {
       "type": "git",
       "path": "github.com/vim-ruby/vim-ruby",
-      "version": "5516e301a5c3cacac008342006a712f5fa80f6a1"
+      "version": "a2b8e9151a5a753fc93ed86e3d1e030c65553874"
     }
   ],
   "profiles": [
