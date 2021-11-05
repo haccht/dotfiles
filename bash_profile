@@ -38,9 +38,9 @@ if [ -d "$HOME/.rbenv/bin" ]; then
   eval "$(~/.rbenv/bin/rbenv init -)"
 fi
 
-if [ -z "$GEM_HOME" ]; then
-  export GEM_HOME="$HOME/.gem"
-  export PATH="$GEM_HOME/bin:$PATH"
+if [ -d "$HOME/.pyenv/bin" ]; then
+  export PATH="$HOME/.pyenv/bin:$PATH"
+  eval "$(pyenv init -)"
 fi
 
 if [ -d "$HOME/.ndenv/bin" ]; then
