@@ -103,6 +103,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'mattn/vim-goimports'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'thinca/vim-quickrun'
@@ -110,7 +111,6 @@ Plug 'tpope/vim-markdown'
 Plug 'airblade/vim-gitgutter'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'cocopon/vaffle.vim'
-"Plug 'vim-ruby/vim-ruby'
 call plug#end()
 
 let g:vaffle_show_hidden_files = 1
@@ -144,6 +144,12 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> <F1> <plug>(lsp-implementation)
   nmap <buffer> <F2> <plug>(lsp-rename)
 endfunction
+
+augroup lsp_install
+  au!
+  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 " let g:asyncomplete_auto_popup = 1
@@ -152,8 +158,4 @@ let g:asyncomplete_popup_delay = 200
 let g:lsp_text_edit_enabled = 1
 let g:lsp_preview_float = 1
 let g:lsp_diagnostics_float_cursor = 1
-
-augroup lsp_install
-  au!
-  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
+let g:goimports = 1
