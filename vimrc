@@ -33,6 +33,7 @@ set smarttab
 set wildmenu
 set ttyfast
 set scrolloff=2
+set updatetime=1000
 
 " indent
 set tabstop=4
@@ -128,7 +129,6 @@ let g:quickrun_config = {
           \  }}
 nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
 
-let g:gitgutter_enabled = 0
 map <Leader>g :GitGutterToggle<CR>
 
 " lsp

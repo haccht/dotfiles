@@ -1,6 +1,6 @@
 #! /bin/bash
 
-GO_VERSION=go1.17.1.linux-amd64
+GO_VERSION=go1.17.6.linux-amd64
 
 install_package() {
   pkgname=$1
