@@ -20,14 +20,15 @@ install_package unzip
 mkdir -p "${HOME}/src"
 mkdir -p "${HOME}/bin"
 
-ln -sfv "${PWD}/bash_profile"     "${HOME}/.bash_profile"
-ln -sfv "${PWD}/bashrc"           "${HOME}/.bashrc"
-ln -sfv "${PWD}/colorrc"          "${HOME}/.colorrc"
-ln -sfv "${PWD}/gitconfig"        "${HOME}/.gitconfig"
-ln -sfv "${PWD}/tmux.conf"        "${HOME}/.tmux.conf"
-ln -sfv "${PWD}/vimrc"            "${HOME}/.vimrc"
-ln -sfv "${PWD}/gemrc"            "${HOME}/.gemrc"
-ln -sfv "${PWD}/irbrc"            "${HOME}/.irbrc"
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+ln -sfv "${script_dir}/bash_profile"     "${HOME}/.bash_profile"
+ln -sfv "${script_dir}/bashrc"           "${HOME}/.bashrc"
+ln -sfv "${script_dir}/colorrc"          "${HOME}/.colorrc"
+ln -sfv "${script_dir}/gitconfig"        "${HOME}/.gitconfig"
+ln -sfv "${script_dir}/tmux.conf"        "${HOME}/.tmux.conf"
+ln -sfv "${script_dir}/vimrc"            "${HOME}/.vimrc"
+ln -sfv "${script_dir}/gemrc"            "${HOME}/.gemrc"
+ln -sfv "${script_dir}/irbrc"            "${HOME}/.irbrc"
 
 (
     [[ -f "${GOROOT}/bin/go" ]] || ( curl -L https://dl.google.com/go/${GO_VERSION}.tar.gz | sudo tar xz -C /usr/local )
