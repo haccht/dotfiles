@@ -33,10 +33,10 @@ ln -sfv "${script_dir}/irbrc"            "${HOME}/.irbrc"
 (
     [[ -f "${GOROOT}/bin/go" ]] || ( curl -L https://dl.google.com/go/${GO_VERSION}.tar.gz | sudo tar xz -C /usr/local )
 
-    curl -sf https://gobinaries.com/junegunn/fzf       | PREFIX="${HOME}/bin" sh
     curl -sf https://gobinaries.com/Songmu/ghg/cmd/ghg | PREFIX="${HOME}/bin" sh
 
     export GHG_HOME="$HOME"
+    "${HOME}/bin/ghg" get junegunn/fzf
     "${HOME}/bin/ghg" get x-motemen/ghq
     "${HOME}/bin/ghg" get MichaelMure/mdr
     "${HOME}/bin/ghg" get mattn/memo
