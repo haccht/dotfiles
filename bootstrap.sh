@@ -4,6 +4,7 @@ GO_VERSION=go1.18.2.linux-amd64
 
 install_package() {
   pkgname=$1
+  DEBIAN_FRONTEND=noninteractive
   if !(type "${pkgname}" >/dev/null 2>&1); then
     echo "Installing ${pkgname}..."
     type yay      >/dev/null 2>&1 && sudo yay -S --noconfirm "${pkgname}"
