@@ -11,11 +11,6 @@ if has('vim_starting')
 endif
 scriptencoding utf-8
 
-" encrypt
-if has('crypt-blowfish2')
-  set cryptmethod=blowfish2
-endif
-
 " appearance
 set ambiwidth=double
 set laststatus=2
@@ -43,10 +38,7 @@ set expandtab
 set smartindent
 augroup fileTypeIndent
   autocmd!
-  autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2 autoindent
-  autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4 autoindent
-  autocmd BufNewFile,BufRead *.go setlocal tabstop=4 softtabstop=4 shiftwidth=4 autoindent
-  autocmd BufNewFile,BufRead *.md setlocal tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 " search
@@ -55,39 +47,43 @@ set smartcase
 set incsearch
 set hlsearch
 
+" encrypt
+if has('crypt-blowfish2')
+  set cryptmethod=blowfish2
+endif
+
 " global
 set t_vb=
 set novisualbell
 set noerrorbells
 set clipboard=unnamed
-if isdirectory($HOME . "/.vim/backup")
-  set backup
-  set backupdir=$HOME/.vim/backup
-endif
 if isdirectory($HOME . "/.vim/undo")
   set undofile
   set undodir=$HOME/.vim/undo
 endif
-
+if isdirectory($HOME . "/.vim/backup")
+  set backup
+  set backupdir=$HOME/.vim/backup
+endif
 set pastetoggle=<F10>
+
 
 " colors
 syntax on
+set t_Co=256
+set cursorline
+set background=dark
 autocmd ColorScheme * highlight Normal ctermbg=none
 autocmd ColorScheme * highlight LineNr ctermbg=none
-set background=dark
-set cursorline
-hi clear CursorLine
-try
-  colorscheme molokai
-catch
-  colorscheme murphy
-endtry
+colorscheme murphy
 
 " mapping
 let mapleader=','
 nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
 cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
 
 " plugins
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
@@ -95,9 +91,7 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-
 call plug#begin()
-Plug 'tomasr/molokai'
 Plug 'itchyny/lightline.vim'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/vim-lsp'
@@ -111,11 +105,25 @@ Plug 'thinca/vim-quickrun'
 Plug 'tpope/vim-markdown'
 Plug 'airblade/vim-gitgutter'
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'cocopon/vaffle.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'NLKNguyen/papercolor-theme'
 call plug#end()
 
-let g:vaffle_show_hidden_files = 1
-nnoremap <silent> - :execute 'Vaffle ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
+" colorscheme
+if filereadable(expand("~/.vim/plugged/papercolor-theme/colors/PaperColor.vim"))
+  colorscheme PaperColor
+endif
+
+" netrw
+let g:netrw_banner=0
+"let g:netrw_liststyle=1
+let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
+let g:netrw_hide=1
+let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
+augroup NetrwKeyMap
+    au!
+    au FileType netrw nmap <buffer> . gh
+augroup END
 
 let g:quickrun_config = {
       \  '_': {
@@ -129,7 +137,12 @@ let g:quickrun_config = {
           \  }}
 nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
 
+" gitgutter
 map <Leader>g :GitGutterToggle<CR>
+
+" plugin-settings
+let g:goimports = 1
+let g:indentLine_defaultGroup = 'SpecialKey'
 
 " lsp
 function! s:on_lsp_buffer_enabled() abort
@@ -162,4 +175,3 @@ let g:asyncomplete_popup_delay = 200
 let g:lsp_text_edit_enabled = 1
 let g:lsp_preview_float = 1
 let g:lsp_diagnostics_float_cursor = 1
-let g:goimports = 1
