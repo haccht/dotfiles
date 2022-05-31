@@ -12,6 +12,10 @@ export LESS="-iMR"
 export HISTSIZE=100000
 export HISTCONTROL=ignoredups
 
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+
 export GOROOT=/usr/local/go
 export GOPATH="$HOME"
 export GO111MODULE=on
@@ -26,10 +30,10 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
 export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
-export PATH="$HOME/opt/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
-if [ -f "$HOME/.local/bin/ghg" ]; then
-  export GHG_HOME="$HOME/.local"
+if [ -f "$HOME/bin/ghg" ]; then
+  export GHG_HOME="$HOME"
   export PATH="$(ghg bin):$PATH"
 fi
 

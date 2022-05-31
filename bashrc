@@ -9,6 +9,7 @@ alias ls='ls -F --color=auto -I NTUSER.\* -I ntuser.\*'
 alias grep='grep --color=never'
 
 shopt -s histappend
+eval `dircolors -b ~/.colorrc`
 
 if [[ `uname -a` =~ Linux && `uname -a` =~ Microsoft ]]; then
   umask 022
@@ -29,5 +30,21 @@ if type fzf > /dev/null 2>&1 && [[ -t 1 ]]; then
   [[ "$-" =~ "i" ]] && bind -x '"\C-r":fzf_history'
 fi
 
-#eval `dircolors -b ~/.colorrc`
-eval "$(starship init bash)"
+prompt_cmd() {
+    [[ $? -eq 0 ]] && local symbol="\[\e[0m\]$" || local symbol="\[\e[0;31m\]$\[\e[0m\]"
+    history -a
+
+    local index="$(expr $(printf %d "0x$(hostname | md5sum | cut -c 1-8)") % 6)"
+    local theme_1=( 34 196 216  39 165 243)
+    local theme_2=(154 220 229 226 219 254)
+    local color_1="\[\e[38;5;${theme_1[index]}m\]"
+    local color_2="\[\e[38;5;${theme_2[index]}m\]"
+
+    local git_ps1
+    if type __git_ps1 >/dev/null 2>&1; then
+        GIT_PS1_SHOWDIRTYSTATE=1
+        git_ps1=$(__git_ps1)
+    fi
+    PS1="\n${color_1}\u@\h ${color_2}\w${git_ps1}\n${symbol} "
+}
+export PROMPT_COMMAND=prompt_cmd
