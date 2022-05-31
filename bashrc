@@ -35,7 +35,7 @@ prompt_cmd() {
     history -a
 
     local index="$(expr $(printf %d "0x$(hostname | md5sum | cut -c 1-8)") % 6)"
-    local theme_1=( 34 196 216  39 165 243)
+    local theme_1=( 34 202 216  39 165 243)
     local theme_2=(154 220 229 226 219 254)
     local color_1="\[\e[38;5;${theme_1[index]}m\]"
     local color_2="\[\e[38;5;${theme_2[index]}m\]"

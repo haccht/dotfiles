@@ -35,10 +35,9 @@ ln -sfv "${script_dir}/irbrc"            "${HOME}/.irbrc"
     GO_VERSION=$(curl -s https://go.dev/dl/?mode=json | jq -r .[0].version)
     [[ -f "${GOROOT}/bin/go" ]] || ( curl -L https://dl.google.com/go/${GO_VERSION}.linux-amd64.tar.gz | sudo tar xz -C /usr/local )
 
-    curl -sf https://gobinaries.com/Songmu/ghg/cmd/ghg | PREFIX="${HOME}/bin" sh
-    curl -sS https://starship.rs/install.sh | BIN_DIR="${HOME}/bin" FORCE=1 sh
-
     export GHG_HOME="${HOME}"
+    curl -sf https://gobinaries.com/Songmu/ghg/cmd/ghg | PREFIX="${HOME}/bin" sh
+
     "${HOME}/bin/ghg" get junegunn/fzf
     "${HOME}/bin/ghg" get x-motemen/ghq
     #"${HOME}/bin/ghg" get MichaelMure/mdr
