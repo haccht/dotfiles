@@ -142,7 +142,6 @@ map <Leader>g :GitGutterToggle<CR>
 
 " plugin-settings
 let g:goimports = 1
-let g:indentLine_defaultGroup = 'SpecialKey'
 
 " lsp
 function! s:on_lsp_buffer_enabled() abort
