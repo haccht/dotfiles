@@ -28,8 +28,8 @@ export XMODIFIERS=@im=fcitx
 export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 export PATH="$HOME/opt/bin:$PATH"
 
-if [ -f "$HOME/bin/ghg" ]; then
-  export GHG_HOME="$HOME"
+if [ -f "$HOME/.local/bin/ghg" ]; then
+  export GHG_HOME="$HOME/.local"
   export PATH="$(ghg bin):$PATH"
 fi
 
@@ -38,25 +38,18 @@ if [ -d "$HOME/.rbenv/bin" ]; then
   eval "$(~/.rbenv/bin/rbenv init -)"
 fi
 
-if [ -d "$HOME/.pyenv/bin" ]; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init --path)"
-  eval "$(pyenv init -)"
-fi
-
 if [ -d "$HOME/.ndenv/bin" ]; then
   export PATH="$HOME/.ndenv/bin:$PATH"
   eval "$(ndenv init -)"
 fi
 
-if [ -d "$HOME/.cargo/" ]; then
-  source "$HOME/.cargo/env"
-fi
-
 if [ -d "$HOME/.deno/" ]; then
   export DENO_INSTALL="$HOME/.deno"
   export PATH="$DENO_INSTALL/bin:$PATH"
+fi
+
+if [ -d "$HOME/.cargo/" ]; then
+  eval "$HOME/.cargo/env"
 fi
 
 [[ -f "$HOME/.bashrc" ]] && . "$HOME/.bashrc"
