@@ -34,9 +34,11 @@ prompt_cmd() {
     [[ $? -eq 0 ]] && local symbol="\[\e[0m\]$" || local symbol="\[\e[0;31m\]$\[\e[0m\]"
     history -a
 
-    local index="$(expr $(printf %d "0x$(hostname | md5sum | cut -c 1-8)") % 6)"
-    local theme_1=( 34 202 216  39 165 243)
-    local theme_2=(154 220 229 226 219 254)
+    local theme_1=( 34 202 216  39 165 243 214)
+    local theme_2=(154 220 229 226 219 254 33)
+
+    local index="$(expr $(printf %d "0x$(hostname | md5sum | cut -c 1-8)") % ${#theme_1[@]})"
+
     local color_1="\[\e[38;5;${theme_1[index]}m\]"
     local color_2="\[\e[38;5;${theme_2[index]}m\]"
 
