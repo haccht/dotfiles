@@ -112,6 +112,7 @@ call plug#end()
 " colorscheme
 if filereadable(expand("~/.vim/plugged/papercolor-theme/colors/PaperColor.vim"))
   colorscheme PaperColor
+  let g:lightline = { 'colorscheme': 'PaperColor' }
 endif
 
 " netrw
