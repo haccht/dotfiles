@@ -138,12 +138,6 @@ let g:quickrun_config = {
           \  }}
 nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
 
-" gitgutter
-map <Leader>g :GitGutterToggle<CR>
-
-" plugin-settings
-let g:goimports = 1
-
 " lsp
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
@@ -163,6 +157,8 @@ augroup lsp_install
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
+" plugin-settings
+let g:goimports = 1
 let g:lsp_signs_enabled = 0
 let g:lsp_virtual_text_enabled = 0
 let g:lsp_highlights_enabled = 1
@@ -175,3 +171,5 @@ let g:asyncomplete_popup_delay = 200
 let g:lsp_text_edit_enabled = 1
 let g:lsp_preview_float = 1
 let g:lsp_diagnostics_float_cursor = 1
+
+map <Leader>g :GitGutterToggle<CR>
