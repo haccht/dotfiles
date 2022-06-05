@@ -39,7 +39,8 @@ fi
 
 if [ -d "$HOME/.rbenv/bin" ]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
-  eval "$(~/.rbenv/bin/rbenv init -)"
+  eval "$(rbenv init --no-rehash -)"
+  (rbenv rehash &) 2> /dev/null
 fi
 
 if [ -d "$HOME/.ndenv/bin" ]; then
@@ -58,5 +59,5 @@ fi
 
 [[ -f "$HOME/.bashrc" ]] && . "$HOME/.bashrc"
 if [ -d "$HOME/.bash.d" ]; then
-  for i in "$HOME"/.bash.d/*.sh; do source $i; done
+  for i in $HOME/.bash.d/*.sh; do source $i; done
 fi
