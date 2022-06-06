@@ -54,5 +54,5 @@ ln -sfv "${script_dir}/irbrc"            "${HOME}/.irbrc"
     mkdir -p "${HOME}/.bash.d"
     curl -L https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -o "${HOME}/.bash.d/git-prompt.sh"
 
-    vim +PlugUpgrade +PlugInstall +PlugUpdate +PlugClean! +qall
+    vim -es -u ~/.vimrc +PlugUpgrade +PlugInstall +PlugUpdate +PlugClean! +qall
 )
