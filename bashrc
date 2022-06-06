@@ -30,17 +30,16 @@ if type fzf > /dev/null 2>&1 && [[ -t 1 ]]; then
   [[ "$-" =~ "i" ]] && bind -x '"\C-r":fzf_history'
 fi
 
+
+theme_1=( 34 202 216  39 165 243 214)
+theme_2=(154 220 229 226 219 254 33)
+index_index="$(expr $(printf %d "0x$(hostname | md5sum | cut -c 1-8)") % ${#theme_1[@]})"
+
+color_1="\[\e[38;5;${theme_1[theme_index]}m\]"
+color_2="\[\e[38;5;${theme_2[theme_index]}m\]"
 prompt_cmd() {
     [[ $? -eq 0 ]] && local symbol="\[\e[0m\]$" || local symbol="\[\e[0;31m\]$\[\e[0m\]"
     history -a
-
-    local theme_1=( 34 202 216  39 165 243 214)
-    local theme_2=(154 220 229 226 219 254 33)
-
-    local index="$(expr $(printf %d "0x$(hostname | md5sum | cut -c 1-8)") % ${#theme_1[@]})"
-
-    local color_1="\[\e[38;5;${theme_1[index]}m\]"
-    local color_2="\[\e[38;5;${theme_2[index]}m\]"
 
     local git_ps1
     if type __git_ps1 >/dev/null 2>&1; then
