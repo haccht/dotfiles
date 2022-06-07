@@ -33,15 +33,15 @@ ln -sfv "${script_dir}/irbrc"            "${HOME}/.irbrc"
 
 (
     GO_VERSION=$(curl -s https://go.dev/dl/?mode=json | jq -r .[0].version)
-    [[ -f "${GOROOT}/bin/go" ]] || ( curl -L https://dl.google.com/go/${GO_VERSION}.linux-amd64.tar.gz | sudo tar xz -C /usr/local )
+    [[ -f "${GOROOT}/bin/go" ]] || ( curl -sL https://dl.google.com/go/${GO_VERSION}.linux-amd64.tar.gz | sudo tar xz -C /usr/local )
 
     export GHG_HOME="${HOME}"
     curl -sf https://gobinaries.com/Songmu/ghg/cmd/ghg | PREFIX="${HOME}/bin" sh
 
-    "${HOME}/bin/ghg" get junegunn/fzf
-    "${HOME}/bin/ghg" get x-motemen/ghq
-    #"${HOME}/bin/ghg" get MichaelMure/mdr
-    #"${HOME}/bin/ghg" get mattn/memo
+    "${HOME}/bin/ghg" get -u junegunn/fzf
+    "${HOME}/bin/ghg" get -u x-motemen/ghq
+    #"${HOME}/bin/ghg" get -u MichaelMure/mdr
+    #"${HOME}/bin/ghg" get -u mattn/memo
 
     if [ -d "${HOME}/.rbenv/bin" ]; then
         ( cd "${HOME}/.rbenv" && git pull )
