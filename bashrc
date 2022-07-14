@@ -6,6 +6,7 @@ alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
 alias ls='ls -F --color=auto -I NTUSER.\* -I ntuser.\*'
+alias sudo='sudo -E '
 alias grep='grep --color=never'
 
 shopt -s histappend
