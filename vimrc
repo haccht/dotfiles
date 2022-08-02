@@ -29,8 +29,6 @@ set wildmenu
 set ttyfast
 set scrolloff=2
 set updatetime=1000
-
-" indent
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -94,11 +92,11 @@ endif
 call plug#begin()
 Plug 'itchyny/lightline.vim'
 Plug 'mattn/vim-lsp-settings'
+Plug 'mattn/vim-goimports'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'mattn/vim-goimports'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'thinca/vim-quickrun'
@@ -159,17 +157,21 @@ augroup END
 
 " plugin-settings
 let g:goimports = 1
+
 let g:lsp_signs_enabled = 0
 let g:lsp_virtual_text_enabled = 0
 let g:lsp_highlights_enabled = 1
 let g:lsp_textprop_enabled = 1
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
-" let g:asyncomplete_auto_popup = 1
-" let g:asyncomplete_auto_completeopt = 0
-let g:asyncomplete_popup_delay = 200
 let g:lsp_text_edit_enabled = 1
 let g:lsp_preview_float = 1
 let g:lsp_diagnostics_float_cursor = 1
+" let g:asyncomplete_auto_popup = 1
+" let g:asyncomplete_auto_completeopt = 0
+let g:asyncomplete_popup_delay = 200
+
+let g:vim_json_conceal = 0
+let g:indentLine_concealcursor = 'nc'
 
 map <Leader>g :GitGutterToggle<CR>
