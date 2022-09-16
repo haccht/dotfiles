@@ -35,7 +35,6 @@ fi
 theme_color_1=( 34 202 216  39 165 243 214)
 theme_color_2=(154 220 229 226 219 254 33)
 theme_index="$(expr $(printf %d "0x$(hostname | md5sum | cut -c 1-3)") % ${#theme_color_1[@]})"
-
 prompt_cmd() {
     [[ $? -eq 0 ]] && local symbol="\[\e[0m\]$" || local symbol="\[\e[0;31m\]$\[\e[0m\]"
     history -a

@@ -1,6 +1,7 @@
 filetype plugin indent on
 
 set nocompatible
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 
 " encodings
 if has('vim_starting')
@@ -11,9 +12,11 @@ if has('vim_starting')
 endif
 scriptencoding utf-8
 
-" appearance
+" global settings
+set t_vb=
+set novisualbell
+set noerrorbells
 set ambiwidth=double
-set laststatus=2
 set showmatch
 set showmode
 set showcmd
@@ -27,6 +30,7 @@ set autoread
 set smarttab
 set wildmenu
 set ttyfast
+set laststatus=2
 set scrolloff=2
 set updatetime=1000
 set tabstop=4
@@ -34,37 +38,20 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set smartindent
-augroup fileTypeIndent
-  autocmd!
-  autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
-augroup END
-
-" search
 set ignorecase
 set smartcase
 set incsearch
 set hlsearch
-
-" encrypt
-if has('crypt-blowfish2')
-  set cryptmethod=blowfish2
-endif
-
-" global
-set t_vb=
-set novisualbell
-set noerrorbells
 set clipboard=unnamed
-if isdirectory($HOME . "/.vim/undo")
-  set undofile
-  set undodir=$HOME/.vim/undo
-endif
-if isdirectory($HOME . "/.vim/backup")
-  set backup
-  set backupdir=$HOME/.vim/backup
-endif
 set pastetoggle=<F10>
-
+if isdirectory(data_dir."/undo")
+  set undofile
+  set undodir=datadir."/undo"
+endif
+if isdirectory(data_dir."/backup")
+  set backup
+  set undodir=datadir."/backup"
+endif
 
 " colors
 syntax on
@@ -75,7 +62,7 @@ autocmd ColorScheme * highlight Normal ctermbg=none
 autocmd ColorScheme * highlight LineNr ctermbg=none
 colorscheme murphy
 
-" mapping
+" mappings
 let mapleader=','
 nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
 cnoremap <C-p> <Up>
@@ -83,8 +70,13 @@ cnoremap <C-n> <Down>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 
+" filetype settings
+augroup fileTypeIndent
+  autocmd!
+  autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
+
 " plugins
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
@@ -108,7 +100,7 @@ Plug 'NLKNguyen/papercolor-theme'
 call plug#end()
 
 " colorscheme
-if filereadable(expand("~/.vim/plugged/papercolor-theme/colors/PaperColor.vim"))
+if filereadable(expand(data_dir . "/plugged/papercolor-theme/colors/PaperColor.vim"))
   colorscheme PaperColor
   let g:lightline = { 'colorscheme': 'PaperColor' }
 endif
@@ -124,18 +116,6 @@ augroup NetrwKeyMap
     au FileType netrw nmap <buffer> . gh
 augroup END
 
-let g:quickrun_config = {
-      \  '_': {
-        \    'outputter/buffer/split': ':botright 10',
-        \    'outputter/buffer/close_on_empty': 1
-        \  },
-        \   'bundle': {
-          \    'cmdopt': 'bundle exec',
-          \    'command': 'ruby',
-          \    'exec': '%o %c %s'
-          \  }}
-nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
-
 " lsp
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
@@ -149,13 +129,15 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> <F1> <plug>(lsp-implementation)
   nmap <buffer> <F2> <plug>(lsp-rename)
 endfunction
-
 augroup lsp_install
   au!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
 " plugin-settings
+map <Leader>g :GitGutterToggle<CR>
+nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
+
 let g:goimports = 1
 
 let g:lsp_signs_enabled = 0
@@ -173,5 +155,3 @@ let g:asyncomplete_popup_delay = 200
 
 let g:vim_json_conceal = 0
 let g:indentLine_concealcursor = 'nc'
-
-map <Leader>g :GitGutterToggle<CR>

@@ -1,6 +1,16 @@
 [user]
     name = haccht
     email = haccht@users.noreply.github.com
+[init]
+    defaultBranch = main
+[push]
+    default = simple
+[pull]
+    ff = only
+[alias]
+    graph = log --pretty=format:\"%C(yellow)%h %C(White)%ad | %C(White)%s%C(Green)%d %C(Red)[%an]\" --graph --date=short
+[include]
+    path = ~/.gitconfig_local
 [color]
     ui = auto
     status = auto
@@ -9,17 +19,3 @@
     interactive = auto
     pager = true
     grep = true
-[alias]
-    graph = log --pretty=format:\"%C(yellow)%h %C(White)%ad | %C(White)%s%C(Green)%d %C(Red)[%an]\" --graph --date=short
-[init]
-	defaultBranch = main
-[diff]
-    tool = vimdiff
-[difftool]
-    prompt = false
-[push]
-    default = simple
-[pull]
-	ff = only
-[include]
-    path = ~/.gitconfig_local
