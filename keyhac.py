@@ -1069,7 +1069,7 @@ def configure(keymap):
 
     ## 「その他」のキー設定
     define_key(keymap_emacs, "Enter",     reset_undo(reset_counter(reset_mark(repeat(newline)))))
-    define_key(keymap_emacs, "C-m",       reset_undo(reset_counter(reset_mark(repeat(newline)))))
+    #define_key(keymap_emacs, "C-m",       reset_undo(reset_counter(reset_mark(repeat(newline)))))
     define_key(keymap_emacs, "C-j",       reset_undo(reset_counter(reset_mark(newline_and_indent))))
     define_key(keymap_emacs, "Tab",       reset_undo(reset_counter(reset_mark(repeat(indent_for_tab_command)))))
     define_key(keymap_emacs, "C-g",       reset_search(reset_counter(reset_mark(keyboard_quit))))
@@ -1246,7 +1246,7 @@ def configure(keymap):
 
         ## 「その他」のキー設定
         define_key(keymap_ei, "Enter", ei_newline)
-        define_key(keymap_ei, "C-m",   ei_newline)
+        #define_key(keymap_ei, "C-m",   ei_newline)
         define_key(keymap_ei, "Tab",   ei_record_func(indent_for_tab_command))
         define_key(keymap_ei, "C-g",   ei_keyboard_quit)
 
@@ -1326,6 +1326,10 @@ def configure(keymap):
     keymap_global[ "C-S-L" ] = keymap.MoveWindowCommand( +15, 0 ) # ウィンドウ右
     keymap_global[ "C-S-K" ] = keymap.MoveWindowCommand( 0, -15 ) # ウィンドウ上
     keymap_global[ "C-S-J" ] = keymap.MoveWindowCommand( 0, +15 ) # ウィンドウ下
+    keymap_global[ "C-M"   ] = keymap.defineMultiStrokeKeymap("C-M")
+    for alphabet in [chr(ord("A") + i) for i in range(26)]:
+        for modifier in ["", "S-", "A-", "C-", "A-S-", "A-C-", "C-S-"]:
+            keymap_global["C-M"][modifier + alphabet] = modifier + alphabet
 
     if 1:
         # for Outlook（グリッドビュー）
