@@ -228,7 +228,7 @@ def configure(keymap):
 
     def isearch(direction):
         if config.is_searching:
-            if check_window("EXCEL.EXE"): # Microsoft Excel
+            if check_window("EXCEL.EXE", "EXCEL"): # Microsoft Excel
                 if check_window(None, "EDTBX"): # 検索ウィンドウ
                     keymap.InputKeyCommand({"backward":"A-S-f", "forward":"A-f"}[direction])()
                 else:
@@ -475,7 +475,7 @@ def configure(keymap):
 
     # グローバルキーマップ
     keymap.replaceKey( 29, 'Apps' ) # 無変換キーをメニューキーに
-    keymap_global[ "C-S-H" ] = keymap.MoveWindowCommand( -15, 0 ) # ウィンドウ左
-    keymap_global[ "C-S-L" ] = keymap.MoveWindowCommand( +15, 0 ) # ウィンドウ右
-    keymap_global[ "C-S-K" ] = keymap.MoveWindowCommand( 0, -15 ) # ウィンドウ上
-    keymap_global[ "C-S-J" ] = keymap.MoveWindowCommand( 0, +15 ) # ウィンドウ下
+    keymap_global["C-S-H"] = keymap.MoveWindowCommand( -15, 0 ) # ウィンドウ左
+    keymap_global["C-S-L"] = keymap.MoveWindowCommand( +15, 0 ) # ウィンドウ右
+    keymap_global["C-S-K"] = keymap.MoveWindowCommand( 0, -15 ) # ウィンドウ上
+    keymap_global["C-S-J"] = keymap.MoveWindowCommand( 0, +15 ) # ウィンドウ下
