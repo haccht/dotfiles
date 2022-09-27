@@ -33,12 +33,18 @@ mkdir -p "${HOME}/src"
 mkdir -p "${HOME}/.bash.d"
 curl -sL https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -o "${HOME}/.bash.d/git-prompt.sh"
 
-GO_VERSION=$(curl -s https://go.dev/dl/?mode=json | jq -r .[0].version)
-[[ -f "${GOROOT}/bin/go" ]] || ( curl -sL https://dl.google.com/go/${GO_VERSION}.linux-amd64.tar.gz | sudo tar xz -C /usr/local )
+GOVERSION="$(curl -s https://go.dev/dl/?mode=json | jq -r .[0].version)"
+if [ -f "/usr/local/go/bin/go" ]; then
+    /usr/local/go/bin/go version | grep ${GOVERSION} >/dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        sudo rm -rf /usr/local/go
+        ( curl -sL https://dl.google.com/go/${GOVERSION}.linux-amd64.tar.gz | sudo tar xz -C /usr/local )
+    fi
+fi
 
-export GHG_HOME="${HOME}"
 curl -sf https://gobinaries.com/Songmu/ghg/cmd/ghg | PREFIX="${HOME}/bin" sh
 
+export GHG_HOME="${HOME}"
 "${HOME}/bin/ghg" get -u junegunn/fzf
 "${HOME}/bin/ghg" get -u x-motemen/ghq
 
