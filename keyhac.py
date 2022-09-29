@@ -392,12 +392,6 @@ def configure(keymap):
         keymap_emacs["C-m"]["C-S-"+s_vkey] = reset_search(reset_mark(keymap.InputKeyCommand("C-S-"+s_vkey)))
         keymap_emacs["C-m"]["A-S-"+s_vkey] = reset_search(reset_mark(keymap.InputKeyCommand("A-s-"+s_vkey)))
 
-    ## 「IME の切り替え」のキー設定
-    keymap_emacs["(243)" ]     = toggle_input_method
-    keymap_emacs["(244)" ]     = toggle_input_method
-    keymap_emacs["C-Yen" ]     = toggle_input_method
-    keymap_emacs["A-(25)"]     = toggle_input_method
-
     ## 「ファイル操作」のキー設定
     keymap_emacs["C-x"]["C-f"] = reset_search(reset_mark(find_file))
     keymap_emacs["C-x"]["C-s"] = reset_search(reset_mark(save_buffer))
@@ -479,3 +473,9 @@ def configure(keymap):
     keymap_global["C-S-L"] = keymap.MoveWindowCommand( +15, 0 ) # ウィンドウ右
     keymap_global["C-S-K"] = keymap.MoveWindowCommand( 0, -15 ) # ウィンドウ上
     keymap_global["C-S-J"] = keymap.MoveWindowCommand( 0, +15 ) # ウィンドウ下
+
+    ## 「IME の切り替え」のキー設定
+    keymap_global["(243)" ] = toggle_input_method
+    keymap_global["(244)" ] = toggle_input_method
+    keymap_global["C-Yen" ] = toggle_input_method
+    keymap_global["A-(25)"] = toggle_input_method
