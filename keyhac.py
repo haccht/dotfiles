@@ -1,4 +1,4 @@
-﻿import time
+import time
 import sys
 import os.path
 import re
@@ -43,6 +43,11 @@ def configure(keymap):
 
         return True
 
+    def is_keyboard_layout_us(window):
+        if config.keyboard_layout == "US":
+            return True
+
+        return False
 
     ####################################################################################################
     ## 基本設定
@@ -64,6 +69,9 @@ def configure(keymap):
     # 検索が開始されると True になる
     config.is_searching = False
 
+    # キーボードレイアウトを定義する
+    config.keyboard_layout = "JIS"
+
     ##################################################
     ## IME の切り替え
     ##################################################
@@ -82,6 +90,17 @@ def configure(keymap):
         # IME の状態をバルーンヘルプで表示する
         keymap.popBalloon("ime_status", message, 500)
         delay(0.1)
+
+    def toggle_keyboard_layout():
+        # キーボードレイアウトの状態を変更する
+        if config.keyboard_layout == "US":
+            config.keyboard_layout = "JIS"
+        else:
+            config.keyboard_layout = "US"
+        keymap.updateKeymap()
+
+        # キーボードレイアウトの状態をバルーンヘルプで表示する
+        keymap.popBalloon("layout", f"{config.keyboard_layout} Layout", 500)
 
     ##################################################
     ## ファイル操作
@@ -467,15 +486,46 @@ def configure(keymap):
 
     keymap_global = keymap.defineWindowKeymap()
 
-    # グローバルキーマップ
+    ## グローバルキーマップ
     keymap.replaceKey( 29, 'Apps' ) # 無変換キーをメニューキーに
     keymap_global["C-S-H"] = keymap.MoveWindowCommand( -15, 0 ) # ウィンドウ左
     keymap_global["C-S-L"] = keymap.MoveWindowCommand( +15, 0 ) # ウィンドウ右
     keymap_global["C-S-K"] = keymap.MoveWindowCommand( 0, -15 ) # ウィンドウ上
     keymap_global["C-S-J"] = keymap.MoveWindowCommand( 0, +15 ) # ウィンドウ下
 
-    ## 「IME の切り替え」のキー設定
+    ## IME の切り替えのキー設定
     keymap_global["(243)" ] = toggle_input_method
     keymap_global["(244)" ] = toggle_input_method
     keymap_global["C-Yen" ] = toggle_input_method
     keymap_global["A-(25)"] = toggle_input_method
+
+    ## USキーボードレイアウトの切り替えのキー設定
+    keymap_global["C-S-Space"] = toggle_keyboard_layout
+
+    ## USキーボードレイアウトのキー設定
+    keymap_us = keymap.defineWindowKeymap(check_func=is_keyboard_layout_us)
+    keymap_us["(243)"]   = "S-(192)"
+    keymap_us["(244)"]   = "S-(192)"
+    keymap_us["S-(243)"] = "S-Caret"
+    keymap_us["S-(244)"] = "S-Caret"
+    keymap_us["S-2"]     = "Atmark"
+    keymap_us["S-6"]     = "Caret"
+    keymap_us["S-7"]     = "S-6"
+    keymap_us["S-8"]     = "S-Colon"
+    keymap_us["S-9"]     = "S-8"
+    keymap_us["S-0"]     = "S-9"
+    keymap_us["S-(189)"] = "S-BackSlash"
+    keymap_us["(222)"]   = "S-Minus"
+    keymap_us["S-(222)"] = "(107)"
+
+    keymap_us["(192)"]   = "(219)"
+    keymap_us["S-(192)"] = "S-(219)"
+    keymap_us["(219)"]   = "(221)"
+    keymap_us["S-(219)"] = "S-(221)"
+    keymap_us["(221)"]   = "(220)"
+    keymap_us["S-(221)"] = "S-(220)"
+    keymap_us["C-(221)"] = toggle_input_method
+
+    keymap_us["S-(187)"] = "(186)"
+    keymap_us["(186)"]   = "S-7"
+    keymap_us["S-(186)"] = "S-2"
