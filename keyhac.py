@@ -537,8 +537,6 @@ def configure(keymap):
     ####################################################################################################
 
     keymap_teams = keymap.defineWindowKeymap(exe_name="teams.exe", class_name="Chrome_WidgetWin_1")
-    keymap_teams["C-S-p"]   = "A-Up"
-    keymap_teams["C-S-n"]   = "A-Down"
     keymap_teams["C-Tab"]   = "C-F6"
     keymap_teams["C-S-Tab"] = "C-S-F6"
 
