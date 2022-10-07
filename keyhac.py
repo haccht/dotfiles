@@ -43,8 +43,8 @@ def configure(keymap):
 
         return True
 
-    def is_keyboard_layout_us(window):
-        if config.keyboard_layout == "US":
+    def us_layout_to_jis_layout(window):
+        if config.us_layout_to_jis_layout:
             return True
 
         return False
@@ -69,8 +69,8 @@ def configure(keymap):
     # 検索が開始されると True になる
     config.is_searching = False
 
-    # キーボードレイアウトを定義する
-    config.keyboard_layout = "JIS"
+    # US配列キーボードをJIS配列キーボード設定されたOSで使う
+    config.us_layout_to_jis_layout = False
 
     ##################################################
     ## IME の切り替え
@@ -93,14 +93,15 @@ def configure(keymap):
 
     def toggle_keyboard_layout():
         # キーボードレイアウトの状態を変更する
-        if config.keyboard_layout == "US":
-            config.keyboard_layout = "JIS"
+        if config.us_layout_to_jis_layout:
+            config.us_layout_to_jis_layout = False
+            keymap.popBalloon("layout", "JIS keyboard", 500)
         else:
-            config.keyboard_layout = "US"
-        keymap.updateKeymap()
+            config.us_layout_to_jis_layout = True
+            keymap.popBalloon("layout", "US keyboard", 500)
 
-        # キーボードレイアウトの状態をバルーンヘルプで表示する
-        keymap.popBalloon("layout", f"{config.keyboard_layout} Layout", 500)
+        keymap.updateKeymap()
+        delay(0.1)
 
     ##################################################
     ## ファイル操作
@@ -488,6 +489,10 @@ def configure(keymap):
 
     ## グローバルキーマップ
     keymap.replaceKey( 29, 'Apps' ) # 無変換キーをメニューキーに
+    keymap_global["C-S-p"] = keymap.command_ClipboardList
+    keymap_global["C-S-Space"] = toggle_keyboard_layout
+
+    # ウィンドウ移動
     keymap_global["C-S-H"] = keymap.MoveWindowCommand( -15, 0 ) # ウィンドウ左
     keymap_global["C-S-L"] = keymap.MoveWindowCommand( +15, 0 ) # ウィンドウ右
     keymap_global["C-S-K"] = keymap.MoveWindowCommand( 0, -15 ) # ウィンドウ上
@@ -499,33 +504,30 @@ def configure(keymap):
     keymap_global["C-Yen" ] = toggle_input_method
     keymap_global["A-(25)"] = toggle_input_method
 
-    ## USキーボードレイアウトの切り替えのキー設定
-    keymap_global["C-S-Space"] = toggle_keyboard_layout
-
     ## USキーボードレイアウトのキー設定
-    keymap_us = keymap.defineWindowKeymap(check_func=is_keyboard_layout_us)
-    keymap_us["(243)"]   = "S-(192)"
-    keymap_us["(244)"]   = "S-(192)"
-    keymap_us["S-(243)"] = "S-Caret"
-    keymap_us["S-(244)"] = "S-Caret"
-    keymap_us["S-2"]     = "Atmark"
-    keymap_us["S-6"]     = "Caret"
-    keymap_us["S-7"]     = "S-6"
-    keymap_us["S-8"]     = "S-Colon"
-    keymap_us["S-9"]     = "S-8"
-    keymap_us["S-0"]     = "S-9"
-    keymap_us["S-(189)"] = "S-BackSlash"
-    keymap_us["(222)"]   = "S-Minus"
-    keymap_us["S-(222)"] = "(107)"
+    keymap_us2jis = keymap.defineWindowKeymap(check_func=us_layout_to_jis_layout)
+    keymap_us2jis["(243)"]   = "S-(192)"
+    keymap_us2jis["(244)"]   = "S-(192)"
+    keymap_us2jis["S-(243)"] = "S-Caret"
+    keymap_us2jis["S-(244)"] = "S-Caret"
+    keymap_us2jis["S-2"]     = "Atmark"
+    keymap_us2jis["S-6"]     = "Caret"
+    keymap_us2jis["S-7"]     = "S-6"
+    keymap_us2jis["S-8"]     = "S-Colon"
+    keymap_us2jis["S-9"]     = "S-8"
+    keymap_us2jis["S-0"]     = "S-9"
+    keymap_us2jis["S-(189)"] = "S-BackSlash"
+    keymap_us2jis["(222)"]   = "S-Minus"
+    keymap_us2jis["S-(222)"] = "(107)"
 
-    keymap_us["(192)"]   = "(219)"
-    keymap_us["S-(192)"] = "S-(219)"
-    keymap_us["(219)"]   = "(221)"
-    keymap_us["S-(219)"] = "S-(221)"
-    keymap_us["(221)"]   = "(220)"
-    keymap_us["S-(221)"] = "S-(220)"
-    keymap_us["C-(221)"] = toggle_input_method
+    keymap_us2jis["(192)"]   = "(219)"
+    keymap_us2jis["S-(192)"] = "S-(219)"
+    keymap_us2jis["(219)"]   = "(221)"
+    keymap_us2jis["S-(219)"] = "S-(221)"
+    keymap_us2jis["(221)"]   = "(220)"
+    keymap_us2jis["S-(221)"] = "S-(220)"
+    keymap_us2jis["C-(221)"] = toggle_input_method
 
-    keymap_us["S-(187)"] = "(186)"
-    keymap_us["(186)"]   = "S-7"
-    keymap_us["S-(186)"] = "S-2"
+    keymap_us2jis["S-(187)"] = "(186)"
+    keymap_us2jis["(186)"]   = "S-7"
+    keymap_us2jis["S-(186)"] = "S-2"
