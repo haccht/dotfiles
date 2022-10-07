@@ -12,6 +12,8 @@ install_package() {
     fi
 }
 
+set -x
+
 install_package git
 install_package curl
 install_package unzip
