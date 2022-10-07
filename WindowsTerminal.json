@@ -4,21 +4,6 @@
     "actions": 
     [
         {
-            "command": "unbound",
-            "keys": "ctrl+v"
-        },
-        {
-            "command": 
-            {
-                "action": "copy",
-                "singleLine": false
-            },
-            "keys": "ctrl+c"
-        },
-        {
-            "command": "paste"
-        },
-        {
             "command": "find",
             "keys": "ctrl+shift+f"
         },
@@ -35,11 +20,13 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
+    "launchMode": "maximized",
     "profiles": 
     {
         "defaults": 
         {
             "colorScheme": "One Half Dark",
+            "cursorShape": "filledBox",
             "font": 
             {
                 "face": "Cica",
@@ -72,30 +59,12 @@
                 ],
                 "colorScheme": "Iceberg Dark",
                 "commandline": "wsl.exe ~ -d Debian",
-                "cursorShape": "filledBox",
-                "font": 
-                {
-                    "face": "Cica",
-                    "size": 11
-                },
                 "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
                 "hidden": false,
-                "historySize": 10000,
                 "name": "Debian",
-                "source": "Windows.Terminal.Wsl"
-            },
-            {
-                "background": "#350425",
-                "commandline": "multipass shell",
-                "cursorShape": "filledBox",
-                "font": 
-                {
-                    "face": "Ubuntu Mono"
-                },
-                "guid": "{aaaa9e6d-1e09-4be6-b76c-82b4ba1885fb}",
-                "historySize": 50000,
-                "icon": "C:/Program Files/Multipass/bin/multipass_wt.ico",
-                "name": "Multipass"
+                "opacity": 85,
+                "source": "Windows.Terminal.Wsl",
+                "useAcrylic": false
             }
         ]
     },
@@ -215,29 +184,6 @@
             "selectionBackground": "#FFFFFF",
             "white": "#FAFAFA",
             "yellow": "#C18301"
-        },
-        {
-            "background": "#EEEEEE",
-            "black": "#1C1C1C",
-            "blue": "#005FAF",
-            "brightBlack": "#1C1C1C",
-            "brightBlue": "#005FAF",
-            "brightCyan": "#0087AF",
-            "brightGreen": "#008700",
-            "brightPurple": "#D70087",
-            "brightRed": "#AF0000",
-            "brightWhite": "#E4E4E4",
-            "brightYellow": "#D75F00",
-            "cursorColor": "#FFFFFF",
-            "cyan": "#0087AF",
-            "foreground": "#444444",
-            "green": "#008700",
-            "name": "PaperColor",
-            "purple": "#D70087",
-            "red": "#AF0000",
-            "selectionBackground": "#FFFFFF",
-            "white": "#E4E4E4",
-            "yellow": "#D75F00"
         },
         {
             "background": "#002B36",
