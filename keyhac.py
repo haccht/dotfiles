@@ -531,3 +531,19 @@ def configure(keymap):
     keymap_us2jis["S-(187)"] = "(186)"
     keymap_us2jis["(186)"]   = "S-7"
     keymap_us2jis["S-(186)"] = "S-2"
+
+    ####################################################################################################
+    ## 特定アプリのキーバインド
+    ####################################################################################################
+
+    keymap_teams = keymap.defineWindowKeymap(exe_name="teams.exe", class_name="Chrome_WidgetWin_1")
+    keymap_teams["C-S-p"]   = "A-Up"
+    keymap_teams["C-S-n"]   = "A-Down"
+    keymap_teams["C-Tab"]   = "C-F6"
+    keymap_teams["C-S-Tab"] = "C-S-F6"
+
+    keymap_outlook = keymap.defineWindowKeymap(exe_name="outlook.exe", class_name="OutlookGrid")
+    keymap_outlook["C-r"]   = "C-S-r"
+    keymap_outlook["C-S-r"] = "C-r"
+    keymap_outlook["C-f"]   = "C-f"
+    keymap_outlook["C-s"]   = "C-e"
