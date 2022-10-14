@@ -543,5 +543,5 @@ def configure(keymap):
     keymap_outlook = keymap.defineWindowKeymap(exe_name="outlook.exe", class_name="OutlookGrid")
     keymap_outlook["C-r"]   = "C-S-r"
     keymap_outlook["C-S-r"] = "C-r"
-    keymap_outlook["C-f"]   = "C-f"
+    keymap_outlook["C-S-f"] = "C-f"
     keymap_outlook["C-s"]   = "C-e"
