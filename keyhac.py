@@ -221,6 +221,9 @@ def configure(keymap):
     def yank():
         keymap.InputKeyCommand("C-v")()
 
+    def yank2():
+        keymap.InputKeyCommand("C-S-v")()
+
     def undo():
         keymap.InputKeyCommand("C-z")()
 
@@ -448,7 +451,8 @@ def configure(keymap):
     keymap_emacs["C-k"]        = reset_search(reset_mark(kill_line))
     keymap_emacs["C-w"]        = reset_search(reset_mark(kill_region))
     keymap_emacs["A-w"]        = reset_search(reset_mark(kill_ring_save))
-    keymap_emacs["C-y"]        = reset_search(reset_mark(yank))
+    keymap_emacs["C-y"]        = reset_search(reset_mark(yank2))
+    keymap_emacs["C-S-v"]      = reset_search(reset_mark(yank))
     keymap_emacs["C-x"]["u"]   = reset_search(reset_mark(undo))
 
     keymap_emacs["Back"]       = reset_search(reset_mark(delete_backward_char))
