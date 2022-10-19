@@ -12,6 +12,16 @@ install_package() {
     fi
 }
 
+clone_or_pull_repository() {
+    remoterepo=$1
+    directory=$2
+    if [ -d "${directory}/.git" ]; then
+        git -C "${directory}" pull "${remoterepo}"
+    else
+        git clone "${remoterepo}" "${directory}"
+    fi
+}
+
 set -x
 
 install_package git
@@ -50,12 +60,8 @@ export GHG_HOME="${HOME}"
 "${HOME}/bin/ghg" get -u junegunn/fzf
 "${HOME}/bin/ghg" get -u x-motemen/ghq
 
-if [ -d "${HOME}/.rbenv/bin" ]; then
-    ( cd "${HOME}/.rbenv" && git pull )
-    ( cd "${HOME}/.rbenv/plugins/ruby-build" && git pull )
-else
-    git clone https://github.com/sstephenson/rbenv.git "${HOME}/.rbenv"
-    git clone https://github.com/sstephenson/ruby-build.git "${HOME}/.rbenv/plugins/ruby-build"
-fi
+clone_or_pull_repository https://github.com/pyenv/pyenv.git "${HOME}/.pyenv"
+clone_or_pull_repository https://github.com/sstephenson/rbenv.git "${HOME}/.rbenv"
+clone_or_pull_repository https://github.com/sstephenson/ruby-build.git "${HOME}/.rbenv/plugins/ruby-build"
 
 vim -es -u ~/.vimrc +PlugUpgrade +PlugInstall +PlugUpdate +PlugClean! +qall
