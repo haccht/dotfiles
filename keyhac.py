@@ -389,15 +389,12 @@ def configure(keymap):
         keymap_emacs["S-"+s_vkey] = reset_mark(keymap.InputKeyCommand("S-"+s_vkey))
 
     ## 特殊文字キーの設定
-    s_vkey = "(" + str(VK_SPACE) + ")"
-    keymap_emacs[     s_vkey] = reset_mark(keymap.InputKeyCommand(     s_vkey))
-    keymap_emacs["S-"+s_vkey] = reset_mark(keymap.InputKeyCommand("S-"+s_vkey))
-    for vkey in [VK_OEM_MINUS, VK_OEM_PLUS, VK_OEM_COMMA, VK_OEM_PERIOD, VK_OEM_1, VK_OEM_2, VK_OEM_3, VK_OEM_4, VK_OEM_5, VK_OEM_6, VK_OEM_7, VK_OEM_102]:
-        s_key = "(" + str(vkey) + ")"
+    for vkey in [VK_SPACE, VK_OEM_MINUS, VK_OEM_PLUS, VK_OEM_COMMA, VK_OEM_PERIOD, VK_OEM_1, VK_OEM_2, VK_OEM_3, VK_OEM_4, VK_OEM_5, VK_OEM_6, VK_OEM_7, VK_OEM_102]:
+        s_vkey = "(" + str(vkey) + ")"
         keymap_emacs[     s_vkey] = reset_mark(keymap.InputKeyCommand(     s_vkey))
         keymap_emacs["S-"+s_vkey] = reset_mark(keymap.InputKeyCommand("S-"+s_vkey))
     for vkey in [VK_MULTIPLY, VK_ADD, VK_SUBTRACT, VK_DECIMAL, VK_DIVIDE]:
-        s_key = "(" + str(vkey) + ")"
+        s_vkey = "(" + str(vkey) + ")"
         keymap_emacs[     s_vkey] = reset_mark(keymap.InputKeyCommand(     s_vkey))
         keymap_emacs["S-"+s_vkey] = reset_mark(keymap.InputKeyCommand("S-"+s_vkey))
 
