@@ -45,13 +45,20 @@ mkdir -p "${HOME}/src"
 mkdir -p "${HOME}/.bash.d"
 curl -sL https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -o "${HOME}/.bash.d/git-prompt.sh"
 
+GOINSTALL=0
 GOVERSION="$(curl -s https://go.dev/dl/?mode=json | jq -r .[0].version)"
 if [ -f "/usr/local/go/bin/go" ]; then
     /usr/local/go/bin/go version | grep ${GOVERSION} >/dev/null 2>&1
     if [ $? -ne 0 ]; then
-        sudo rm -rf /usr/local/go
-        ( curl -sL https://dl.google.com/go/${GOVERSION}.linux-amd64.tar.gz | sudo tar xz -C /usr/local )
+        GOINATALL=1
     fi
+else
+    GOINSTALL=1
+fi
+
+if [ $GOINSTALL -eq 1 ]; then
+    sudo rm -rf /usr/local/go
+    ( curl -sL https://dl.google.com/go/${GOVERSION}.linux-amd64.tar.gz | sudo tar xz -C /usr/local )
 fi
 
 curl -sf https://gobinaries.com/Songmu/ghg/cmd/ghg | PREFIX="${HOME}/bin" sh
