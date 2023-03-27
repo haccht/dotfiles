@@ -1,5 +1,7 @@
 #! /bin/bash
 
+set -x
+
 install_package() {
     pkgname=$1
     DEBIAN_FRONTEND=noninteractive
@@ -22,14 +24,20 @@ clone_or_pull_repository() {
     fi
 }
 
-set -x
-
+# packages
 install_package git
 install_package curl
 install_package unzip
 install_package jq
 install_package vim
 
+# directories
+mkdir -p "${HOME}/bin"
+mkdir -p "${HOME}/src"
+mkdir -p "${HOME}/.bash.d"
+curl -sL https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -o "${HOME}/.bash.d/git-prompt.sh"
+
+# dotfiles
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 ln -sfv "${script_dir}/bash_profile"     "${HOME}/.bash_profile"
 ln -sfv "${script_dir}/bashrc"           "${HOME}/.bashrc"
@@ -40,13 +48,16 @@ ln -sfv "${script_dir}/gemrc"            "${HOME}/.gemrc"
 ln -sfv "${script_dir}/irbrc"            "${HOME}/.irbrc"
 ln -sfv "${script_dir}/vimrc"            "${HOME}/.vimrc"
 
-mkdir -p "${HOME}/bin"
-mkdir -p "${HOME}/src"
-mkdir -p "${HOME}/.bash.d"
-curl -sL https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -o "${HOME}/.bash.d/git-prompt.sh"
+# python
+clone_or_pull_repository https://github.com/pyenv/pyenv.git "${HOME}/.pyenv"
 
+# ruby
+clone_or_pull_repository https://github.com/sstephenson/rbenv.git "${HOME}/.rbenv"
+clone_or_pull_repository https://github.com/sstephenson/ruby-build.git "${HOME}/.rbenv/plugins/ruby-build"
+
+# go
 GOINSTALL=0
-GOVERSION="$(curl -s https://go.dev/dl/?mode=json | jq -r .[0].version)"
+GOVERSION="$(curl -s 'https://go.dev/dl/?mode=json' | jq -r .[0].version)"
 if [ -f "/usr/local/go/bin/go" ]; then
     /usr/local/go/bin/go version | grep ${GOVERSION} >/dev/null 2>&1
     if [ $? -ne 0 ]; then
@@ -55,20 +66,14 @@ if [ -f "/usr/local/go/bin/go" ]; then
 else
     GOINSTALL=1
 fi
-
 if [ $GOINSTALL -eq 1 ]; then
     sudo rm -rf /usr/local/go
     ( curl -sL https://dl.google.com/go/${GOVERSION}.linux-amd64.tar.gz | sudo tar xz -C /usr/local )
 fi
 
-curl -sf https://gobinaries.com/Songmu/ghg/cmd/ghg | PREFIX="${HOME}/bin" sh
+# go binaries
+/usr/local/go/bin/go install github.com/junegunn/fzf@latest
+/usr/local/go/bin/go install github.com/x-motemen/ghq@latest
 
-export GHG_HOME="${HOME}"
-"${HOME}/bin/ghg" get -u junegunn/fzf
-"${HOME}/bin/ghg" get -u x-motemen/ghq
-
-clone_or_pull_repository https://github.com/pyenv/pyenv.git "${HOME}/.pyenv"
-clone_or_pull_repository https://github.com/sstephenson/rbenv.git "${HOME}/.rbenv"
-clone_or_pull_repository https://github.com/sstephenson/ruby-build.git "${HOME}/.rbenv/plugins/ruby-build"
-
+# vim plugins
 vim -es -u ~/.vimrc +PlugUpgrade +PlugInstall +PlugUpdate +PlugClean! +qall
