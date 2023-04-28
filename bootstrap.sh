@@ -72,6 +72,7 @@ if [ $GOINSTALL -eq 1 ]; then
 fi
 
 # go binaries
+GOPATH=$HOME
 /usr/local/go/bin/go install github.com/junegunn/fzf@latest
 /usr/local/go/bin/go install github.com/x-motemen/ghq@latest
 
