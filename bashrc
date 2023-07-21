@@ -46,6 +46,20 @@ prompt_cmd() {
         GIT_PS1_SHOWDIRTYSTATE=1
         git_ps1=$(__git_ps1)
     fi
-    PS1="\n${color_1}\u@\h ${color_2}\w${git_ps1}\n${symbol} "
+    case "$TERM" in
+    xterm*|rxvt*)
+        PS1="\n${color_1}\u@\h ${color_2}\w${git_ps1}\n${symbol} "
+        ;;
+    *)
+        ;;
+    esac
 }
 export PROMPT_COMMAND=prompt_cmd
+
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
