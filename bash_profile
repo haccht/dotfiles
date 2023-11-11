@@ -71,3 +71,5 @@ fi
 if [ -d "$HOME/.cargo/" ]; then
   eval "$HOME/.cargo/env"
 fi
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc

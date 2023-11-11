@@ -2,11 +2,11 @@
 
 [[ -f /etc/bashrc ]] && . /etc/bashrc
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
 fi
 
 alias rm='rm -i'
@@ -19,27 +19,25 @@ shopt -s histappend
 
 # wsl
 if [[ `uname -a` =~ Linux && `uname -a` =~ Microsoft ]]; then
-  umask 022
-  alias pbcopy='clip.exe'
+    umask 022
+    alias pbcopy='clip.exe'
 fi
 
 # fzf
-if type fzf >/dev/null 2>&1 && [[ -t 1 ]]; then
-  fzf_history() {
-    declare l=$(history -w /dev/stdout | tac | grep -v '^#' | fzf --no-sort --cycle --exact --query "$LBUFFER" --prompt="History > ")
-    READLINE_LINE="$l"
-    READLINE_POINT=${#l}
-  }
-  [[ "$-" =~ "i" ]] && bind -x '"\C-r":fzf_history'
-  [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
-fi
+[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 
 # ghq
 if type ghq >/dev/null 2>&1 && [[ -t 1 ]]; then
-  repo() {
-    selected="$(ghq list | sort | fzf --no-sort --cycle --query ${@:-''} --prompt='Repository > ')"
-    if [ -n "$selected" ]; then cd "$GHQ_ROOT/$selected"; fi
-  }
+    repo() {
+        selected="$(ghq list | sort | fzf --no-sort --cycle --query ${@:-''} --prompt='Repository > ')"
+        if [ -n "$selected" ]; then cd "$GHQ_ROOT/$selected"; fi
+    }
+fi
+
+if type curl >/dev/null 2>&1 && [[ -t 1 ]]; then
+    goblin() {
+        curl -sf "https://goblin.run/${1}" | PREFIX=~/bin sh
+    }
 fi
 
 # prompt
@@ -58,11 +56,11 @@ prompt_cmd() {
         git_ps1=$(__git_ps1)
     fi
     case "$TERM" in
-    xterm*|rxvt*)
-        PS1="\n${color_1}\u@\h ${color_2}\w${git_ps1}\n${symbol} "
-        ;;
-    *)
-        ;;
+        xterm*|rxvt*)
+            PS1="\n${color_1}\u@\h ${color_2}\w${git_ps1}\n${symbol} "
+            ;;
+        *)
+            ;;
     esac
 }
 export PROMPT_COMMAND=prompt_cmd
