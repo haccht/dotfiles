@@ -1,37 +1,48 @@
 # .bashrc
 
 [[ -f /etc/bashrc ]] && . /etc/bashrc
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
 
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
 alias ls='ls -F --color=auto -I NTUSER.\* -I ntuser.\*'
-alias sudo='sudo -E '
 alias grep='grep --color=never'
 
 shopt -s histappend
-eval `dircolors -b ~/.colorrc`
 
+# wsl
 if [[ `uname -a` =~ Linux && `uname -a` =~ Microsoft ]]; then
   umask 022
   alias pbcopy='clip.exe'
 fi
 
-if type fzf > /dev/null 2>&1 && [[ -t 1 ]]; then
-  repo() {
-    selected="$(ghq list | sort | fzf --no-sort --cycle --query ${@:-''} --prompt='Repository > ')"
-    if [ -n "$selected" ]; then cd "$GHQ_ROOT/$selected"; fi
-  }
-
+# fzf
+if type fzf >/dev/null 2>&1 && [[ -t 1 ]]; then
   fzf_history() {
     declare l=$(history -w /dev/stdout | tac | grep -v '^#' | fzf --no-sort --cycle --exact --query "$LBUFFER" --prompt="History > ")
     READLINE_LINE="$l"
     READLINE_POINT=${#l}
   }
   [[ "$-" =~ "i" ]] && bind -x '"\C-r":fzf_history'
+  [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 fi
 
+# ghq
+if type ghq >/dev/null 2>&1 && [[ -t 1 ]]; then
+  repo() {
+    selected="$(ghq list | sort | fzf --no-sort --cycle --query ${@:-''} --prompt='Repository > ')"
+    if [ -n "$selected" ]; then cd "$GHQ_ROOT/$selected"; fi
+  }
+fi
 
+# prompt
 theme_color_1=( 34 202 216  39 165 243 214)
 theme_color_2=(154 220 229 226 219 254 33)
 theme_index="$(expr $(printf %d "0x$(hostname | md5sum | cut -c 1-3)") % ${#theme_color_1[@]})"
@@ -55,11 +66,3 @@ prompt_cmd() {
     esac
 }
 export PROMPT_COMMAND=prompt_cmd
-
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi

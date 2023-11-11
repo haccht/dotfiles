@@ -20,17 +20,26 @@ export GOROOT=/usr/local/go
 export GOPATH="$HOME"
 export GO111MODULE=on
 
-export GHQ_ROOT="$GOPATH/src"
 export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
 export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1
 export VAGRANT_DISABLE_VBOXSYMLINKCREATE=1
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
-export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
+export GTK_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
 export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+fi
+
+if [ -f "$HOME/bin/ghq" ]; then
+  export GHQ_ROOT="$GOPATH/src"
+fi
 
 if [ -f "$HOME/bin/ghg" ]; then
   export GHG_HOME="$HOME"
@@ -61,9 +70,4 @@ fi
 
 if [ -d "$HOME/.cargo/" ]; then
   eval "$HOME/.cargo/env"
-fi
-
-[[ -f "$HOME/.bashrc" ]] && . "$HOME/.bashrc"
-if [ -d "$HOME/.bash.d" ]; then
-  for i in $HOME/.bash.d/*.sh; do source $i; done
 fi

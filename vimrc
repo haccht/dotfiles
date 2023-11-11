@@ -139,7 +139,6 @@ map <Leader>g :GitGutterToggle<CR>
 nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
 
 let g:goimports = 1
-
 let g:lsp_signs_enabled = 0
 let g:lsp_virtual_text_enabled = 0
 let g:lsp_highlights_enabled = 1
