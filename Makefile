@@ -1,5 +1,5 @@
 all: init package setup repo
-
+min: init setup
 
 init:
 	@./shell/init.sh

@@ -37,15 +37,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 fi
 
-if [ -f "$HOME/bin/ghq" ]; then
-  export GHQ_ROOT="$GOPATH/src"
-fi
-
-if [ -f "$HOME/bin/ghg" ]; then
-  export GHG_HOME="$HOME"
-  export PATH="$(ghg bin):$PATH"
-fi
-
 if [ -d "$HOME/.rbenv/bin" ]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init --no-rehash -)"
@@ -72,4 +63,13 @@ if [ -d "$HOME/.cargo/" ]; then
   eval "$HOME/.cargo/env"
 fi
 
+if [ -f "$HOME/bin/ghq" ]; then
+  export GHQ_ROOT="$GOPATH/src"
+fi
+
 [[ -f ~/.bashrc ]] && . ~/.bashrc
+if [ -d "$HOME/.bash.d" ] ; then
+    for f in "$HOME"/.bash.d/*.sh ; do
+        [ -f "$f" ] && . "$f"
+    done
+fi

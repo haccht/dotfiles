@@ -34,6 +34,7 @@ if type ghq >/dev/null 2>&1 && [[ -t 1 ]]; then
     }
 fi
 
+# goblin
 if type curl >/dev/null 2>&1 && [[ -t 1 ]]; then
     goblin() {
         curl -sf "https://goblin.run/${1}" | PREFIX=~/bin sh
