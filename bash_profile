@@ -16,9 +16,13 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 
-export GOROOT=/usr/local/go
-export GOPATH="$HOME"
 export GO111MODULE=on
+export GOPATH="$HOME"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export GOROOT=/opt/homebrew/opt/go/libexec/bin
+else
+  export GOROOT=/usr/local/go
+fi
 
 export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
 export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1

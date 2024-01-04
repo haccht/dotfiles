@@ -23,6 +23,19 @@ if [[ `uname -a` =~ Linux && `uname -a` =~ Microsoft ]]; then
     alias pbcopy='clip.exe'
 fi
 
+# function
+if [[ -t 1 ]]; then
+    _edit_wo_executing() {
+        tmpf="$(mktemp)"
+        printf '%s\n' "$READLINE_LINE" > "$tmpf"
+        "$EDITOR" "$tmpf"
+        READLINE_LINE="$(<"$tmpf")"
+        READLINE_POINT="${#READLINE_LINE}"
+        rm -f "$tmpf"
+    }
+    bind -x '"\C-x\C-e":_edit_wo_executing'
+fi
+
 # fzf
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 
