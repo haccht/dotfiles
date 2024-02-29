@@ -1,21 +1,21 @@
 [user]
-    name = haccht
-    email = haccht@users.noreply.github.com
+  name = haccht
+  email = haccht@users.noreply.github.com
 [init]
-    defaultBranch = main
+  defaultBranch = main
 [push]
-    default = simple
+  default = simple
 [pull]
-    ff = only
+  ff = only
 [alias]
-    graph = log --pretty=format:\"%C(yellow)%h %C(White)%ad | %C(White)%s%C(Green)%d %C(Red)[%an]\" --graph --date=short
+  graph = log --pretty=format:\"%C(yellow)%h %C(White)%ad | %C(White)%s%C(Green)%d %C(Red)[%an]\" --graph --date=short
 [include]
-    path = ~/.gitconfig_local
+  path = ~/.gitconfig_local
 [color]
-    ui = auto
-    status = auto
-    diff = auto
-    branch = auto
-    interactive = auto
-    pager = true
-    grep = true
+  ui = auto
+  status = auto
+  diff = auto
+  branch = auto
+  interactive = auto
+  pager = true
+  grep = true

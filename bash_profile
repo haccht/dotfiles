@@ -19,7 +19,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export GO111MODULE=on
 export GOPATH="$HOME"
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  export GOROOT=/opt/homebrew/opt/go/libexec/bin
+  export GOROOT=/opt/homebrew/opt/go/libexec
 else
   export GOROOT=/usr/local/go
 fi
