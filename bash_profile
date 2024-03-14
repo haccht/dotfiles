@@ -47,12 +47,6 @@ if [ -d "$HOME/.rbenv/bin" ]; then
   (rbenv rehash &) 2> /dev/null
 fi
 
-if [ -d "$HOME/.pyenv/bin" ]; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
-fi
-
 if [ -d "$HOME/.ndenv/bin" ]; then
   export PATH="$HOME/.ndenv/bin:$PATH"
   eval "$(ndenv init -)"

@@ -16,7 +16,4 @@ if type git >/dev/null 2>&1; then
     # ruby
     clone_or_pull_repository https://github.com/sstephenson/rbenv.git "${HOME}/.rbenv"
     clone_or_pull_repository https://github.com/sstephenson/ruby-build.git "${HOME}/.rbenv/plugins/ruby-build"
-
-    # python
-    clone_or_pull_repository https://github.com/pyenv/pyenv.git "${HOME}/.pyenv"
 fi
