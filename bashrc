@@ -24,7 +24,7 @@ if [[ `uname -a` =~ Linux && `uname -a` =~ Microsoft ]]; then
 fi
 
 # function
-if [[ -t 1 ]]; then
+if [[ -t 1 && "$-" =~ "i" ]]; then
     _edit_wo_executing() {
         tmpf="$(mktemp)"
         printf '%s\n' "$READLINE_LINE" > "$tmpf"
