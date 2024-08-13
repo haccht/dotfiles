@@ -37,6 +37,7 @@ if [[ -t 1 && "$-" =~ "i" ]]; then
 fi
 
 # fzf
+[[ -f /usr/share/doc/fzf/examples/key-bindings.bash ]] && source /usr/share/doc/fzf/examples/key-bindings.bash
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 
 # ghq
