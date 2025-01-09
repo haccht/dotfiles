@@ -5,6 +5,7 @@ set -x
 # directories
 mkdir -p "${HOME}/bin"
 mkdir -p "${HOME}/src"
+mkdir -p "${HOME}/.config"
 
 # dotfiles
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." &>/dev/null && pwd -P)
@@ -15,3 +16,5 @@ ln -sfv "${script_dir}/tmux.conf"        "${HOME}/.tmux.conf"
 ln -sfv "${script_dir}/gemrc"            "${HOME}/.gemrc"
 ln -sfv "${script_dir}/irbrc"            "${HOME}/.irbrc"
 ln -sfv "${script_dir}/vimrc"            "${HOME}/.vimrc"
+
+ln -sfv "${script_dir}/config/ghostty/config"            "${HOME}/.config/ghostty/config"
