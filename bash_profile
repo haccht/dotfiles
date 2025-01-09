@@ -8,6 +8,7 @@ export PAGER=less
 export EDITOR=vim
 export VISUAL=vim
 export LESS="-iMR"
+export TERM=vt100
 
 export HISTSIZE=100000
 export HISTCONTROL=ignoredups
@@ -34,7 +35,7 @@ export GTK_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
 export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -71,3 +72,12 @@ if [ -d "$HOME/.bash.d" ] ; then
         [ -f "$f" ] && . "$f"
     done
 fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/thachimu/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/Users/thachimu/Downloads/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/thachimu/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/thachimu/Downloads/google-cloud-sdk/completion.bash.inc'; fi
+
+# Setting PATH for Python 3.11
+export PATH="/Library/Frameworks/Python.framework/Versions/3.11/bin:${PATH}"
