@@ -34,9 +34,6 @@ export QT_IM_MODULE=fcitx
 export GTK_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
-export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-
 if [[ "$OSTYPE" == "darwin"* ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
   export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
@@ -48,23 +45,17 @@ if [ -d "$HOME/.rbenv/bin" ]; then
   (rbenv rehash &) 2> /dev/null
 fi
 
-if [ -d "$HOME/.ndenv/bin" ]; then
-  export PATH="$HOME/.ndenv/bin:$PATH"
-  eval "$(ndenv init -)"
-fi
-
-if [ -d "$HOME/.deno/" ]; then
-  export DENO_INSTALL="$HOME/.deno"
-  export PATH="$DENO_INSTALL/bin:$PATH"
-fi
-
-if [ -d "$HOME/.cargo/" ]; then
-  eval "$HOME/.cargo/env"
-fi
-
 if [ -f "$HOME/bin/ghq" ]; then
   export GHQ_ROOT="$GOPATH/src"
 fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/thachimu/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/Users/thachimu/Downloads/google-cloud-sdk/path.bash.inc'; fi
+if [ -f '/Users/thachimu/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/thachimu/Downloads/google-cloud-sdk/completion.bash.inc'; fi
+export PATH="/Library/Frameworks/Python.framework/Versions/3.11/bin:${PATH}"
+
+export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 if [ -d "$HOME/.bash.d" ] ; then
@@ -72,12 +63,3 @@ if [ -d "$HOME/.bash.d" ] ; then
         [ -f "$f" ] && . "$f"
     done
 fi
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/thachimu/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/Users/thachimu/Downloads/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/thachimu/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/thachimu/Downloads/google-cloud-sdk/completion.bash.inc'; fi
-
-# Setting PATH for Python 3.11
-export PATH="/Library/Frameworks/Python.framework/Versions/3.11/bin:${PATH}"
