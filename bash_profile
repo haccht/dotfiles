@@ -8,7 +8,7 @@ export PAGER=less
 export EDITOR=vim
 export VISUAL=vim
 export LESS="-iMR"
-export TERM=vt100
+export TERM=xterm-256color
 
 export HISTSIZE=100000
 export HISTCONTROL=ignoredups
