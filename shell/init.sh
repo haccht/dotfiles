@@ -17,4 +17,5 @@ ln -sfv "${script_dir}/gemrc"            "${HOME}/.gemrc"
 ln -sfv "${script_dir}/irbrc"            "${HOME}/.irbrc"
 ln -sfv "${script_dir}/vimrc"            "${HOME}/.vimrc"
 
-ln -sfv "${script_dir}/config/ghostty/config"            "${HOME}/.config/ghostty/config"
+mkdir -p "${HOME}/.config/ghostty"
+ln -sfv "${script_dir}/config/ghostty/config" "${HOME}/.config/ghostty/config"
