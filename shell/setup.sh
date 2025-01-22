@@ -19,5 +19,6 @@ fi
 
 # vim plugins
 if type vim >/dev/null 2>&1; then
-    vim -es -u ~/.vimrc +PlugUpgrade +PlugInstall +PlugUpdate +PlugClean! +qall
+    vim -es -u ~/.vimrc +PlugUpgrade +PlugInstall +PlugUpdate +qall
+    vim -es -u ~/.vimrc +PlugClean! +qall || echo 'Safe exit'
 fi
