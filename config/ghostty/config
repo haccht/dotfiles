@@ -1,7 +1,9 @@
 theme = xcodedarkhc
 
+font-family = "HackGen35 Console NF"
 font-feature = -calt
 font-feature = -dlig
+font-size = 12
 
 background-blur-radius = 20
 background-opacity = 0.9
