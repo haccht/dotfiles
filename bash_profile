@@ -49,13 +49,12 @@ if [ -f "$HOME/bin/ghq" ]; then
   export GHQ_ROOT="$GOPATH/src"
 fi
 
-# The next line updates PATH for the Google Cloud SDK.
+export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
 if [ -f '/Users/thachimu/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/Users/thachimu/Downloads/google-cloud-sdk/path.bash.inc'; fi
 if [ -f '/Users/thachimu/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/thachimu/Downloads/google-cloud-sdk/completion.bash.inc'; fi
 export PATH="/Library/Frameworks/Python.framework/Versions/3.11/bin:${PATH}"
-
-export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 if [ -d "$HOME/.bash.d" ] ; then

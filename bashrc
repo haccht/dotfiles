@@ -36,6 +36,11 @@ if [[ -t 1 && "$-" =~ "i" ]]; then
     bind -x '"\C-x\C-e":_edit_wo_executing'
 fi
 
+mcd() {
+    dir="${1}"
+    mkdir -p "${dir}" && cd "${dir}"
+}
+
 # fzf
 [[ -f /usr/share/doc/fzf/examples/key-bindings.bash ]] && source /usr/share/doc/fzf/examples/key-bindings.bash
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
@@ -45,13 +50,6 @@ if type ghq >/dev/null 2>&1 && [[ -t 1 ]]; then
     repo() {
         selected="$(ghq list | sort | fzf --no-sort --cycle --query ${@:-''} --prompt='Repository > ')"
         if [ -n "$selected" ]; then cd "$GHQ_ROOT/$selected"; fi
-    }
-fi
-
-# goblin
-if type curl >/dev/null 2>&1 && [[ -t 1 ]]; then
-    goblin() {
-        curl -sf "https://goblin.run/${1}" | PREFIX=~/bin sh
     }
 fi
 
