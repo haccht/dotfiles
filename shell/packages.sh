@@ -36,6 +36,7 @@ fi
 # common packages
 install_package git
 install_package vim
+install_package bat
 install_package curl
 install_package unzip
 install_package fzf

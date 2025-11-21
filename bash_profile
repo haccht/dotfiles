@@ -9,6 +9,7 @@ export EDITOR=vim
 export VISUAL=vim
 export LESS="-iMR"
 export TERM=xterm-256color
+export BAT_STYLE=plain
 
 export HISTSIZE=100000
 export HISTCONTROL=ignoredups
@@ -36,6 +37,7 @@ export XMODIFIERS=@im=fcitx
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
+  export PATH="/opt/homebrew/opt/curl/bin:$PATH"
   export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 fi
 

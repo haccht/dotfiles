@@ -12,8 +12,8 @@ fi
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
-alias ls='ls -F --color=auto -I NTUSER.\* -I ntuser.\*'
-alias grep='grep --color=never'
+alias ls='ls -F --color=always'
+alias grep='grep --color=always'
 
 shopt -s histappend
 
