@@ -36,11 +36,6 @@ if [[ -t 1 && $- == *i* ]]; then
     bind -x '"\C-x\C-e":_edit_wo_executing'
 fi
 
-mcd() {
-    local dir="${1}"
-    mkdir -p "${dir}" && cd "${dir}" || return
-}
-
 # fzf
 [[ -r ~/.fzf.bash ]] && source ~/.fzf.bash
 [[ -r /usr/share/doc/fzf/examples/key-bindings.bash ]] && source /usr/share/doc/fzf/examples/key-bindings.bash

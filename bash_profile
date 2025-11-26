@@ -46,12 +46,14 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   if command -v brew >/dev/null 2>&1; then
     brew_prefix="$(brew --prefix)"
     eval "$("$brew_prefix"/bin/brew shellenv)"
-    path_prepend "$brew_prefix/opt/curl/bin" "$brew_prefix/opt/coreutils/libexec/gnubin"
+    path_prepend "$brew_prefix/opt/curl/bin"
+    path_prepend "$brew_prefix/opt/coreutils/libexec/gnubin"
   fi
 fi
 
 if [ -d "$HOME/.rbenv/bin" ]; then
   path_prepend "$HOME/.rbenv/bin"
+
   rbenv_lazy_init() {
     eval "$(rbenv init --no-rehash -)"
     unset -f ruby gem rbenv rbenv_lazy_init
@@ -66,7 +68,10 @@ if command -v ghq >/dev/null 2>&1; then
   export GHQ_ROOT="${GHQ_ROOT:-$GOPATH/src}"
 fi
 
-path_prepend "$HOME/bin" "$HOME/.local/bin" "$GOPATH/bin" "$GOROOT/bin"
+path_prepend "$HOME/bin"
+path_prepend "$HOME/.local/bin"
+path_prepend "$GOPATH/bin"
+path_prepend "$GOROOT/bin"
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 if [ -d "$HOME/.bash.d" ] ; then
