@@ -14,46 +14,40 @@ export BAT_STYLE=plain
 export HISTSIZE=100000
 export HISTCONTROL=ignoredups
 
-export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 
 export GO111MODULE=on
 export GOPATH="$HOME"
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  export GOROOT=/opt/homebrew/opt/go/libexec
-else
-  export GOROOT=/usr/local/go
-fi
+export GOROOT=/usr/local/go
 
-export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
-export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1
-export VAGRANT_DISABLE_VBOXSYMLINKCREATE=1
 export BASH_SILENCE_DEPRECATION_WARNING=1
+export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
 
 export QT_IM_MODULE=fcitx
 export GTK_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
-if [[ "$OSTYPE" == "darwin"* ]] && command -v brew > /dev/null 2>&1; then
-  if [[ -z "${HOMEBREW_ENV_INITIALIZED:-}" ]]; then
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export GOROOT=/opt/homebrew/opt/go/libexec
+
     BREW_PREFIX="$(brew --prefix)"
-    eval "$(${BREW_PREFIX}/bin/brew shellenv)"
-    export PATH="${BREW_PREFIX}/opt/curl/bin:$PATH"
-    export PATH="${BREW_PREFIX}/opt/coreutils/libexec/gnubin:$PATH"
-    export HOMEBREW_ENV_INITIALIZED=1
+    eval "$($BREW_PREFIX/bin/brew shellenv)"
+    export PATH="$BREW_PREFIX/opt/curl/bin:$PATH"
+    export PATH="$BREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
   fi
 fi
 
 if [ -d "$HOME/.rbenv/bin" ]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
   rbenv_lazy_init() {
-    export PATH="$HOME/.rbenv/bin:$PATH"
     eval "$(rbenv init --no-rehash -)"
     unset -f ruby gem rbenv rbenv_lazy_init
   }
 
-  ruby() { rbenv_lazy_init; ruby "$@"; }
   gem() { rbenv_lazy_init; gem "$@"; }
+  ruby() { rbenv_lazy_init; ruby "$@"; }
   rbenv() { rbenv_lazy_init; rbenv "$@"; }
 fi
 
@@ -63,10 +57,6 @@ fi
 
 export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-
-if [ -f '/Users/thachimu/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/Users/thachimu/Downloads/google-cloud-sdk/path.bash.inc'; fi
-if [ -f '/Users/thachimu/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/thachimu/Downloads/google-cloud-sdk/completion.bash.inc'; fi
-export PATH="/Library/Frameworks/Python.framework/Versions/3.11/bin:${PATH}"
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 if [ -d "$HOME/.bash.d" ] ; then

@@ -42,8 +42,8 @@ mcd() {
 }
 
 # fzf
-[[ -f /usr/share/doc/fzf/examples/key-bindings.bash ]] && source /usr/share/doc/fzf/examples/key-bindings.bash
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
+[[ -f /usr/share/doc/fzf/examples/key-bindings.bash ]] && source /usr/share/doc/fzf/examples/key-bindings.bash
 
 # ghq
 if type ghq >/dev/null 2>&1 && [[ -t 1 ]]; then
