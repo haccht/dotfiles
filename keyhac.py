@@ -2,6 +2,8 @@ import time
 import sys
 import os.path
 import re
+from dataclasses import dataclass
+from typing import Optional
 
 import keyhac_keymap
 from keyhac import *
@@ -44,33 +46,22 @@ def configure(keymap):
         return True
 
     def us_layout_to_jis_layout(window):
-        if config.us_layout_to_jis_layout:
-            return True
-
-        return False
+        return config.us_layout_to_jis_layout
 
     ####################################################################################################
     ## 基本設定
     ####################################################################################################
 
     # コンフィグを格納するクラスを定義
+    @dataclass
     class KeyhacConfig:
-        pass
+        last_window: Optional[object] = None
+        is_marked: bool = False  # mark がセットされると True になる
+        forward_direction: Optional[bool] = None  # 順方向に拡張すると True、逆方向に拡張すると False になる
+        is_searching: bool = False  # 検索が開始されると True になる
+        us_layout_to_jis_layout: bool = False  # US配列キーボードをJIS配列キーボード設定されたOSで使う
 
     config = KeyhacConfig()
-    config.last_window = None
-
-    # mark がセットされると True になる
-    config.is_marked = False
-
-    # リージョンを拡張する際に、順方向に拡張すると True、逆方向に拡張すると False になる
-    config.forward_direction = None
-
-    # 検索が開始されると True になる
-    config.is_searching = False
-
-    # US配列キーボードをJIS配列キーボード設定されたOSで使う
-    config.us_layout_to_jis_layout = False
 
     ##################################################
     ## IME の切り替え
@@ -92,13 +83,9 @@ def configure(keymap):
         delay(0.1)
 
     def toggle_keyboard_layout():
-        # キーボードレイアウトの状態を変更する
-        if config.us_layout_to_jis_layout:
-            config.us_layout_to_jis_layout = False
-            keymap.popBalloon("layout", "JIS keyboard", 500)
-        else:
-            config.us_layout_to_jis_layout = True
-            keymap.popBalloon("layout", "US keyboard", 500)
+        config.us_layout_to_jis_layout = not config.us_layout_to_jis_layout
+        layout = "US keyboard" if config.us_layout_to_jis_layout else "JIS keyboard"
+        keymap.popBalloon("layout", layout, 500)
 
         keymap.updateKeymap()
         delay(0.1)
@@ -318,6 +305,16 @@ def configure(keymap):
     def cut():
         keymap.InputKeyCommand("C-x")()
 
+    def bind_reset_mark(target_keymap, key):
+        target_keymap[key] = reset_mark(keymap.InputKeyCommand(key))
+
+    def bind_reset_mark_with_shift(target_keymap, key):
+        bind_reset_mark(target_keymap, key)
+        bind_reset_mark(target_keymap, f"S-{key}")
+
+    def bind_reset_search_mark(target_keymap, key):
+        target_keymap[key] = reset_search(reset_mark(keymap.InputKeyCommand(key)))
+
     def check_window(processName, className):
         return ((processName is None or re.match(processName, keymap.getWindow().getProcessName())) and
                 (className is None or re.match(className, keymap.getWindow().getClassName())))
@@ -378,25 +375,20 @@ def configure(keymap):
 
     ## 数字キーの設定
     for n in range(10):
-        s_vkey = str(n)
-        keymap_emacs[     s_vkey] = reset_mark(keymap.InputKeyCommand(     s_vkey))
-        keymap_emacs["S-"+s_vkey] = reset_mark(keymap.InputKeyCommand("S-"+s_vkey))
+        bind_reset_mark_with_shift(keymap_emacs, str(n))
 
     ## アルファベットキーの設定
     for vkey in range(VK_A, VK_Z + 1):
         s_vkey = "(" + str(vkey) + ")"
-        keymap_emacs[     s_vkey] = reset_mark(keymap.InputKeyCommand(     s_vkey))
-        keymap_emacs["S-"+s_vkey] = reset_mark(keymap.InputKeyCommand("S-"+s_vkey))
+        bind_reset_mark_with_shift(keymap_emacs, s_vkey)
 
     ## 特殊文字キーの設定
     for vkey in [VK_SPACE, VK_OEM_MINUS, VK_OEM_PLUS, VK_OEM_COMMA, VK_OEM_PERIOD, VK_OEM_1, VK_OEM_2, VK_OEM_3, VK_OEM_4, VK_OEM_5, VK_OEM_6, VK_OEM_7, VK_OEM_102]:
         s_vkey = "(" + str(vkey) + ")"
-        keymap_emacs[     s_vkey] = reset_mark(keymap.InputKeyCommand(     s_vkey))
-        keymap_emacs["S-"+s_vkey] = reset_mark(keymap.InputKeyCommand("S-"+s_vkey))
+        bind_reset_mark_with_shift(keymap_emacs, s_vkey)
     for vkey in [VK_MULTIPLY, VK_ADD, VK_SUBTRACT, VK_DECIMAL, VK_DIVIDE]:
         s_vkey = "(" + str(vkey) + ")"
-        keymap_emacs[     s_vkey] = reset_mark(keymap.InputKeyCommand(     s_vkey))
-        keymap_emacs["S-"+s_vkey] = reset_mark(keymap.InputKeyCommand("S-"+s_vkey))
+        bind_reset_mark_with_shift(keymap_emacs, s_vkey)
 
     ## quoted-insertキーの設定
     key_condition = keyhac_keymap.KeyCondition.fromString("C-x")
@@ -405,12 +397,8 @@ def configure(keymap):
             continue
 
         s_vkey = "(" + str(vkey) + ")"
-        keymap_emacs["C-m"][       s_vkey] = reset_search(reset_mark(keymap.InputKeyCommand(       s_vkey)))
-        keymap_emacs["C-m"]["S-"  +s_vkey] = reset_search(reset_mark(keymap.InputKeyCommand("S-"  +s_vkey)))
-        keymap_emacs["C-m"]["C-"  +s_vkey] = reset_search(reset_mark(keymap.InputKeyCommand("C-"  +s_vkey)))
-        keymap_emacs["C-m"]["A-"  +s_vkey] = reset_search(reset_mark(keymap.InputKeyCommand("A-"  +s_vkey)))
-        keymap_emacs["C-m"]["C-S-"+s_vkey] = reset_search(reset_mark(keymap.InputKeyCommand("C-S-"+s_vkey)))
-        keymap_emacs["C-m"]["A-S-"+s_vkey] = reset_search(reset_mark(keymap.InputKeyCommand("A-s-"+s_vkey)))
+        for modifier in ["", "S-", "C-", "A-", "C-S-", "A-S-"]:
+            bind_reset_search_mark(keymap_emacs["C-m"], f"{modifier}{s_vkey}")
 
     ## 「ファイル操作」のキー設定
     keymap_emacs["C-x"]["C-f"] = reset_search(reset_mark(find_file))

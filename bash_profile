@@ -29,18 +29,29 @@ export QT_IM_MODULE=fcitx
 export GTK_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    export GOROOT=/opt/homebrew/opt/go/libexec
+path_prepend() {
+  local dir
+  for dir in "$@"; do
+    [[ -d $dir ]] || continue
+    case ":$PATH:" in
+      *":$dir:"*) ;;
+      *) PATH="$dir:$PATH" ;;
+    esac
+  done
+}
 
-    BREW_PREFIX="$(brew --prefix)"
-    eval "$($BREW_PREFIX/bin/brew shellenv)"
-    export PATH="$BREW_PREFIX/opt/curl/bin:$PATH"
-    export PATH="$BREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  GOROOT=/opt/homebrew/opt/go/libexec
+
+  if command -v brew >/dev/null 2>&1; then
+    brew_prefix="$(brew --prefix)"
+    eval "$("$brew_prefix"/bin/brew shellenv)"
+    path_prepend "$brew_prefix/opt/curl/bin" "$brew_prefix/opt/coreutils/libexec/gnubin"
   fi
 fi
 
 if [ -d "$HOME/.rbenv/bin" ]; then
-  export PATH="$HOME/.rbenv/bin:$PATH"
+  path_prepend "$HOME/.rbenv/bin"
   rbenv_lazy_init() {
     eval "$(rbenv init --no-rehash -)"
     unset -f ruby gem rbenv rbenv_lazy_init
@@ -51,12 +62,11 @@ if [ -d "$HOME/.rbenv/bin" ]; then
   rbenv() { rbenv_lazy_init; rbenv "$@"; }
 fi
 
-if [ -f "$HOME/bin/ghq" ]; then
-  export GHQ_ROOT="$GOPATH/src"
+if command -v ghq >/dev/null 2>&1; then
+  export GHQ_ROOT="${GHQ_ROOT:-$GOPATH/src}"
 fi
 
-export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+path_prepend "$HOME/bin" "$HOME/.local/bin" "$GOPATH/bin" "$GOROOT/bin"
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 if [ -d "$HOME/.bash.d" ] ; then
