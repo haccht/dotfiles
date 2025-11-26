@@ -35,10 +35,14 @@ export QT_IM_MODULE=fcitx
 export GTK_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-  export PATH="/opt/homebrew/opt/curl/bin:$PATH"
-  export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+if [[ "$OSTYPE" == "darwin"* ]] && command -v brew > /dev/null 2>&1; then
+  if [[ -z "${HOMEBREW_ENV_INITIALIZED:-}" ]]; then
+    BREW_PREFIX="$(brew --prefix)"
+    eval "$(${BREW_PREFIX}/bin/brew shellenv)"
+    export PATH="${BREW_PREFIX}/opt/curl/bin:$PATH"
+    export PATH="${BREW_PREFIX}/opt/coreutils/libexec/gnubin:$PATH"
+    export HOMEBREW_ENV_INITIALIZED=1
+  fi
 fi
 
 if [ -d "$HOME/.rbenv/bin" ]; then
