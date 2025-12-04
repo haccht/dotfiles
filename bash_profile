@@ -52,16 +52,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 if [ -d "$HOME/.rbenv/bin" ]; then
-  path_prepend "$HOME/.rbenv/bin"
-
-  rbenv_lazy_init() {
-    eval "$(rbenv init --no-rehash -)"
-    unset -f ruby gem rbenv rbenv_lazy_init
-  }
-
-  gem() { rbenv_lazy_init; gem "$@"; }
-  ruby() { rbenv_lazy_init; ruby "$@"; }
-  rbenv() { rbenv_lazy_init; rbenv "$@"; }
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init --no-rehash -)"
+  (rbenv rehash &) 2> /dev/null
 fi
 
 if command -v ghq >/dev/null 2>&1; then
