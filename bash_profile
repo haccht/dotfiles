@@ -58,7 +58,6 @@ export GHQ_ROOT="${GHQ_ROOT:-$GOPATH/src}"
 if [ -d "$HOME/.rbenv/bin" ]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init --no-rehash -)"
-  (rbenv rehash &) 2> /dev/null
 fi
 
 path_prepend "$HOME/bin"
