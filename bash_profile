@@ -41,15 +41,19 @@ path_prepend() {
 }
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  GOROOT=/opt/homebrew/opt/go/libexec
+  path_prepend "/opt/homebrew/bin"
 
   if command -v brew >/dev/null 2>&1; then
     brew_prefix="$(brew --prefix)"
     eval "$("$brew_prefix"/bin/brew shellenv)"
     path_prepend "$brew_prefix/opt/curl/bin"
     path_prepend "$brew_prefix/opt/coreutils/libexec/gnubin"
+
+    GOROOT=$brew_prefix/opt/go/libexec
   fi
 fi
+
+export GHQ_ROOT="${GHQ_ROOT:-$GOPATH/src}"
 
 if [ -d "$HOME/.rbenv/bin" ]; then
   path_prepend "$HOME/.rbenv/bin"
@@ -62,10 +66,6 @@ if [ -d "$HOME/.rbenv/bin" ]; then
   gem() { rbenv_lazy_init; gem "$@"; }
   ruby() { rbenv_lazy_init; ruby "$@"; }
   rbenv() { rbenv_lazy_init; rbenv "$@"; }
-fi
-
-if command -v ghq >/dev/null 2>&1; then
-  export GHQ_ROOT="${GHQ_ROOT:-$GOPATH/src}"
 fi
 
 path_prepend "$HOME/bin"

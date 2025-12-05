@@ -58,11 +58,8 @@ if [[ -t 1 ]]; then
     PROMPT_COLOR_1="\[\e[38;5;${theme_color_1[$theme_index]}m\]"
     PROMPT_COLOR_2="\[\e[38;5;${theme_color_2[$theme_index]}m\]"
 
-    PROMPT_HAS_GIT_PS1=0
-    if command -v __git_ps1 >/dev/null 2>&1; then
-        PROMPT_HAS_GIT_PS1=1
-        GIT_PS1_SHOWDIRTYSTATE=1
-    fi
+    PROMPT_HAS_GIT_PS1=1
+    GIT_PS1_SHOWDIRTYSTATE=1
 
     prompt_cmd() {
         local status_symbol="\[\e[0m\]$"
