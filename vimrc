@@ -97,6 +97,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'Yggdroot/indentLine'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'andymass/vim-matchup'
 call plug#end()
 
 " colorscheme
