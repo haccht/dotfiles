@@ -51,6 +51,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
     GOROOT=$brew_prefix/opt/go/libexec
   fi
+
+  source ~/.orbstack/shell/init.bash 2>/dev/null || :
 fi
 
 export GHQ_ROOT="${GHQ_ROOT:-$GOPATH/src}"
