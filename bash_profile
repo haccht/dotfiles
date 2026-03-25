@@ -53,6 +53,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   fi
 
   source ~/.orbstack/shell/init.bash 2>/dev/null || :
+  if [ -d "/Applications/Obsidian.app/Contents/MacOS" ]; then
+    path_prepend "/Applications/Obsidian.app/Contents/MacOS"
+  fi
 fi
 
 export GHQ_ROOT="${GHQ_ROOT:-$GOPATH/src}"
