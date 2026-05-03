@@ -8,6 +8,7 @@ background-opacity = 0.9
 
 cursor-opacity = 0.7
 cursor-style = block
+shell-integration-features = no-cursor
 
 resize-overlay = never
 mouse-hide-while-typing = true

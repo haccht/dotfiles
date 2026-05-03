@@ -38,7 +38,6 @@ fi
 
 # fzf
 [[ -r ~/.fzf.bash ]] && source ~/.fzf.bash
-[[ -r /usr/share/doc/fzf/examples/key-bindings.bash ]] && source /usr/share/doc/fzf/examples/key-bindings.bash
 
 # ghq
 if command -v ghq >/dev/null 2>&1 && command -v fzf >/dev/null 2>&1 && [[ -t 1 ]]; then
