@@ -12,7 +12,7 @@ fi
 if !(type fzf >/dev/null 2>&1); then
     if type git >/dev/null 2>&1; then
         git clone --depth 1 https://github.com/junegunn/fzf.git ${HOME}/.fzf
-        ${HOME}/.fzf/install
+        ${HOME}/.fzf/install --key-bindings --completion --no-update-rc --no-zsh --no-fish --no-nushell
         ln -s ${HOME}/.fzf/bin/fzf ${HOME}/bin/fzf
     fi
 fi
