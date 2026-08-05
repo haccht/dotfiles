@@ -26,7 +26,7 @@ install_fzf() {
     git -C "$HOME/.fzf" pull --ff-only
   fi
 
-  "$HOME/.fzf/install" --key-bindings --completion --no-update-rc
+  "$HOME/.fzf/install" --key-bindings --completion --no-update-rc --no-zsh --no-fish --no-nushell
   mkdir -p "$HOME/bin"
   ln -sf "$HOME/.fzf/bin/fzf" "$HOME/bin/fzf"
 }
