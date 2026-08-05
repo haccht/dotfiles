@@ -37,11 +37,11 @@ PROMPT_RESET="\[\e[0m\]"
 prompt_cmd() {
   local status=$? status_symbol git_ps1 ssh_label title
 
-  status_symbol="${PROMPT_RESET}$"
+  status_symbol="${PROMPT_RESET}\$"
   if [[ $EUID -eq 0 ]]; then
     status_symbol="${PROMPT_ROOT_STYLE}#${PROMPT_RESET}"
   elif [[ $status -ne 0 ]]; then
-    status_symbol="${PROMPT_ROOT_STYLE}$${PROMPT_RESET}"
+    status_symbol="${PROMPT_ROOT_STYLE}\$${PROMPT_RESET}"
   fi
 
   history -a
