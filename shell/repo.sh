@@ -1,19 +1,22 @@
-#! /bin/bash
+#!/usr/bin/env bash
 
-set -x
+set -euo pipefail
 
-clone_or_pull_repository() {
-    remoterepo=$1
-    directory=$2
-    if [ -d "${directory}/.git" ]; then
-        git -C "${directory}" pull "${remoterepo}"
-    else
-        git clone "${remoterepo}" "${directory}"
-    fi
+has() {
+  command -v "$1" >/dev/null 2>&1
 }
 
-if type git >/dev/null 2>&1; then
-    # ruby
-    clone_or_pull_repository https://github.com/sstephenson/rbenv.git "${HOME}/.rbenv"
-    clone_or_pull_repository https://github.com/sstephenson/ruby-build.git "${HOME}/.rbenv/plugins/ruby-build"
-fi
+clone_or_update() {
+  local repo=$1 directory=$2
+
+  if [[ -d $directory/.git ]]; then
+    git -C "$directory" pull --ff-only
+  else
+    git clone "$repo" "$directory"
+  fi
+}
+
+has git || exit 0
+
+clone_or_update https://github.com/rbenv/rbenv.git "$HOME/.rbenv"
+clone_or_update https://github.com/rbenv/ruby-build.git "$HOME/.rbenv/plugins/ruby-build"

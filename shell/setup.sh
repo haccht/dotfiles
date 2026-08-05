@@ -1,24 +1,43 @@
-#! /bin/bash
+#!/usr/bin/env bash
 
-set -x
+set -euo pipefail
 
-# git-prompt.sh
-if type curl >/dev/null 2>&1; then
-    mkdir -p "${HOME}/.bash.d"
-    curl -sL https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh -o "${HOME}/.bash.d/git-prompt.sh"
-fi
+has() {
+  command -v "$1" >/dev/null 2>&1
+}
 
-# install fzf if not install via package task
-if !(type fzf >/dev/null 2>&1); then
-    if type git >/dev/null 2>&1; then
-        git clone --depth 1 https://github.com/junegunn/fzf.git ${HOME}/.fzf
-        ${HOME}/.fzf/install
-        ln -s ${HOME}/.fzf/bin/fzf ${HOME}/bin/fzf
-    fi
-fi
+install_git_prompt() {
+  has curl || return
 
-# vim plugins
-if type vim >/dev/null 2>&1; then
-    vim -es -u ~/.vimrc +PlugUpgrade +PlugInstall +PlugUpdate +qall
-    vim -es -u ~/.vimrc +PlugClean! +qall || echo 'Safe exit'
-fi
+  mkdir -p "$HOME/.bash.d"
+  curl -fsSL \
+    https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh \
+    -o "$HOME/.bash.d/git-prompt.sh"
+}
+
+install_fzf() {
+  if has fzf || ! has git; then
+    return
+  fi
+
+  if [[ ! -d $HOME/.fzf/.git ]]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
+  else
+    git -C "$HOME/.fzf" pull --ff-only
+  fi
+
+  "$HOME/.fzf/install" --key-bindings --completion --no-update-rc
+  mkdir -p "$HOME/bin"
+  ln -sf "$HOME/.fzf/bin/fzf" "$HOME/bin/fzf"
+}
+
+install_vim_plugins() {
+  has vim || return
+
+  vim -es -u "$HOME/.vimrc" +PlugUpgrade +PlugInstall +PlugUpdate +qall
+  vim -es -u "$HOME/.vimrc" +PlugClean! +qall || echo 'Safe exit'
+}
+
+install_git_prompt
+install_fzf
+install_vim_plugins

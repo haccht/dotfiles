@@ -1,7 +1,7 @@
 filetype plugin indent on
 
 set nocompatible
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+let data_dir = has('nvim') ? stdpath('data') . '/site' : expand('~/.vim')
 
 " encodings
 if has('vim_starting')
@@ -28,7 +28,6 @@ set number
 set nowrap
 set autoread
 set smarttab
-set wildmenu
 set ttyfast
 set laststatus=2
 set scrolloff=2
@@ -44,13 +43,22 @@ set incsearch
 set hlsearch
 set clipboard=unnamed
 set pastetoggle=<F10>
-if isdirectory(data_dir."/undo")
-  set undofile
-  set undodir=datadir."/undo"
+set completeopt=menuone,noinsert,noselect
+set splitright
+set splitbelow
+if !isdirectory(data_dir . '/undo')
+  silent! call mkdir(data_dir . '/undo', 'p')
 endif
-if isdirectory(data_dir."/backup")
+if isdirectory(data_dir . '/undo')
+  set undofile
+  let &undodir = data_dir . '/undo'
+endif
+if !isdirectory(data_dir . '/backup')
+  silent! call mkdir(data_dir . '/backup', 'p')
+endif
+if isdirectory(data_dir . '/backup')
   set backup
-  set undodir=datadir."/backup"
+  let &backupdir = data_dir . '/backup'
 endif
 
 " colors

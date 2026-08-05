@@ -1,21 +1,33 @@
-#! /bin/bash
+#!/usr/bin/env bash
 
-set -x
+set -euo pipefail
 
-# directories
-mkdir -p "${HOME}/bin"
-mkdir -p "${HOME}/src"
-mkdir -p "${HOME}/.config"
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." >/dev/null 2>&1 && pwd -P)"
 
-# dotfiles
-script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." &>/dev/null && pwd -P)
-ln -sfv "${script_dir}/bash_profile"     "${HOME}/.bash_profile"
-ln -sfv "${script_dir}/bashrc"           "${HOME}/.bashrc"
-ln -sfv "${script_dir}/gitconfig"        "${HOME}/.gitconfig"
-ln -sfv "${script_dir}/tmux.conf"        "${HOME}/.tmux.conf"
-ln -sfv "${script_dir}/gemrc"            "${HOME}/.gemrc"
-ln -sfv "${script_dir}/irbrc"            "${HOME}/.irbrc"
-ln -sfv "${script_dir}/vimrc"            "${HOME}/.vimrc"
+link_file() {
+  local source=$1 target=$2
 
-mkdir -p "${HOME}/.config/ghostty"
-ln -sfv "${script_dir}/config/ghostty/config" "${HOME}/.config/ghostty/config"
+  mkdir -p "$(dirname "$target")"
+  ln -sfv "$source" "$target"
+}
+
+mkdir -p "$HOME/bin" "$HOME/src" "$HOME/.config" "$HOME/.bash.d"
+
+while read -r source target; do
+  [[ -n $source ]] || continue
+  link_file "$script_dir/$source" "$HOME/$target"
+done <<'LINKS'
+bash_profile .bash_profile
+bashrc .bashrc
+gitconfig .gitconfig
+tmux.conf .tmux.conf
+gemrc .gemrc
+irbrc .irbrc
+vimrc .vimrc
+config/ghostty/config .config/ghostty/config
+LINKS
+
+for source in "$script_dir"/bash.d/*; do
+  [[ -f $source ]] || continue
+  link_file "$source" "$HOME/.bash.d/$(basename "$source")"
+done
