@@ -25,17 +25,15 @@ prompt_host_color() {
 
 PROMPT_HOST_COLOR=$(prompt_host_color)
 PROMPT_PATH_COLOR=250
-PROMPT_SSH_COLOR=45
 PROMPT_ROOT_COLOR=196
 
 PROMPT_HOST_STYLE="\[\e[38;5;${PROMPT_HOST_COLOR}m\]"
 PROMPT_PATH_STYLE="\[\e[38;5;${PROMPT_PATH_COLOR}m\]"
-PROMPT_SSH_STYLE="\[\e[38;5;${PROMPT_SSH_COLOR}m\]"
 PROMPT_ROOT_STYLE="\[\e[38;5;${PROMPT_ROOT_COLOR}m\]"
 PROMPT_RESET="\[\e[0m\]"
 
 prompt_cmd() {
-  local status=$? status_symbol git_ps1 ssh_label title
+  local status=$? status_symbol git_ps1 title
 
   status_symbol="${PROMPT_RESET}\$"
   if [[ $EUID -eq 0 ]]; then
@@ -52,16 +50,11 @@ prompt_cmd() {
     git_ps1="$(__git_ps1)"
   fi
 
-  ssh_label=
-  if [[ -n ${SSH_CONNECTION:-}${SSH_TTY:-} ]]; then
-    ssh_label="${PROMPT_SSH_STYLE}[SSH]${PROMPT_RESET} "
-  fi
-
   title="\u@\h:\w"
   case $TERM in
     xterm*|rxvt*|tmux*|screen*)
       printf '\033]0;%s\007' "$title"
-      PS1="\n${ssh_label}${PROMPT_HOST_STYLE}\u@\h ${PROMPT_PATH_STYLE}\w${git_ps1}\n${status_symbol} "
+      PS1="\n${PROMPT_HOST_STYLE}\u@\h ${PROMPT_PATH_STYLE}\w${git_ps1}\n${status_symbol} "
       ;;
   esac
 }
