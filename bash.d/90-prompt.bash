@@ -33,7 +33,7 @@ PROMPT_ROOT_STYLE="\[\e[38;5;${PROMPT_ROOT_COLOR}m\]"
 PROMPT_RESET="\[\e[0m\]"
 
 prompt_cmd() {
-  local status=$? status_symbol git_ps1 title
+  local status=$? status_symbol git_ps1 title title_host title_path
 
   status_symbol="${PROMPT_RESET}\$"
   if [[ $EUID -eq 0 ]]; then
@@ -50,7 +50,20 @@ prompt_cmd() {
     git_ps1="$(__git_ps1)"
   fi
 
-  title="\u@\h:\w"
+  title_host=${HOSTNAME:-$(hostname)}
+  title_host=${title_host%%.*}
+  case $PWD in
+    "$HOME")
+      title_path=\~
+      ;;
+    "$HOME"/*)
+      title_path=\~/${PWD#"$HOME"/}
+      ;;
+    *)
+      title_path=$PWD
+      ;;
+  esac
+  title="${USER:-$(id -un)}@${title_host}:${title_path}"
   case $TERM in
     xterm*|rxvt*|tmux*|screen*)
       printf '\033]0;%s\007' "$title"

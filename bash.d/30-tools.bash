@@ -8,9 +8,14 @@ export HISTIGNORE='ls:ll:la:cd:cd -:pwd:exit:history'
 if [[ -t 1 ]]; then
   _edit_wo_executing() {
     local tmpf
-    tmpf="$(mktemp)"
+    tmpf="$(mktemp)" || return
+
     printf '%s\n' "$READLINE_LINE" > "$tmpf"
-    "${EDITOR:-vi}" "$tmpf"
+    "${EDITOR:-vi}" "$tmpf" || {
+      rm -f "$tmpf"
+      return
+    }
+
     READLINE_LINE="$(<"$tmpf")"
     READLINE_POINT="${#READLINE_LINE}"
     rm -f "$tmpf"
