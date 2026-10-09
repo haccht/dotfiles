@@ -12,7 +12,9 @@ export TERM=xterm-256color
 export BAT_STYLE=plain
 
 export HISTSIZE=100000
-export HISTCONTROL=ignoredups
+export HISTFILESIZE=200000
+export HISTCONTROL=ignoreboth
+export HISTTIMEFORMAT='%F %T '
 
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"

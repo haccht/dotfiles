@@ -7,6 +7,9 @@ esac
 
 [[ -r /etc/bashrc ]] && . /etc/bashrc
 
+shopt -s cmdhist lithist histappend
+
+
 bashrc_source=${BASH_SOURCE[0]}
 while [[ -L $bashrc_source ]]; do
   bashrc_dir=$(cd "$(dirname "$bashrc_source")" >/dev/null 2>&1 && pwd -P)
