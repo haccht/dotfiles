@@ -1,18 +1,21 @@
+" ---------------------------------------------------------------------------
+" Initialization & Encodings
+" ---------------------------------------------------------------------------
 filetype plugin indent on
+syntax on
 
-set nocompatible
-let data_dir = has('nvim') ? stdpath('data') . '/site' : expand('~/.vim')
+let s:data_dir = has('nvim') ? stdpath('data') . '/site' : expand('~/.vim')
 
-" encodings
 if has('vim_starting')
   set encoding=utf-8
-  set termencoding=utf-8
-  set fileencodings=utf-8
+  set fileencodings=utf-8,ucs-bom,euc-jp,cp932,sjis
   set fileformats=unix,dos,mac
 endif
 scriptencoding utf-8
 
-" global settings
+" ---------------------------------------------------------------------------
+" Core Options
+" ---------------------------------------------------------------------------
 set t_vb=
 set novisualbell
 set noerrorbells
@@ -27,68 +30,68 @@ set hidden
 set number
 set nowrap
 set autoread
-set smarttab
-set ttyfast
 set laststatus=2
 set scrolloff=2
 set updatetime=1000
+
+" Indentation
+set smarttab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
 set smartindent
+
+" Search
 set ignorecase
 set smartcase
 set incsearch
 set hlsearch
-set clipboard=unnamed
-set pastetoggle=<F10>
+
+" Clipboard, Completion & Splits
+set clipboard^=unnamed,unnamedplus
 set completeopt=menuone,noinsert,noselect
 set splitright
 set splitbelow
-if !isdirectory(data_dir . '/undo')
-  silent! call mkdir(data_dir . '/undo', 'p')
-endif
-if isdirectory(data_dir . '/undo')
+
+" Persistent Undo & Backup
+for s:dir in ['undo', 'backup']
+  if !isdirectory(s:data_dir . '/' . s:dir)
+    silent! call mkdir(s:data_dir . '/' . s:dir, 'p')
+  endif
+endfor
+if isdirectory(s:data_dir . '/undo')
   set undofile
-  let &undodir = data_dir . '/undo'
+  let &undodir = s:data_dir . '/undo'
 endif
-if !isdirectory(data_dir . '/backup')
-  silent! call mkdir(data_dir . '/backup', 'p')
-endif
-if isdirectory(data_dir . '/backup')
+if isdirectory(s:data_dir . '/backup')
   set backup
-  let &backupdir = data_dir . '/backup'
+  let &backupdir = s:data_dir . '/backup'
 endif
 
-" colors
-syntax on
-set t_Co=256
-set cursorline
-set background=dark
-autocmd ColorScheme * highlight Normal ctermbg=none
-autocmd ColorScheme * highlight LineNr ctermbg=none
-colorscheme murphy
-
-" mappings
-let mapleader=','
-nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
+" ---------------------------------------------------------------------------
+" Key Mappings & Filetype Rules
+" ---------------------------------------------------------------------------
+let mapleader = ','
+nnoremap <Esc><Esc> :<C-u>nohlsearch<CR><Esc>
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 
-" filetype settings
-augroup fileTypeIndent
+augroup FileTypeIndent
   autocmd!
   autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
-" plugins
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+" ---------------------------------------------------------------------------
+" Plugins (vim-plug)
+" ---------------------------------------------------------------------------
+if empty(glob(s:data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo ' . s:data_dir . '/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
 call plug#begin()
 Plug 'itchyny/lightline.vim'
 Plug 'mattn/vim-lsp-settings'
@@ -108,24 +111,42 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'andymass/vim-matchup'
 call plug#end()
 
-" colorscheme
-if filereadable(expand(data_dir . "/plugged/papercolor-theme/colors/PaperColor.vim"))
-  colorscheme PaperColor
-  let g:lightline = { 'colorscheme': 'PaperColor' }
-endif
+" ---------------------------------------------------------------------------
+" Appearance & Colorscheme
+" ---------------------------------------------------------------------------
+set t_Co=256
+set cursorline
+set background=dark
 
-" netrw
-let g:netrw_banner=0
-"let g:netrw_liststyle=1
-let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
-let g:netrw_hide=1
-let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
-augroup NetrwKeyMap
-    au!
-    au FileType netrw nmap <buffer> . gh
+augroup TransparentBg
+  autocmd!
+  autocmd ColorScheme * highlight Normal ctermbg=none
+  autocmd ColorScheme * highlight LineNr ctermbg=none
 augroup END
 
-" lsp
+if filereadable(expand(s:data_dir . '/plugged/papercolor-theme/colors/PaperColor.vim'))
+  colorscheme PaperColor
+  let g:lightline = { 'colorscheme': 'PaperColor' }
+else
+  colorscheme murphy
+endif
+
+" ---------------------------------------------------------------------------
+" Netrw
+" ---------------------------------------------------------------------------
+let g:netrw_banner = 0
+let g:netrw_timefmt = '%Y/%m/%d(%a) %H:%M:%S'
+let g:netrw_hide = 1
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+
+augroup NetrwKeyMap
+  autocmd!
+  autocmd FileType netrw nmap <buffer> . gh
+augroup END
+
+" ---------------------------------------------------------------------------
+" LSP & Plugin Configuration
+" ---------------------------------------------------------------------------
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
@@ -138,13 +159,13 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> <F1> <plug>(lsp-implementation)
   nmap <buffer> <F2> <plug>(lsp-rename)
 endfunction
-augroup lsp_install
-  au!
+
+augroup LspInstall
+  autocmd!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
-" plugin-settings
-map <Leader>g :GitGutterToggle<CR>
+nnoremap <Leader>g :<C-u>GitGutterToggle<CR>
 nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
 
 let g:goimports = 1
@@ -157,8 +178,6 @@ let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_text_edit_enabled = 1
 let g:lsp_preview_float = 1
 let g:lsp_diagnostics_float_cursor = 1
-" let g:asyncomplete_auto_popup = 1
-" let g:asyncomplete_auto_completeopt = 0
 let g:asyncomplete_popup_delay = 200
 
 let g:vim_json_conceal = 0

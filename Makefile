@@ -1,14 +1,16 @@
+.PHONY: all min init package setup repo
+
 all: init package setup repo
 min: init setup
 
 init:
-	@./shell/init.sh
+	@./setup.sh init
 
 package:
-	@./shell/packages.sh
+	@./setup.sh packages
 
 setup:
-	@./shell/setup.sh
+	@./setup.sh tools
 
 repo:
-	@./shell/repo.sh
+	@./setup.sh repo

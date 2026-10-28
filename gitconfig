@@ -1,6 +1,9 @@
 [user]
   name = haccht
   email = haccht@users.noreply.github.com
+[core]
+  quotepath = false
+  autocrlf = input
 [init]
   defaultBranch = main
 [push]
