@@ -117,8 +117,10 @@ elif [[ -r /etc/bash.bashrc ]]; then
 fi
 
 if ! shopt -oq posix && [[ -z ${BASH_COMPLETION_VERSINFO:-} ]]; then
-  if [[ -r /opt/homebrew/etc/profile.d/bash_completion.sh ]]; then
-    . /opt/homebrew/etc/profile.d/bash_completion.sh
+  if [[ -n ${HOMEBREW_PREFIX:-} && -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]]; then
+    . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
+  elif [[ -n ${HOMEBREW_PREFIX:-} && -r "$HOMEBREW_PREFIX/etc/bash_completion" ]]; then
+    . "$HOMEBREW_PREFIX/etc/bash_completion"
   elif [[ -r /usr/share/bash-completion/bash_completion ]]; then
     . /usr/share/bash-completion/bash_completion
   elif [[ -r /etc/bash_completion ]]; then

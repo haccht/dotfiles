@@ -28,6 +28,7 @@ clone_or_update() {
 # Subcommand: init (directories & symlinks)
 # ---------------------------------------------------------------------------
 cmd_init() {
+  echo "==> Initializing directories and symlinks..."
   mkdir -p "$HOME/bin" "$HOME/.local/bin" "$HOME/src" "$HOME/.config" "$HOME/.bash.d"
 
   while read -r source target; do
@@ -56,11 +57,26 @@ LINKS
 # ---------------------------------------------------------------------------
 # Subcommand: packages (OS packages & Go runtime)
 # ---------------------------------------------------------------------------
-install_package() {
+is_installed() {
   local pkgname=$1
   local check_cmd=${2:-$1}
 
   if has "$check_cmd"; then
+    return 0
+  fi
+
+  if [[ $OSTYPE == darwin* ]] && has brew; then
+    brew list --versions "$pkgname" >/dev/null 2>&1 && return 0
+  fi
+
+  return 1
+}
+
+install_package() {
+  local pkgname=$1
+  local check_cmd=${2:-$1}
+
+  if is_installed "$pkgname" "$check_cmd"; then
     return
   fi
 
@@ -104,6 +120,7 @@ install_go_from_tarball() {
     return
   fi
 
+  echo "Installing Go from official tarball..."
   local goos goarch goversion
   goos=$(uname -s | tr '[:upper:]' '[:lower:]')
   goarch=$(uname -m)
@@ -119,12 +136,15 @@ install_go_from_tarball() {
 }
 
 cmd_packages() {
+  echo "==> Checking packages..."
   install_homebrew
   install_xcode_tools
 
   if [[ $OSTYPE == darwin* ]]; then
     install_package bash
-    install_package bash-completion
+    if [[ ! -r /opt/homebrew/etc/profile.d/bash_completion.sh && ! -r /usr/local/etc/profile.d/bash_completion.sh && ! -r /opt/homebrew/etc/bash_completion && ! -r /usr/local/etc/bash_completion ]]; then
+      install_package bash-completion
+    fi
     install_package go
     install_package ghq
   fi
@@ -148,6 +168,7 @@ cmd_packages() {
 # ---------------------------------------------------------------------------
 install_git_prompt() {
   has curl || return
+  echo "==> Updating git-prompt.sh..."
   mkdir -p "$HOME/.bash.d"
   curl -fsSL \
     https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh \
@@ -159,6 +180,7 @@ install_fzf() {
     return
   fi
 
+  echo "==> Installing fzf..."
   clone_or_update https://github.com/junegunn/fzf.git "$HOME/.fzf"
   "$HOME/.fzf/install" --key-bindings --completion --no-update-rc --no-zsh --no-fish --no-nushell
   mkdir -p "$HOME/bin"
@@ -167,8 +189,12 @@ install_fzf() {
 
 install_vim_plugins() {
   has vim || return
-  vim -es -u "$HOME/.vimrc" +PlugUpgrade +PlugInstall +PlugUpdate +qall < /dev/null
-  vim -es -u "$HOME/.vimrc" +PlugClean! +qall < /dev/null || echo 'Safe exit'
+  echo "==> Updating Vim plugins..."
+  if [[ ! -f "$HOME/.vim/autoload/plug.vim" ]] && has curl; then
+    curl -fsSLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  fi
+  vim -Nu "$HOME/.vimrc" -Es +PlugUpgrade +"PlugUpdate --sync" +"PlugClean! --sync" +qall! < /dev/null || true
 }
 
 cmd_tools() {
@@ -182,11 +208,12 @@ cmd_tools() {
 # ---------------------------------------------------------------------------
 cmd_repo() {
   has git || return 0
+  echo "==> Updating repositories..."
 
   clone_or_update https://github.com/rbenv/rbenv.git "$HOME/.rbenv"
   clone_or_update https://github.com/rbenv/ruby-build.git "$HOME/.rbenv/plugins/ruby-build"
 
-  if ! has ghq; then
+  if ! has ghq && [[ ! -x "$HOME/bin/ghq" ]]; then
     local go_bin=""
     if has go; then
       go_bin="go"
@@ -194,6 +221,7 @@ cmd_repo() {
       go_bin="/usr/local/go/bin/go"
     fi
     if [[ -n $go_bin ]]; then
+      echo "==> Installing ghq via go install..."
       GOBIN="$HOME/bin" "$go_bin" install github.com/x-motemen/ghq@latest
     fi
   fi
